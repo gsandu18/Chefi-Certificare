@@ -6,8 +6,7 @@
     <title>Bucătarul Personal | Certificarea 2026</title>
     
     <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700&family=Montserrat:wght@300;400;600&display=swap" rel="stylesheet">
-    
-    <style>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"> <style>
         /* CONFIGURARE CULORI ȘI RESETARE */
         :root {
             --gold: #C5A02B;
@@ -55,7 +54,7 @@
             font-weight: 700;
         }
 
-        /* HERO SECTION */
+        /* HERO SECTION - CU IMAGINE DE FUNDAL */
         .hero {
             min-height: 85vh;
             display: flex;
@@ -64,7 +63,12 @@
             align-items: center;
             text-align: center;
             padding: 60px 20px;
-            background: radial-gradient(circle at center, #1a1a1a 0%, #0d0d0d 100%);
+            
+            /* IMAGINEA DE FUNDAL AICI */
+            background-image: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)), url('https://i.ibb.co/Csg647b/hero-chef.jpg'); /* INLOCUIESTE CU URL-UL IMAGINII TALE */
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed; /* Parallax effect */
         }
 
         .experience-badge {
@@ -76,6 +80,7 @@
             letter-spacing: 2px;
             margin-bottom: 25px;
             font-weight: 600;
+            background-color: rgba(0,0,0,0.4); /* O mică umbră pentru lizibilitate */
         }
 
         h1 {
@@ -84,6 +89,7 @@
             line-height: 1.2;
             margin-bottom: 15px;
             max-width: 900px;
+            text-shadow: 2px 2px 8px rgba(0,0,0,0.7); /* Umbră pentru lizibilitate pe imagine */
         }
 
         h1 span {
@@ -97,6 +103,7 @@
             text-transform: uppercase;
             margin-bottom: 35px;
             font-weight: 400;
+            text-shadow: 1px 1px 5px rgba(0,0,0,0.5);
         }
 
         .tagline {
@@ -105,6 +112,7 @@
             font-size: 1rem;
             margin-bottom: 45px;
             font-weight: 300;
+            text-shadow: 1px 1px 5px rgba(0,0,0,0.5);
         }
 
         /* BUTON REPSONSIVE */
@@ -145,10 +153,24 @@
             padding: 45px 30px;
             text-align: center;
             transition: 0.3s;
+            position: relative; /* Pentru a poziționa iconița */
+            overflow: hidden;
+        }
+
+        .feature-card i {
+            font-size: 3.5rem;
+            color: var(--gold);
+            margin-bottom: 25px;
+            display: block;
+            opacity: 0.7;
+            transition: transform 0.3s ease;
         }
 
         .feature-card:hover {
             border-color: var(--gold);
+        }
+        .feature-card:hover i {
+            transform: translateY(-5px);
         }
 
         .feature-card h3 {
@@ -169,6 +191,11 @@
         .form-section {
             padding: 100px 20px;
             text-align: center;
+            /* IMAGINE DE FUNDAL PENTRU FORMULAR */
+            background-image: linear-gradient(rgba(13,13,13,0.8), rgba(13,13,13,0.8)), url('https://i.ibb.co/nC3d0yN/form-bg.jpg'); /* INLOCUIESTE CU URL-UL IMAGINII TALE */
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
         }
 
         .form-container {
@@ -184,6 +211,7 @@
             font-family: 'Cinzel', serif;
             margin-bottom: 30px;
             color: var(--white);
+            font-size: clamp(1.5rem, 5vw, 2.2rem);
         }
 
         input {
@@ -195,11 +223,13 @@
             color: #fff;
             font-family: 'Montserrat', sans-serif;
             font-size: 1rem;
+            border-radius: 2px;
         }
 
         input:focus {
             outline: none;
             border-color: var(--gold);
+            box-shadow: 0 0 0 3px rgba(197, 160, 43, 0.2);
         }
 
         /* FOOTER */
@@ -219,7 +249,7 @@
                 padding: 60px 20px;
             }
             h1 {
-                font-size: 2rem;
+                font-size: 2.2rem;
             }
             .form-container {
                 padding: 30px 20px;
@@ -238,22 +268,22 @@
         <h1>AUDITUL DE ETICHETĂ & <br><span>PROTOCOL GASTRONOMIC</span></h1>
         <div class="sub-hero">Sezonul Oficial 2026</div>
         <p class="tagline">
-            Nu suntem doar bucătari. Suntem gardienii discreției și ai rafinamentului în cele mai exclusiviste reședințe din România și Italia.
+            De la București la Toscana, definim standardul suprem pentru Chefii privați. Acreditarea ta este pașaportul către cele mai exclusive reședințe.
         </p>
         <a href="#join" class="btn">Rezervă-ți locul în audit</a>
     </section>
 
     <section class="features">
         <div class="feature-card">
-            <h3>DISCREȚIE ABSOLUTĂ</h3>
+            <i class="fas fa-user-secret"></i> <h3>DISCREȚIE ABSOLUTĂ</h3>
             <p>Protocol de confidențialitate riguros pentru protecția intimității clienților High-Net-Worth.</p>
         </div>
         <div class="feature-card">
-            <h3>REGULA ZERO URME</h3>
+            <i class="fas fa-broom"></i> <h3>REGULA ZERO URME</h3>
             <p>Management impecabil al spațiului. Bucătăria este predată într-o stare perfectă, fără nicio urmă.</p>
         </div>
         <div class="feature-card">
-            <h3>VALIDARE DIGITALĂ</h3>
+            <i class="fas fa-qrcode"></i> <h3>VALIDARE DIGITALĂ</h3>
             <p>Fiecare certificat este dotat cu QR Code pentru verificare instantanee de către agenții și proprietari.</p>
         </div>
     </section>
@@ -261,9 +291,8 @@
     <section id="join" class="form-section">
         <div class="form-container">
             <h2>LISTA DE AȘTEPTARE</h2>
-            <p style="color: var(--gold); margin-bottom: 30px; font-size: 0.8rem; letter-spacing: 1px;">PRIORITATE PENTRU PRE-EVALUĂRILE DIN 2025</p>
-            <form action="#">
-                <input type="text" placeholder="Nume Complet" required>
+            <p style="color: var(--gold); margin-bottom: 30px; font-size: 0.8rem; letter-spacing: 1px;">LOCURI LIMITATE PENTRU AUDITUL OFICIAL. PRIORITATE PENTRU PRE-EVALUĂRILE DIN 2025.</p>
+            <form action="#"> <input type="text" placeholder="Nume Complet" required>
                 <input type="email" placeholder="Adresa de Email" required>
                 <input type="text" placeholder="Locație (ex: București / Toscana)" required>
                 <button type="submit" class="btn">Solicită Acreditarea</button>
