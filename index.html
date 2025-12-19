@@ -213,6 +213,47 @@
         line-height: 1.2;
     }
 }
+        /* Optimizare Formular Mobil */
+#join {
+    padding: 40px 5% !important; /* Oferă spațiu pe marginile laterale pe telefon */
+}
+
+#join form {
+    display: flex;
+    flex-direction: column;
+    gap: 15px; /* Spațiu egal între căsuțe */
+    width: 100%;
+}
+
+#join input, #join select, #join button {
+    width: 100%;
+    box-sizing: border-box; /* Previne ieșirea căsuțelor în afara ecranului */
+    padding: 15px;
+    font-size: 16px !important; /* Mărime minimă pentru a evita zoom-ul automat pe iPhone */
+    border-radius: 5px;
+    border: 1px solid #333;
+    background: #1a1a1a;
+    color: white;
+}
+
+#join button {
+    background: #c5a059; /* Culoarea aurie din logo */
+    color: black;
+    font-weight: bold;
+    text-transform: uppercase;
+    cursor: pointer;
+    border: none;
+    margin-top: 10px;
+}
+
+/* Ajustare titlu pe mobil */
+@media (max-width: 480px) {
+    #join h2 {
+        font-size: 1.6rem !important;
+        margin-bottom: 15px;
+    }
+}
+
 
 </style>
 </head>
