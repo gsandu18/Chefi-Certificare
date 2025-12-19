@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>Bucătarul Personal | Certificarea 2026</title>
+    <title>ChefAudit | Standardul Bucătarul Personal</title>
     
     <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700&family=Montserrat:wght@300;400;600&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
@@ -12,42 +12,30 @@
         :root {
             --gold: #C5A02B;
             --dark-bg: #0d0d0d;
+            --card-bg: #161616;
             --overlay: rgba(13, 13, 13, 0.85);
             --text-main: #ffffff;
         }
 
         * { box-sizing: border-box; margin: 0; padding: 0; }
-        
-        body { 
-            font-family: 'Montserrat', sans-serif; 
-            background-color: var(--dark-bg); 
-            color: var(--text-main); 
-            line-height: 1.6; 
-            overflow-x: hidden; 
-        }
+        body { font-family: 'Montserrat', sans-serif; background-color: var(--dark-bg); color: var(--text-main); line-height: 1.6; overflow-x: hidden; }
 
-        /* HEADER / NAVBAR */
+        /* NAVIGATIE */
         nav { 
             width: 100%; 
-            padding: 20px; 
+            padding: 15px 20px; 
             text-align: center; 
             background: #000;
             border-bottom: 1px solid #222;
-            position: relative;
-            z-index: 10;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
         }
-        .logo { 
-            font-family: 'Cinzel', serif; 
-            font-size: 1.2rem; 
-            color: var(--gold); 
-            letter-spacing: 3px; 
-            text-transform: uppercase; 
-            font-weight: 700; 
-        }
+        .logo-nav { height: 45px; width: auto; }
 
-        /* HERO SECTION - REPARAT PENTRU SUPRAPUNERI */
+        /* HERO SECTION */
         .hero {
-            min-height: 85vh;
+            min-height: 80vh;
             display: flex;
             flex-direction: column;
             justify-content: center;
@@ -55,200 +43,137 @@
             text-align: center;
             padding: 60px 20px;
             background: linear-gradient(var(--overlay), var(--overlay)), 
-                        url('https://images.unsplash.com/photo-1559339352-11d035aa65de?q=80&w=1920&auto=format&fit=crop');
+                        url('https://images.unsplash.com/photo-1556910103-1c02745aae4d?q=80&w=1920&auto=format&fit=crop');
             background-size: cover;
             background-position: center;
         }
 
         .experience-badge {
-            font-size: 0.7rem;
+            font-size: 0.75rem;
             border: 1px solid var(--gold);
-            padding: 8px 20px;
+            padding: 8px 22px;
             border-radius: 50px;
             color: var(--gold);
-            margin-bottom: 30px; /* Previne suprapunerea cu titlul */
+            margin-bottom: 25px;
             font-weight: 600;
-            letter-spacing: 1px;
-            background: rgba(0,0,0,0.5);
-            display: inline-block;
-        }
-
-        h1 { 
-            font-family: 'Cinzel', serif; 
-            font-size: clamp(1.8rem, 7vw, 3.2rem); 
-            margin-bottom: 15px; 
-            line-height: 1.3; 
-            text-transform: uppercase; 
-        }
-        
-        h1 span { 
-            color: var(--gold); 
-            display: block; 
-        }
-        
-        .sub-hero { 
-            color: var(--gold); 
-            letter-spacing: 2px; 
-            text-transform: uppercase; 
-            margin-bottom: 30px; 
-            font-weight: 400; 
-            font-size: 0.9rem; 
-        }
-
-        .tagline { 
-            max-width: 600px; 
-            margin-bottom: 40px; 
-            color: #ccc; 
-            font-size: 0.95rem; 
-            font-weight: 300; 
-        }
-
-        .btn {
-            background: var(--gold);
-            color: #000;
-            padding: 18px 35px;
-            font-weight: 700;
-            text-transform: uppercase;
-            text-decoration: none;
             letter-spacing: 2px;
-            transition: 0.3s;
-            display: inline-block;
-            width: 100%;
-            max-width: 300px;
-            border-radius: 2px;
         }
 
-        /* SECȚIUNE CARACTERISTICI */
-        .features {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 20px;
-            padding: 80px 20px;
-            background: #111;
+        h1 { font-family: 'Cinzel', serif; font-size: clamp(1.8rem, 8vw, 3.2rem); margin-bottom: 15px; line-height: 1.2; }
+        h1 span { color: var(--gold); }
+
+        /* SECTIUNEA DESPRE / FONDATOR */
+        .about-section {
+            padding: 100px 10%;
+            background: #0d0d0d;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 50px;
+            align-items: center;
+            border-top: 1px solid #222;
         }
 
-        .feature-card {
-            padding: 40px 25px;
-            background: #1a1a1a;
-            border: 1px solid #222;
+        .about-content { flex: 1; min-width: 300px; }
+        .about-image { 
+            flex: 1; 
+            min-width: 300px; 
             text-align: center;
-            transition: 0.3s;
+            position: relative;
         }
         
+        /* Aici punem Logo-ul ca element vizual principal */
+        .founder-logo { 
+            width: 100%; 
+            max-width: 350px; 
+            filter: drop-shadow(0 0 20px rgba(197, 160, 43, 0.2));
+        }
+
+        h2 { font-family: 'Cinzel', serif; color: var(--gold); margin-bottom: 25px; font-size: 2rem; }
+        .about-text p { margin-bottom: 20px; color: #ccc; font-weight: 300; font-size: 1.05rem; }
+        .gold-text { color: var(--gold); font-weight: 600; }
+
+        /* GRID BENEFICII */
+        .features { 
+            display: grid; 
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); 
+            gap: 20px; 
+            padding: 80px 10%; 
+            background: #111; 
+        }
+        .feature-card { padding: 40px 25px; background: var(--card-bg); border: 1px solid #222; text-align: center; transition: 0.3s; }
         .feature-card:hover { border-color: var(--gold); }
-        
-        /* Stil Iconițe */
-        .feature-card i { 
-            color: var(--gold); 
-            font-size: 2.8rem; 
-            margin-bottom: 25px; 
-            display: block; 
-        }
-        
-        .feature-card h3 { 
-            font-family: 'Cinzel', serif; 
-            color: var(--gold); 
-            margin-bottom: 15px; 
-            font-size: 1.2rem; 
-        }
-        
-        .feature-card p { font-size: 0.9rem; color: #aaa; font-weight: 300; }
+        .feature-card i { color: var(--gold); font-size: 2.5rem; margin-bottom: 20px; display: block; }
 
         /* FORMULAR */
-        .form-section {
-            padding: 100px 20px;
-            background: linear-gradient(rgba(13,13,13,0.92), rgba(13,13,13,0.92)), 
-                        url('https://images.unsplash.com/photo-1514362545857-3bc16c4c7d1b?q=80&w=1920&auto=format&fit=crop');
-            background-size: cover;
-            text-align: center;
-        }
-        
-        .form-container { 
-            max-width: 450px; 
-            margin: 0 auto; 
-            background: rgba(0,0,0,0.8); 
-            padding: 40px 30px; 
-            border: 1px solid #333; 
-        }
-        
-        .form-container h2 { font-family: 'Cinzel', serif; margin-bottom: 25px; font-size: 1.6rem; }
-        
-        input { 
-            width: 100%; 
-            padding: 14px; 
-            margin-bottom: 15px; 
-            background: #000; 
-            border: 1px solid #444; 
-            color: #fff; 
-            font-family: 'Montserrat', sans-serif; 
-        }
+        .form-section { padding: 80px 20px; text-align: center; background: #000; }
+        .form-container { max-width: 450px; margin: 0 auto; background: #111; padding: 40px; border: 1px solid #333; }
+        input { width: 100%; padding: 15px; margin-bottom: 15px; background: #000; border: 1px solid #444; color: #fff; }
+        .btn { background: var(--gold); color: #000; padding: 18px 40px; font-weight: 700; text-transform: uppercase; border: none; cursor: pointer; letter-spacing: 2px; text-decoration: none; display: inline-block; width: 100%; }
 
-        footer { 
-            padding: 50px; 
-            text-align: center; 
-            border-top: 1px solid #222; 
-            color: #555; 
-            font-size: 0.75rem; 
-            letter-spacing: 2px; 
-            text-transform: uppercase; 
-        }
+        footer { padding: 40px; text-align: center; color: #444; font-size: 0.7rem; letter-spacing: 2px; border-top: 1px solid #222; }
 
-        /* AJUSTĂRI PENTRU ECRANE FOARTE MICI */
-        @media (max-width: 480px) {
-            .hero { padding-top: 80px; }
-            h1 { font-size: 1.8rem; }
-            .feature-card { padding: 30px 15px; }
+        @media (max-width: 768px) {
+            .about-section { padding: 60px 20px; flex-direction: column-reverse; }
         }
     </style>
 </head>
 <body>
 
     <nav>
-        <div class="logo">Bucătarul Personal</div>
+        <img src="logo.png" alt="Bucătarul Personal" class="logo-nav">
     </nav>
 
     <section class="hero">
-        <div class="experience-badge">7 ANI DE EXCELENȚĂ ÎN OSPITALITATE</div>
-        <h1>AUDITUL DE ETICHETĂ & <span>PROTOCOL GASTRONOMIC</span></h1>
-        <div class="sub-hero">Sezonul Oficial 2026</div>
-        <p class="tagline">De la București la Toscana, definim standardul suprem pentru serviciile private de elită. Acreditarea ta este pașaportul către reședințele de lux.</p>
-        <a href="#join" class="btn">Rezervă-ți locul</a>
+        <div class="experience-badge">EST. 2018 | 7 ANI DE EXCELENȚĂ</div>
+        <h1>CERTIFICATUL DE <span>EXCELENȚĂ PROFESIONALĂ</span></h1>
+        <div style="color: var(--gold); margin-top: 20px; letter-spacing: 2px;">SEZONUL 2026</div>
+    </section>
+
+    <section class="about-section">
+        <div class="about-image">
+            <img src="logo.png" alt="Bucătarul Personal Logo" class="founder-logo">
+        </div>
+        <div class="about-content">
+            <h2>Viziunea Noastră</h2>
+            <div class="about-text">
+                <p>Brandul <span class="gold-text">Bucătarul Personal</span> s-a născut dintr-o realitate simplă: excelența în reședințele private nu este negociabilă. Cu o experiență de <span class="gold-text">7 ani</span> acumulată în România și Italia, am transformat gătitul privat dintr-un serviciu, într-un protocol de elită.</p>
+                <p>Decizia de a lansa <span class="gold-text">ChefAudit</span> a venit din dorința de a ridica ștacheta întregii industrii. Am văzut nevoia agențiilor de concierge și a proprietarilor de a avea o garanție a discreției și a profesionalismului.</p>
+                <p>Acest certificat este promisiunea noastră că Chef-ul de la masa ta stăpânește nu doar gustul, ci și arta de a fi invizibil și impecabil.</p>
+            </div>
+        </div>
     </section>
 
     <section class="features">
         <div class="feature-card">
-            <i class="fas fa-user-shield"></i>
-            <h3>Discreție Absolută</h3>
-            <p>Protocol de confidențialitate riguros pentru protecția intimității clienților High-Net-Worth.</p>
+            <i class="fas fa-user-secret"></i>
+            <h3>DISCREȚIE TOTALĂ</h3>
+            <p>Antrenament specific pentru respectarea intimității totale a beneficiarului.</p>
         </div>
-
         <div class="feature-card">
             <i class="fas fa-magic"></i>
-            <h3>Regula Zero Urme</h3>
-            <p>Bucătăria este predată într-o stare impecabilă, fără nicio urmă a prezenței noastre.</p>
+            <h3>ZERO URME</h3>
+            <p>Standardul de aur în igienă: bucătăria rămâne mereu mai curată decât am găsit-o.</p>
         </div>
-
         <div class="feature-card">
-            <i class="fas fa-qrcode"></i>
-            <h3>Validare Digitală</h3>
-            <p>Certificat verificabil instant prin sistem QR pentru agenții și proprietari.</p>
+            <i class="fas fa-award"></i>
+            <h3>VALIDARE QR</h3>
+            <p>Fiecare absolvent primește o identitate digitală verificabilă în timp real.</p>
         </div>
     </section>
 
     <section id="join" class="form-section">
         <div class="form-container">
-            <h2>LISTA DE AȘTEPTARE</h2>
-            <p style="color: var(--gold); font-size: 0.75rem; margin-bottom: 25px; letter-spacing: 1px;">PRIORITATE PENTRU PRE-EVALUĂRILE DIN 2025</p>
-            <form>
-                <input type="text" placeholder="Nume Complet" required>
-                <input type="email" placeholder="Email Profesional" required>
-                <input type="text" placeholder="Locație (ex: București / Toscana)" required>
-                <button type="submit" class="btn" style="width: 100%;">Solicită Acreditarea</button>
+            <h2 style="font-size: 1.5rem;">SOLICITĂ AUDITUL</h2>
+            <p style="color: var(--gold); font-size: 0.7rem; margin-bottom: 25px; letter-spacing: 1px;">PRIORITATE PENTRU EVALUĂRILE DIN 2025</p>
+            <form action="https://formspree.io/f/XXXXX" method="POST"> <input type="text" name="name" placeholder="Nume Complet" required>
+                <input type="email" name="email" placeholder="Email" required>
+                <input type="text" name="location" placeholder="Locație principală (RO/IT)" required>
+                <button type="submit" class="btn">Înscrie-te pe Listă</button>
             </form>
         </div>
     </section>
 
-    <footer>&copy; 2026 BUCĂTARUL PERSONAL | ROMÂNIA & ITALIA</footer>
+    <footer>&copy; 2026 CHEFAUDIT.COM | POWERED BY BUCĂTARUL PERSONAL</footer>
 
 </body>
 </html>
