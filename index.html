@@ -133,6 +133,50 @@
             .about-section { padding: 60px 20px; flex-direction: column-reverse; }
             .contact-grid { padding: 60px 20px; }
         }
+        <style>
+    /* Setări de bază pentru a preveni scroll-ul orizontal */
+    html, body {
+        max-width: 100%;
+        overflow-x: hidden;
+    }
+
+    /* Adaptare pentru dispozitive mobile (Telefoane) */
+    @media (max-width: 768px) {
+        h1 {
+            font-size: 1.8rem !important; /* Micșorează titlul pe telefon */
+            padding: 0 10px;
+        }
+        
+        .hero {
+            padding: 40px 15px !important;
+        }
+
+        .features, .proces, #faq {
+            padding: 40px 5% !important; /* Reduce marginile pe mobil */
+        }
+
+        .feature-card {
+            padding: 20px !important;
+        }
+
+        #join {
+            padding: 40px 5% !important;
+        }
+
+        #join div {
+            padding: 30px 15px !important; /* Formularul ocupă mai mult spațiu pe lățime */
+        }
+    }
+
+    /* Adaptare pentru ecrane foarte mari (MacBook Pro/Desktop) */
+    @media (min-width: 1200px) {
+        .features {
+            grid-template-columns: repeat(3, 1fr); /* 3 coloane clare */
+            gap: 40px;
+        }
+    }
+</style>
+
     </style>
 </head>
 <body>
