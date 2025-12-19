@@ -74,59 +74,81 @@
         }
 
         .about-content { flex: 1; min-width: 300px; }
-        .about-image { 
-            flex: 1; 
-            min-width: 300px; 
-            text-align: center;
-            position: relative;
-        }
-        
-        /* Aici punem Logo-ul ca element vizual principal */
-        .founder-logo { 
-            width: 100%; 
-            max-width: 350px; 
-            filter: drop-shadow(0 0 20px rgba(197, 160, 43, 0.2));
-        }
+        .about-image { flex: 1; min-width: 300px; text-align: center; }
+        .founder-logo { width: 100%; max-width: 320px; filter: drop-shadow(0 0 15px rgba(197,160,43,0.2)); }
 
         h2 { font-family: 'Cinzel', serif; color: var(--gold); margin-bottom: 25px; font-size: 2rem; }
-        .about-text p { margin-bottom: 20px; color: #ccc; font-weight: 300; font-size: 1.05rem; }
+        .about-text p { margin-bottom: 20px; color: #ccc; font-weight: 300; }
         .gold-text { color: var(--gold); font-weight: 600; }
 
         /* GRID BENEFICII */
-        .features { 
-            display: grid; 
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); 
-            gap: 20px; 
-            padding: 80px 10%; 
-            background: #111; 
-        }
-        .feature-card { padding: 40px 25px; background: var(--card-bg); border: 1px solid #222; text-align: center; transition: 0.3s; }
-        .feature-card:hover { border-color: var(--gold); }
+        .features { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 20px; padding: 80px 10%; background: #111; }
+        .feature-card { padding: 40px 25px; background: var(--card-bg); border: 1px solid #222; text-align: center; }
         .feature-card i { color: var(--gold); font-size: 2.5rem; margin-bottom: 20px; display: block; }
 
-        /* FORMULAR */
-        .form-section { padding: 80px 20px; text-align: center; background: #000; }
-        .form-container { max-width: 450px; margin: 0 auto; background: #111; padding: 40px; border: 1px solid #333; }
-        input { width: 100%; padding: 15px; margin-bottom: 15px; background: #000; border: 1px solid #444; color: #fff; }
-        .btn { background: var(--gold); color: #000; padding: 18px 40px; font-weight: 700; text-transform: uppercase; border: none; cursor: pointer; letter-spacing: 2px; text-decoration: none; display: inline-block; width: 100%; }
+        /* FORMULAR & CONTACT */
+        .contact-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 40px;
+            padding: 80px 10%;
+            background: #000;
+        }
+        .form-container { background: #111; padding: 40px; border: 1px solid #333; }
+        input { width: 100%; padding: 15px; margin-bottom: 15px; background: #000; border: 1px solid #444; color: #fff; font-family: inherit; }
+        
+        .contact-info { text-align: left; padding: 20px; }
+        .contact-item { margin-bottom: 30px; }
+        .contact-item i { color: var(--gold); font-size: 1.5rem; margin-right: 15px; }
+        .contact-item h4 { font-family: 'Cinzel', serif; color: var(--gold); margin-bottom: 5px; }
+
+        .btn { background: var(--gold); color: #000; padding: 18px 40px; font-weight: 700; text-transform: uppercase; border: none; cursor: pointer; letter-spacing: 2px; text-decoration: none; display: inline-block; width: 100%; text-align: center; transition: 0.3s; }
+        .btn:hover { background: #e0b941; }
+
+        /* BUTON WHATSAPP PLUTITOR */
+        .whatsapp-float {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            background-color: #25d366;
+            color: #FFF;
+            border-radius: 50px;
+            text-align: center;
+            font-size: 30px;
+            box-shadow: 2px 2px 10px rgba(0,0,0,0.5);
+            z-index: 10000;
+            width: 60px;
+            height: 60px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-decoration: none;
+            transition: 0.3s;
+        }
+        .whatsapp-float:hover { transform: scale(1.1); background-color: #128c7e; }
 
         footer { padding: 40px; text-align: center; color: #444; font-size: 0.7rem; letter-spacing: 2px; border-top: 1px solid #222; }
 
         @media (max-width: 768px) {
             .about-section { padding: 60px 20px; flex-direction: column-reverse; }
+            .contact-grid { padding: 60px 20px; }
         }
     </style>
 </head>
 <body>
+
+    <a href="https://wa.me/407XXXXXXXX" class="whatsapp-float" target="_blank">
+        <i class="fab fa-whatsapp"></i>
+    </a>
 
     <nav>
         <img src="logo.png" alt="Bucătarul Personal" class="logo-nav">
     </nav>
 
     <section class="hero">
-        <div class="experience-badge">EST. 2018 | 7 ANI DE EXCELENȚĂ</div>
+        <div class="experience-badge">7 ANI DE EXCELENȚĂ | ROMÂNIA - ITALIA</div>
         <h1>CERTIFICATUL DE <span>EXCELENȚĂ PROFESIONALĂ</span></h1>
-        <div style="color: var(--gold); margin-top: 20px; letter-spacing: 2px;">SEZONUL 2026</div>
+        <div style="color: var(--gold); margin-top: 20px; letter-spacing: 3px; font-size: 0.8rem;">THE OFFICIAL 2026 STANDARD</div>
     </section>
 
     <section class="about-section">
@@ -136,42 +158,56 @@
         <div class="about-content">
             <h2>Viziunea Noastră</h2>
             <div class="about-text">
-                <p>Brandul <span class="gold-text">Bucătarul Personal</span> s-a născut dintr-o realitate simplă: excelența în reședințele private nu este negociabilă. Cu o experiență de <span class="gold-text">7 ani</span> acumulată în România și Italia, am transformat gătitul privat dintr-un serviciu, într-un protocol de elită.</p>
-                <p>Decizia de a lansa <span class="gold-text">ChefAudit</span> a venit din dorința de a ridica ștacheta întregii industrii. Am văzut nevoia agențiilor de concierge și a proprietarilor de a avea o garanție a discreției și a profesionalismului.</p>
-                <p>Acest certificat este promisiunea noastră că Chef-ul de la masa ta stăpânește nu doar gustul, ci și arta de a fi invizibil și impecabil.</p>
+                <p>Brandul <span class="gold-text">Bucătarul Personal</span> a fost clădit pe o fundație de <span class="gold-text">7 ani</span> de practică în cele mai exigente medii private din România și Italia. Am înțeles că un Chef de elită nu este definit doar de talentul culinar, ci de măiestria protocolului.</p>
+                <p>Am lansat <span class="gold-text">ChefAudit</span> pentru a stabili un filtru necesar de integritate. Acest certificat este garanția că un profesionist stăpânește arta discreției, rigoarea curățeniei și respectul absolut pentru spațiul privat al clientului.</p>
             </div>
         </div>
     </section>
 
     <section class="features">
         <div class="feature-card">
-            <i class="fas fa-user-secret"></i>
-            <h3>DISCREȚIE TOTALĂ</h3>
-            <p>Antrenament specific pentru respectarea intimității totale a beneficiarului.</p>
+            <i class="fas fa-user-shield"></i>
+            <h3>DISCREȚIE</h3>
+            <p>Protocol de elită pentru protecția confidențialității în reședințe de lux.</p>
         </div>
         <div class="feature-card">
             <i class="fas fa-magic"></i>
             <h3>ZERO URME</h3>
-            <p>Standardul de aur în igienă: bucătăria rămâne mereu mai curată decât am găsit-o.</p>
+            <p>Standardul suprem de ordine: bucătăria rămâne impecabilă la plecare.</p>
         </div>
         <div class="feature-card">
-            <i class="fas fa-award"></i>
-            <h3>VALIDARE QR</h3>
-            <p>Fiecare absolvent primește o identitate digitală verificabilă în timp real.</p>
+            <i class="fas fa-qrcode"></i>
+            <h3>VALIDARE</h3>
+            <p>Sistem digital de verificare instantanee a acreditării prin QR Code.</p>
         </div>
     </section>
 
-    <section id="join" class="form-section">
+    <div class="contact-grid" id="join">
+        <div class="contact-info">
+            <h2>Contact Direct</h2>
+            <p style="color: #888; margin-bottom: 40px;">Suntem disponibili pentru detalii privind procesul de audit sau parteneriate strategice.</p>
+            
+            <div class="contact-item">
+                <h4><i class="fas fa-phone-alt"></i> Telefon</h4>
+                <p>+40 7XX XXX XXX</p>
+            </div>
+            
+            <div class="contact-item">
+                <h4><i class="fas fa-envelope"></i> Email Oficial</h4>
+                <p>contact@chefaudit.com</p>
+            </div>
+        </div>
+
         <div class="form-container">
-            <h2 style="font-size: 1.5rem;">SOLICITĂ AUDITUL</h2>
-            <p style="color: var(--gold); font-size: 0.7rem; margin-bottom: 25px; letter-spacing: 1px;">PRIORITATE PENTRU EVALUĂRILE DIN 2025</p>
-            <form action="https://formspree.io/f/XXXXX" method="POST"> <input type="text" name="name" placeholder="Nume Complet" required>
-                <input type="email" name="email" placeholder="Email" required>
-                <input type="text" name="location" placeholder="Locație principală (RO/IT)" required>
-                <button type="submit" class="btn">Înscrie-te pe Listă</button>
+            <h4 style="font-family: 'Cinzel', serif; color: var(--gold); margin-bottom: 20px;">Listă de Așteptare 2025</h4>
+            <form>
+                <input type="text" placeholder="Nume Complet" required>
+                <input type="email" placeholder="Email Profesional" required>
+                <input type="text" placeholder="Locație (RO/IT)" required>
+                <button type="submit" class="btn">Solicită Acreditarea</button>
             </form>
         </div>
-    </section>
+    </div>
 
     <footer>&copy; 2026 CHEFAUDIT.COM | POWERED BY BUCĂTARUL PERSONAL</footer>
 
