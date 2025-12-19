@@ -264,16 +264,34 @@ in
             </div>
         </div>
 
-        <div class="form-container">
-            <h4 style="font-family: 'Cinzel', serif; color: var(--gold); margin-bottom: 20px;">Listă de Așteptare 2025</h4>
-            <form>
-                <input type="text" placeholder="Nume Complet" required>
-                <input type="email" placeholder="Email Profesional" required>
-                <input type="text" placeholder="Locație (RO/IT)" required>
-                <button type="submit" class="btn">Solicită Acreditarea</button>
-            </form>
-        </div>
+        <section id="join" style="padding: 100px 10%; background: linear-gradient(180deg, #0d0d0d 0%, #1a1a1a 100%); text-align: center;">
+    <div style="max-width: 600px; margin: 0 auto; border: 1px solid var(--gold); padding: 50px; border-radius: 5px; background: rgba(0,0,0,0.5);">
+        <h2 style="font-family: 'Cinzel', serif; color: var(--gold); margin-bottom: 10px;">RESERVĂ-ȚI LOCUL</h2>
+        <p style="color: #ccc; margin-bottom: 30px;">Fii printre primii Chefi auditați în 2026. Înscrie-te pe lista de așteptare.</p>
+        
+        <form action="https://formspree.io/f/TU_AI_NEVOIE_DE_ID_AICI" method="POST" style="display: flex; flex-direction: column; gap: 15px;">
+            <input type="text" name="nume" placeholder="Nume Complet" required style="padding: 15px; background: #222; border: 1px solid #333; color: white; font-family: 'Montserrat';">
+            <input type="email" name="email" placeholder="Adresa de Email" required style="padding: 15px; background: #222; border: 1px solid #333; color: white; font-family: 'Montserrat';">
+            <input type="tel" name="telefon" placeholder="Telefon (ex: +40...)" style="padding: 15px; background: #222; border: 1px solid #333; color: white; font-family: 'Montserrat';">
+            <select name="rol" style="padding: 15px; background: #222; border: 1px solid #333; color: white; font-family: 'Montserrat';">
+                <option value="chef">Sunt Chef / Bucătar</option>
+                <option value="agentie">Sunt Agenție / Recrutor</option>
+                <option value="proprietar">Sunt Proprietar</option>
+            </select>
+            <button type="submit" class="btn" style="width: 100%; border: none; cursor: pointer; transition: 0.3s;">SOLICITĂ AUDITUL</button>
+        </form>
     </div>
+</section>
+
+<footer style="padding: 50px 10%; background: #000; text-align: center; border-top: 1px solid #222;">
+    <div class="logo" style="margin-bottom: 20px;">Chef Audit</div>
+    <div style="margin-bottom: 20px;">
+        <a href="#" style="color: #ccc; margin: 0 15px; text-decoration: none; font-size: 0.8rem;">România</a>
+        <a href="#" style="color: #ccc; margin: 0 15px; text-decoration: none; font-size: 0.8rem;">Italia</a>
+    </div>
+    <p style="color: #444; font-size: 0.7rem;">&copy; 2025 Chef Audit. Toate drepturile rezervate. Standardul de Etichetă și Protocol 2026.</p>
+</footer>
+
 
     <footer>&copy; 2026 CHEFAUDIT.COM | POWERED BY BUCĂTARUL PERSONAL</footer>
 
