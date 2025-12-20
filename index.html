@@ -453,7 +453,42 @@ h4 {
     font-size: 0.7rem;
     letter-spacing: 1px;
 }
-</style>
+        /* Ajustare Footer Desktop */
+@media (min-width: 1024px) {
+    .footer-content {
+        display: flex;
+        align-items: flex-start; /* Aliniază totul la același nivel sus */
+        justify-content: space-between;
+        max-width: 1200px;
+        margin: 0 auto;
+        padding-bottom: 40px;
+    }
+
+    .footer-logo {
+        flex: 1.5; /* Oferă puțin mai mult spațiu logo-ului */
+        text-align: left;
+    }
+
+    .footer-logo img {
+        max-width: 180px; /* Dimensiune optimă pentru desktop */
+        margin-bottom: 10px;
+    }
+
+    .footer-logo p {
+        font-size: 0.85rem;
+        max-width: 300px; /* Previne întinderea textului pe tot ecranul */
+        line-height: 1.5;
+    }
+    .footer-contact {
+    text-align: right; /* Aliniază contactul la dreapta pe desktop */
+}
+
+.social-icons {
+    justify-content: flex-end; /* Împinge butoanele de social media spre marginea dreaptă */
+    gap: 15px;
+    margin-top: 15px;
+}
+}</style>
 </head>
 <body>
 
