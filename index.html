@@ -283,7 +283,44 @@
         text-align: center;
         margin-bottom: 50px;
     }
+}/* Stiluri pentru Desktop (Ecrane peste 1024px) */
+@media (min-width: 1024px) {
+    /* Alinierea celor 3 etape de certificare */
+    .certificare-container {
+        display: flex;
+        justify-content: center;
+        gap: 40px;
+        max-width: 1200px;
+        margin: 50px auto;
+        padding: 0 20px;
+    }
+
+    .certificare-item {
+        flex: 1;
+        border-left: 2px solid #C5A059; /* Linia aurie verticală din screenshot-ul tău */
+        padding-left: 25px;
+        text-align: left;
+    }
+
+    /* Ajustarea Formularului pe Desktop */
+    #join form {
+        max-width: 550px; /* Previne întinderea excesivă pe ecrane mari */
+        margin: 0 auto;
+    }
+
+    /* Secțiunea de Întrebări Frecvente (FAQ) */
+    .faq-container {
+        max-width: 800px;
+        margin: 0 auto;
+    }
 }
+
+/* Efect de hover auriu pe Desktop pentru butoane */
+#join button:hover {
+    background-color: #d4af37;
+    transform: translateY(-2px);
+    transition: all 0.3s ease;
+}        
 </style>
 </head>
 <body>
