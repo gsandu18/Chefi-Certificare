@@ -487,8 +487,30 @@ h4 {
     justify-content: flex-end; /* Împinge butoanele de social media spre marginea dreaptă */
     gap: 15px;
     margin-top: 15px;
+}@media (min-width: 1024px) {
+    .footer-content {
+        display: grid;
+        grid-template-columns: 2fr 1fr 1.5fr; /* Logo-ul primește mai mult spațiu */
+        align-items: start;
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 40px 20px;
+    }
+
+    .footer-logo {
+        text-align: left;
+    }
+
+    .footer-contact {
+        text-align: right; /* Aliniază contactul și butoanele la dreapta */
+    }
+
+    .social-icons {
+        justify-content: flex-end; /* Împinge butoanele Instagram/LinkedIn la marginea dreaptă */
+        margin-top: 15px;
+    }
 }
-}</style>
+    </style>
 </head>
 <body>
 
