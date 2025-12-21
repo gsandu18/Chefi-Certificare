@@ -662,6 +662,26 @@ h4 {
             </div>
         </div>
     </section>
+    
+    // Animație la Scroll
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                entry.target.classList.add('is-visible');
+            }
+        });
+    });
+
+    document.querySelectorAll('.fade-in-section').forEach((section) => {
+        observer.observe(section);
+    });
+
+    // Funcționalitate FAQ (Deschidere/Închidere)
+    document.querySelectorAll('.faq-item').forEach(item => {
+        item.addEventListener('click', () => {
+            item.classList.toggle('active');
+        });
+    });
     <footer class="site-footer fade-in-section">
     <div class="footer-content">
         <div class="footer-logo">
@@ -695,25 +715,6 @@ h4 {
 </footer>
     <footer>&copy; 2026 CHEFAUDIT.COM | POWERED BY BUCĂTARUL PERSONAL</footer>
     <script>
-    // Animație la Scroll
-    const observer = new IntersectionObserver((entries) => {
-        entries.forEach(entry => {
-            if (entry.isIntersecting) {
-                entry.target.classList.add('is-visible');
-            }
-        });
-    });
-
-    document.querySelectorAll('.fade-in-section').forEach((section) => {
-        observer.observe(section);
-    });
-
-    // Funcționalitate FAQ (Deschidere/Închidere)
-    document.querySelectorAll('.faq-item').forEach(item => {
-        item.addEventListener('click', () => {
-            item.classList.toggle('active');
-        });
-    });
 </script>
 </body>
 </html>
