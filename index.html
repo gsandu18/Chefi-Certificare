@@ -661,59 +661,43 @@ h4 {
                 <p>contact@chefaudit.com</p>
             </div>
         </div>
-    </section>
-    
-    // Animație la Scroll
-    const observer = new IntersectionObserver((entries) => {
-        entries.forEach(entry => {
-            if (entry.isIntersecting) {
-                entry.target.classList.add('is-visible');
-            }
-        });
-    });
-
-    document.querySelectorAll('.fade-in-section').forEach((section) => {
-        observer.observe(section);
-    });
-
-    // Funcționalitate FAQ (Deschidere/Închidere)
-    document.querySelectorAll('.faq-item').forEach(item => {
-        item.addEventListener('click', () => {
-            item.classList.toggle('active');
-        });
-    });
-    <footer class="site-footer fade-in-section">
-    <div class="footer-content">
-        <div class="footer-logo">
-            <img src="IMG_2436_Original.jpg" alt="Chef Audit Logo" class="footer-img">
-            <p>Standardul de Etichetă și Protocol în Gastronomia Privată.</p>
-        </div>
+<footer style="background-color: #050505; color: #ffffff; padding: 60px 20px; text-align: center; border-top: 1px solid #222;">
+    <div style="max-width: 600px; margin: 0 auto;">
         
-        <div class="footer-links">
-            <h4>NAVIGARE</h4>
-            <ul>
-                <li><a href="#proces">Proces Certificare</a></li>
-                <li><a href="#faq">Întrebări Frecvente</a></li>
-                <li><a href="#join">Solicită Audit</a></li>
+        <img src="https://i.imgur.com/vostru-logo-ca.png" alt="Chef Audit Logo" style="width: 80px; margin-bottom: 20px; filter: brightness(0) invert(1);">
+        <p style="font-size: 13px; color: #888; letter-spacing: 1px; margin-bottom: 40px; text-transform: uppercase;">
+            Standardul de Etichetă și Protocol în Gastronomia Privată
+        </p>
+
+        <hr style="border: 0; border-top: 1px solid #1a1a1a; margin-bottom: 40px;">
+
+        <div style="margin-bottom: 40px;">
+            <h4 style="color: #D4AF37; font-family: 'Playfair Display', serif; letter-spacing: 2px; margin-bottom: 20px;">NAVIGARE</h4>
+            <ul style="list-style: none; padding: 0; margin: 0; line-height: 2.5;">
+                <li><a href="chef/index.html" style="color: #ccc; text-decoration: none; font-size: 14px;">Proces Certificare</a></li>
+                <li><a href="#" style="color: #ccc; text-decoration: none; font-size: 14px;">Întrebări Frecvente</a></li>
+                <li><a href="restaurant/index.html" style="color: #ccc; text-decoration: none; font-size: 14px;">Solicită Audit</a></li>
             </ul>
         </div>
 
-        <div class="footer-contact">
-            <h4>CONTACT</h4>
-            <p>Email: contact@chefaudit.com</p>
-            <p>Locație: București | Global Service</p>
-            <div class="social-icons">
-                <a href="#" class="social-link">Instagram</a>
-                <a href="#" class="social-link">LinkedIn</a>
-            </div>
+        <div style="margin-bottom: 40px;">
+            <h4 style="color: #D4AF37; font-family: 'Playfair Display', serif; letter-spacing: 2px; margin-bottom: 20px;">CONTACT</h4>
+            <p style="font-size: 14px; color: #ccc; margin: 5px 0;">Email: <a href="mailto:contact@chefaudit.com" style="color: #D4AF37; text-decoration: none;">contact@chefaudit.com</a></p>
+            <p style="font-size: 14px; color: #ccc; margin: 5px 0;">Locație: București | Global Service</p>
         </div>
+
+        <div style="display: flex; justify-content: center; gap: 15px; margin-bottom: 50px;">
+            <a href="#" style="border: 1px solid #D4AF37; color: #D4AF37; padding: 10px 25px; text-decoration: none; font-size: 12px; letter-spacing: 1px; text-transform: uppercase;">Instagram</a>
+            <a href="#" style="border: 1px solid #D4AF37; color: #D4AF37; padding: 10px 25px; text-decoration: none; font-size: 12px; letter-spacing: 1px; text-transform: uppercase;">LinkedIn</a>
+        </div>
+
+        <div style="font-size: 11px; color: #444; letter-spacing: 1px;">
+            <p>© 2026 CHEF AUDIT. Toate drepturile rezervate.</p>
+            <p><a href="#" style="color: #444; text-decoration: underline;">Termeni și Condiții</a></p>
+        </div>
+
     </div>
-    
-    <div class="footer-bottom">
-        <p>&copy; 2026 CHEF AUDIT. Toate drepturile rezervate. | <a href="#">Termeni și Condiții</a></p>
-    </div>
-</footer>
-    <footer>&copy; 2026 CHEFAUDIT.COM | POWERED BY BUCĂTARUL PERSONAL</footer>
+</footer>   
 </script>
 </body>
 </html>
