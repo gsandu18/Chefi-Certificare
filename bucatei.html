@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="ro">
+<head>
+    <meta charset="UTF-8">
+    <title>Profil Certificat | Chef Audit</title>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700&family=Montserrat:wght@300;500&display=swap" rel="stylesheet">
+    <style>
+        :root { --gold: #D4AF37; --black: #050505; --white: #ffffff; }
+        body { background: var(--black); color: var(--white); font-family: 'Montserrat', sans-serif; margin: 0; }
+        
+        /* Header cu Status */
+        .verification-bar {
+            background: rgba(212, 175, 55, 0.1);
+            border-bottom: 1px solid var(--gold);
+            padding: 10px 0;
+            text-align: center;
+            font-size: 0.8rem;
+            letter-spacing: 2px;
+            color: var(--gold);
+        }
+
+        .profile-container { max-width: 900px; margin: 50px auto; padding: 20px; }
+        
+        .chef-header { display: flex; align-items: center; gap: 40px; margin-bottom: 60px; }
+        .chef-photo { width: 250px; height: 350px; border: 1px solid var(--gold); object-fit: cover; }
+        
+        .chef-info h1 { font-family: 'Cinzel', serif; font-size: 3rem; margin: 0; }
+        .id-badge { color: var(--gold); font-weight: bold; border: 1px solid var(--gold); padding: 5px 15px; display: inline-block; margin-top: 10px; }
+
+        /* Stats Section */
+        .stats-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; margin: 40px 0; }
+        .stat-item { border: 1px solid #222; padding: 20px; text-align: center; }
+        .stat-value { display: block; font-size: 1.5rem; color: var(--gold); font-family: 'Cinzel'; }
+
+        .signature-dish { margin-top: 60px; }
+        .dish-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 15px; }
+        .dish-grid img { width: 100%; height: 200px; object-fit: cover; border-radius: 2px; opacity: 0.8; transition: 0.5s; }
+        .dish-grid img:hover { opacity: 1; border: 1px solid var(--gold); }
+
+        .btn-validate {
+            display: block; width: 100%; text-align: center; background: var(--gold);
+            color: black; padding: 20px; text-decoration: none; font-weight: bold;
+            margin-top: 50px; text-transform: uppercase;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="verification-bar">● STATUS: MEMBRU ACREDITAT CHEF AUDIT ●</div>
+
+    <div class="profile-container">
+        <div class="chef-header">
+            <img src="https://via.placeholder.com/250x350" alt="Chef Photo" class="chef-photo">
+            <div class="chef-info">
+                <h1>Chef Adrian P.</h1>
+                <div class="id-badge">ID CERTIFICAT: CA-7789</div>
+                <p style="color: #888;">Specializat în Gastronomie Privată & Protocol Diplomatic.</p>
+                <p>"Excelența nu se negociază, se auditează."</p>
+            </div>
+        </div>
+
+        <div class="stats-grid">
+            <div class="stat-item">
+                <span class="stat-value">98%</span>
+                <span class="stat-label">Scor Discreție</span>
+            </div>
+            <div class="stat-item">
+                <span class="stat-value">A+</span>
+                <span class="stat-label">Etichetă & Protocol</span>
+            </div>
+            <div class="stat-item">
+                <span class="stat-value">15+</span>
+                <span class="stat-label">Ani Experiență</span>
+            </div>
+        </div>
+
+        <div class="signature-dish">
+            <h2 style="font-family: 'Cinzel'; border-bottom: 1px solid #222; padding-bottom: 10px;">Portofoliu Verificat</h2>
+            <div class="dish-grid">
+                <img src="dish1.jpg" alt="Preparat 1">
+                <img src="dish2.jpg" alt="Preparat 2">
+            </div>
+        </div>
+
+        <a href="#" class="btn-validate">Confirmă Autenticitatea Profilului</a>
+    </div>
+
+</body>
+</html>
