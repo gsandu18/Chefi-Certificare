@@ -1,0 +1,22 @@
+{
+  "members": [
+    {
+      "id": "CA-7789",
+      "nume": "Adrian Popescu",
+      "status": "Activ",
+      "scor": "98%",
+      "specializare": "Private Chef & Protocol",
+      "foto": "images/adrian.jpg",
+      "valabilitate": "2026-12-21"
+    },
+    {
+      "id": "CA-8890",
+      "nume": "Marc Ionescu",
+      "status": "Activ",
+      "scor": "92%",
+      "specializare": "Fine Dining",
+      "foto": "images/marc.jpg",
+      "valabilitate": "2026-11-15"
+    }
+  ]
+}
