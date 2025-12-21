@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="ro">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sistem Verificare | Chef Audit Official</title>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700&family=Montserrat:wght@300;400&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --gold: #D4AF37;
+            --black: #050505;
+            --dark-grey: #111;
+        }
+
+        body {
+            background-color: var(--black);
+            color: white;
+            font-family: 'Montserrat', sans-serif;
+            margin: 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh;
+            overflow-x: hidden;
+        }
+
+        .container {
+            width: 90%;
+            max-width: 450px;
+            text-align: center;
+            padding: 40px;
+            border: 1px solid var(--gold);
+            background: linear-gradient(145deg, #0a0a0a, #111);
+            box-shadow: 0 0 50px rgba(212, 175, 55, 0.1);
+            position: relative;
+        }
+
+        .container::before {
+            content: "";
+            position: absolute;
+            top: 5px; left: 5px; right: 5px; bottom: 5px;
+            border: 1px solid rgba(212, 175, 55, 0.2);
+            pointer-events: none;
+        }
+
+        .logo { width: 120px; margin-bottom: 30px; }
+
+        h1 { font-family: 'Cinzel', serif; color: var(--gold); font-size: 1.5rem; letter-spacing: 2px; }
+
+        /* Loader Animation */
+        #loader { border: 2px solid #222; border-top: 2px solid var(--gold); border-radius: 50%; width: 30px; height: 30px; animation: spin 1s linear infinite; margin: 20px auto; }
+        @keyframes spin { 0% { transform: rotate(0deg); } 100% { transform: rotate(360deg); } }
+
+        /* Profil Section */
+        #chef-card { display: none; animation: fadeIn 1s ease-in; }
+        @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
+
+        .chef-img {
+            width: 150px; height: 150px;
+            border-radius: 50%;
+            border: 2px solid var(--gold);
+            object-fit: cover;
+            margin: 20px auto;
+            filter: grayscale(30%);
+        }
+
+        .status-badge {
+            display: inline-block;
+            background: rgba(212, 175, 55, 0.1);
+            color: var(--gold);
+            padding: 5px 15px;
+            border: 1px solid var(--gold);
+            font-size: 0.7rem;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            margin-bottom: 20px;
+        }
+
+        .info-row {
+            display: flex; justify-content: space-between;
+            border-bottom: 1px solid #222;
+            padding: 10px 0;
+            font-size: 0.9rem;
+        }
+
+        .label { color: #888; text-transform: uppercase; font-size: 0.7rem; }
+        .value { font-weight: bold; }
+
+        .error-box { display: none; color: #ff4d4d; border: 1px solid #ff4d4d; padding: 20px; margin-top: 20px; }
+
+        .footer-note { font-size: 0.6rem; color: #555; margin-top: 30px; text-transform: uppercase; }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <img src="logo.png" alt="Chef Audit" class="logo">
+        
+        <div id="loader"></div>
+
+        <div id="chef-card">
+            <div class="status-badge">Acreditat Oficial</div>
+            <img id="chef-foto" src="" alt="Chef Photo" class="chef-img">
+            <h1 id="chef-nume">---</h1>
+            
+            <div style="margin-top: 30px;">
+                <div class="info-row">
+                    <span class="label">ID Certificat</span>
+                    <span id="chef-id" class="value" style="color: var(--gold);">---</span>
+                </div>
+                <div class="info-row">
+                    <span class="label">Scor Audit</span>
+                    <span id="chef-scor" class="value">---</span>
+                </div>
+                <div class="info-row">
+                    <span class="label">Valabilitate</span>
+                    <span id="chef-valid" class="value">---</span>
+                </div>
+            </div>
+
+            <p class="footer-note">Acest profil este generat de sistemul securizat Chef Audit Database.</p>
+        </div>
+
+        <div id="error-message" class="error-box">
+            <h2 style="font-family: 'Cinzel';">Acces Respins</h2>
+            <p>ID-ul scanat nu corespunde niciunei certificări active în baza de date Chef Audit.</p>
+        </div>
+    </div>
+
+    <script>
+        const urlParams = new URLSearchParams(window.location.search);
+        const chefId = urlParams.get('id');
+
+        fetch('database.json')
+            .then(response => response.json())
+            .then(data => {
+                const member = data.members.find(m => m.id === chefId);
+                document.getElementById('loader').style.display = 'none';
+
+                if (member && member.status === "Activ") {
+                    document.getElementById('chef-card').style.display = 'block';
+                    document.getElementById('chef-nume').innerText = member.nume;
+                    document.getElementById('chef-id').innerText = member.id;
+                    document.getElementById('chef-scor').innerText = member.scor;
+                    document.getElementById('chef-valid').innerText = member.valabilitate;
+                    document.getElementById('chef-foto').src = member.foto;
+                } else {
+                    document.getElementById('error-message').style.display = 'block';
+                }
+            })
+            .catch(err => {
+                document.getElementById('loader').style.display = 'none';
+                document.getElementById('error-message').style.display = 'block';
+            });
+    </script>
+</body>
+</html>
