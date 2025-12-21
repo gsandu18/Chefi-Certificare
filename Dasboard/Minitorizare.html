@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="ro">
+<head>
+    <meta charset="UTF-8">
+    <title>Chef Audit - Admin Dashboard</title>
+    <style>
+        :root { --gold: #D4AF37; --black: #050505; --grey: #1a1a1a; --text: #e0e0e0; }
+        body { font-family: 'Inter', sans-serif; background-color: var(--black); color: var(--text); margin: 0; padding: 20px; }
+        
+        .dashboard-header { display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid var(--gold); padding-bottom: 20px; margin-bottom: 30px; }
+        .logo-text { font-family: 'Playfair Display', serif; font-size: 24px; color: var(--gold); letter-spacing: 2px; }
+        
+        /* Carduri Statistice */
+        .stats-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 20px; margin-bottom: 30px; }
+        .stat-card { background: var(--grey); padding: 20px; border-radius: 8px; border-left: 4px solid var(--gold); text-align: center; }
+        .stat-card h3 { font-size: 12px; text-transform: uppercase; color: #888; margin: 0; }
+        .stat-card p { font-size: 28px; font-weight: bold; margin: 10px 0 0; color: var(--gold); }
+
+        /* Tabel Audituri */
+        .audit-table-container { background: var(--grey); border-radius: 8px; overflow: hidden; }
+        table { width: 100%; border-collapse: collapse; }
+        th { background: #252525; color: var(--gold); padding: 15px; text-align: left; font-size: 13px; text-transform: uppercase; }
+        td { padding: 15px; border-bottom: 1px solid #333; font-size: 14px; }
+        
+        /* Badge-uri Status */
+        .badge { padding: 5px 10px; border-radius: 20px; font-size: 11px; font-weight: bold; }
+        .badge-elite { background: rgba(212, 175, 55, 0.2); color: var(--gold); border: 1px solid var(--gold); }
+        .badge-training { background: rgba(244, 67, 54, 0.2); color: #f44336; border: 1px solid #f44336; }
+        
+        .btn-view { background: transparent; border: 1px solid var(--gold); color: var(--gold); padding: 5px 12px; border-radius: 4px; cursor: pointer; transition: 0.3s; }
+        .btn-view:hover { background: var(--gold); color: black; }
+    </style>
+</head>
+<body>
+
+    <div class="dashboard-header">
+        <div class="logo-text">CHEF AUDIT <span style="font-weight: 100; font-size: 16px;">| Control Panel</span></div>
+        <div style="font-size: 14px; color: #888;">Data: 21 Decembrie 2025</div>
+    </div>
+
+    <div class="stats-grid">
+        <div class="stat-card"><h3>Total Audituri</h3><p>48</p></div>
+        <div class="stat-card"><h3>Restaurante Elite</h3><p>12</p></div>
+        <div class="stat-card"><h3>Chefi Certificați</h3><p>31</p></div>
+        <div class="stat-card"><h3>Venit Estimat</h3><p>14.500 €</p></div>
+    </div>
+
+    <div class="audit-table-container">
+        <table>
+            <thead>
+                <tr>
+                    <th>Data</th>
+                    <th>Subiect Audit</th>
+                    <th>Tip</th>
+                    <th>Scor</th>
+                    <th>Status</th>
+                    <th>Acțiuni</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>20.12.2025</td>
+                    <td>Restaurant Le Premier</td>
+                    <td>Locație</td>
+                    <td>92/100</td>
+                    <td><span class="badge badge-elite">ELITE</span></td>
+                    <td><button class="btn-view">Vezi PDF</button></td>
+                </tr>
+                <tr>
+                    <td>18.12.2025</td>
+                    <td>Chef Ionuț Marinescu</td>
+                    <td>Individual</td>
+                    <td>68/100</td>
+                    <td><span class="badge badge-training">RECOMANDARE TRAINING</span></td>
+                    <td><button class="btn-view">Vinde Curs</button></td>
+                </tr>
+                <tr>
+                    <td>15.12.2025</td>
+                    <td>Bistro Central</td>
+                    <td>Locație</td>
+                    <td>88/100</td>
+                    <td><span class="badge badge-elite">ELITE</span></td>
+                    <td><button class="btn-view">Vezi PDF</button></td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+</body>
+</html>
