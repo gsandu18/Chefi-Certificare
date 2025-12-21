@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="ro">
+<head>
+    <meta charset="UTF-8">
+    <title>Portofoliu Locații Certificate - Chef Audit</title>
+    <style>
+        :root { --gold: #D4AF37; --black: #0a0a0a; --grey: #161616; }
+        body { font-family: 'Playfair Display', serif; background-color: var(--black); color: white; margin: 0; }
+        
+        .hero-portfolio { text-align: center; padding: 60px 20px; background: linear-gradient(rgba(0,0,0,0.8), rgba(0,0,0,0.8)), url('https://images.unsplash.com/photo-1514362545857-3bc16c4c7d1b?auto=format&fit=crop&w=1500&q=80'); background-size: cover; border-bottom: 1px solid var(--gold); }
+        .hero-portfolio h1 { color: var(--gold); letter-spacing: 5px; text-transform: uppercase; margin: 0; }
+        .hero-portfolio p { font-style: italic; color: #ccc; margin-top: 10px; }
+
+        .portfolio-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 30px; padding: 50px; max-width: 1200px; margin: 0 auto; }
+        
+        .location-card { background: var(--grey); border: 1px solid #333; transition: 0.4s; position: relative; overflow: hidden; }
+        .location-card:hover { border-color: var(--gold); transform: translateY(-10px); }
+        
+        .card-img { width: 100%; height: 200px; object-fit: cover; opacity: 0.7; }
+        .card-content { padding: 20px; text-align: center; }
+        .card-content h3 { color: var(--gold); margin: 10px 0; letter-spacing: 1px; }
+        
+        .seal-mini { position: absolute; top: 10px; right: 10px; width: 50px; filter: drop-shadow(0 0 5px gold); }
+        
+        .status-tag { font-size: 10px; border: 1px solid var(--gold); padding: 3px 8px; color: var(--gold); text-transform: uppercase; }
+
+        /* Simulare Hartă */
+        .map-placeholder { width: 100%; height: 400px; background: #111; display: flex; align-items: center; justify-content: center; border-bottom: 1px solid var(--gold); }
+        .pin { color: var(--gold); font-size: 24px; animation: pulse 2s infinite; }
+        @keyframes pulse { 0% { transform: scale(1); opacity: 1; } 50% { transform: scale(1.2); opacity: 0.7; } 100% { transform: scale(1); opacity: 1; } }
+    </style>
+</head>
+<body>
+
+    <section class="hero-portfolio">
+        <h1>HARTA EXCELENȚEI</h1>
+        <p>Locațiile care au atins standardul de aur Chef Audit</p>
+    </section>
+
+    <div class="map-placeholder">
+        <div style="text-align: center;">
+            <div class="pin">✦</div>
+            <p style="color: var(--gold); font-size: 12px; letter-spacing: 2px;">HARTA INTERACTIVĂ A LOCAȚIILOR CERTIFICATE</p>
+        </div>
+    </div>
+
+    <div class="portfolio-grid">
+        <div class="location-card">
+            <img src="https://images.unsplash.com/photo-1550966841-3ee20649b1cc?auto=format&fit=crop&w=500&q=60" class="card-img">
+            <img src="https://i.imgur.com/L872B8S.png" class="seal-mini" alt="Seal"> <div class="card-content">
+                <span class="status-tag">Audit Finalizat: Dec 2025</span>
+                <h3>Restaurant Le Premier</h3>
+                <p style="font-size: 13px; color: #888;">București, România</p>
+                <p style="font-size: 14px;">Specialitate: Fine Dining Francez</p>
+            </div>
+        </div>
+
+        <div class="location-card">
+            <img src="https://images.unsplash.com/photo-1559339352-11d035aa65de?auto=format&fit=crop&w=500&q=60" class="card-img">
+            <img src="https://i.imgur.com/L872B8S.png" class="seal-mini" alt="Seal">
+            <div class="card-content">
+                <span class="status-tag">Audit Finalizat: Nov 2025</span>
+                <h3>Villa Di Lusso</h3>
+                <p style="font-size: 13px; color: #888;">Toscana, Italia</p>
+                <p style="font-size: 14px;">Specialitate: Private Chef Service</p>
+            </div>
+        </div>
+    </div>
+
+</body>
+</html>
