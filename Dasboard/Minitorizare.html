@@ -85,6 +85,112 @@
             </tbody>
         </table>
     </div>
+<div id="historicul-auditorului" style="display:none; margin-top: 50px; padding: 20px; background: #111; border: 1px solid #333;">
+    <h3 style="color: var(--gold); font-family: 'Playfair Display'; border-bottom: 1px solid #444; padding-bottom: 10px;">
+        ISTORICUL MEU - <span id="nume-auditor-header"></span>
+    </h3>
+    
+    <table id="tabel-istoric" style="width: 100%; border-collapse: collapse; margin-top: 15px;">
+        <thead>
+            <tr style="font-size: 12px; color: #888; text-transform: uppercase;">
+                <th style="padding: 10px; text-align: left; border-bottom: 1px solid #444;">Data</th>
+                <th style="padding: 10px; text-align: left; border-bottom: 1px solid #444;">Locație/Chef</th>
+                <th style="padding: 10px; text-align: center; border-bottom: 1px solid #444;">Scor</th>
+                <th style="padding: 10px; text-align: right; border-bottom: 1px solid #444;">Status</th>
+            </tr>
+        </thead>
+        <tbody id="lista-istoric">
+            </tbody>
+    </table>
+</div>
+
+<script>
+    // Baza de date simulată cu audituri realizate
+    const dateAudituri = [
+        { auditorId: "CHEF001", data: "15.12.2025", nume: "Restaurant Le Premier", scor: "95/100", status: "ELITE" },
+        { auditorId: "CHEF001", data: "10.12.2025", nume: "Chef Mario R.", scor: "88/100", status: "APPROVED" },
+        { auditorId: "AUDIT002", data: "18.12.2025", nume: "Bistro Central", scor: "65/100", status: "TRAINING" },
+        { auditorId: "AUDIT002", data: "12.12.2025", nume: "Villa Di Lusso", scor: "92/100", status: "ELITE" }
+    ];
+
+    function checkAccess() {
+        let code = document.getElementById('auditor-code').value;
+        let error = document.getElementById('error-msg');
+        
+        if (auditoriAutorizati[code]) {
+            document.getElementById('login-overlay').style.display = 'none';
+            document.getElementById('historicul-auditorului').style.display = 'block';
+            document.getElementById('nume-auditor-header').innerText = auditoriAutorizati[code];
+            
+            afiseazaIstoric(code);
+        } else {
+            error.style.display = 'block';
+        }
+    }
+
+    function afiseazaIstoric(auditorId) {
+        const lista = document.getElementById('lista-istoric');
+        lista.innerHTML = ""; // Curățăm tabelul
+
+        // Filtram auditurile doar pentru cel care s-a logat
+        const audituriMele = dateAudituri.filter(audit => audit.auditorId === auditorId);
+
+        audituriMele.forEach(audit => {
+            let row = `<tr>
+                <td style="padding:10px; color:#ccc;">${audit.data}</td>
+                <td style="padding:10px; font-weight:bold;">${audit.nume}</td>
+                <td style="padding:10px; text-align:center; color:var(--gold);">${audit.scor}</td>
+                <td style="padding:10px; text-align:right;">
+                    <span style="font-size:10px; padding:3px 8px; border:1px solid ${audit.status === 'TRAINING' ? '#ff4444' : '#D4AF37'}; color:${audit.status === 'TRAINING' ? '#ff4444' : '#D4AF37'};">
+                        ${audit.status}
+                    </span>
+                </td>
+            </tr>`;
+            lista.innerHTML += row;
+        });
+    }
+    <div id="login-overlay" style="position:fixed; top:0; left:0; width:100%; height:100%; background:black; z-index:9999; display:flex; flex-direction:column; align-items:center; justify-content:center;">
+    <div style="border: 1px solid #D4AF37; padding: 40px; text-align: center; background: #1a1a1a; border-radius: 8px;">
+        <h2 style="color:#D4AF37; font-family: 'Playfair Display';">ACCES AUDITOR</h2>
+        <p style="color:#888; font-size:12px;">Introduceți codul de securitate pentru a activa fișa tehnică</p>
+        <input type="password" id="auditor-code" placeholder="Cod Acces" style="background:black; border:1px solid #D4AF37; color:white; padding:10px; text-align:center; margin-bottom:20px;">
+        <br>
+        <button onclick="checkAccess()" style="background:#D4AF37; color:black; border:none; padding:10px 30px; cursor:pointer; font-weight:bold;">AUTENTIFICARE</button>
+        <p id="error-msg" style="color:red; font-size:11px; margin-top:10px; display:none;">Cod invalid. Acces refuzat.</p>
+    </div>
+</div>
+</script>
+    const auditoriAutorizati = {
+    "CHEF001": "Adrian P.",
+    "AUDIT002": "Bucătar Mihai S.",
+    "AUDIT003": "Expert Protocol Elena V."
+};
+
+function checkAccess() {
+    let code = document.getElementById('auditor-code').value;
+    let error = document.getElementById('error-msg');
+    
+    if (auditoriAutorizati[code]) {
+        // Ascundem ecranul de login
+        document.getElementById('login-overlay').style.display = 'none';
+        // Setăm automat numele auditorului în fișă
+        document.getElementById('nume-auditor-display').innerText = auditoriAutorizati[code];
+        alert("Acces permis. Bun venit, " + auditoriAutorizati[code]);
+    } else {
+        error.style.display = 'block';
+    }
+}
+function trimitePeWhatsApp() {
+    const numeLocatie = encodeURIComponent(document.getElementById('nume-locatie').value);
+    const linkRaport = encodeURIComponent("https://chef-audit.ro/raport/" + Math.random().toString(36).substr(2, 9));
+    
+    const mesaj = `✨ *Felicitări! ${decodeURIComponent(numeLocatie)} a intrat în elita Chef Audit.* %0A%0A` +
+                  `Este o onoare să vă confirmăm atingerea standardului de excelență. Raportul tehnic și certificatul digital sunt disponibile aici: %0A` +
+                  `🔗 ${decodeURIComponent(linkRaport)} %0A%0A` +
+                  `*Excelența nu este un act, ci un obicei.* – Adrian P. | Chef Audit`;
+                  
+    window.open(`https://wa.me/?text=${mesaj}`, '_blank');
+}
 
 </body>
 </html>
