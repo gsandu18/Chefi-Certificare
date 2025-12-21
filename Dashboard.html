@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="ro">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard Membru | Chef Audit</title>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700&family=Montserrat:wght@300;500&display=swap" rel="stylesheet">
+    <style>
+        :root { --gold: #D4AF37; --black: #050505; --dark: #111; }
+        body { background: var(--black); color: white; font-family: 'Montserrat', sans-serif; margin: 0; }
+        
+        /* Sidebar / Header */
+        header { border-bottom: 1px solid var(--gold); padding: 20px; display: flex; justify-content: space-between; align-items: center; background: #0a0a0a; }
+        .logo-small { width: 80px; }
+        .user-welcome { font-family: 'Cinzel', serif; font-size: 0.9rem; color: var(--gold); }
+
+        .container { max-width: 1000px; margin: 40px auto; padding: 20px; }
+
+        /* Grid de acțiuni */
+        .dashboard-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 20px; }
+        
+        .action-card { 
+            background: var(--dark); 
+            border: 1px solid #222; 
+            padding: 30px; 
+            text-align: center; 
+            transition: 0.3s;
+            position: relative;
+            overflow: hidden;
+        }
+        .action-card:hover { border-color: var(--gold); transform: translateY(-5px); }
+        .action-card i { font-size: 2rem; color: var(--gold); display: block; margin-bottom: 15px; }
+        
+        .action-card h3 { font-family: 'Cinzel', serif; margin-bottom: 10px; font-size: 1.1rem; }
+        .action-card p { font-size: 0.8rem; color: #888; margin-bottom: 20px; }
+
+        .btn-download { 
+            display: inline-block; 
+            padding: 10px 20px; 
+            border: 1px solid var(--gold); 
+            color: var(--gold); 
+            text-decoration: none; 
+            font-size: 0.7rem; 
+            text-transform: uppercase; 
+            letter-spacing: 1px;
+        }
+        .btn-download:hover { background: var(--gold); color: black; }
+
+        /* Secțiune Scor */
+        .score-bar-container { background: #222; height: 10px; border-radius: 5px; margin: 15px 0; overflow: hidden; }
+        .score-fill { background: var(--gold); height: 100%; border-radius: 5px; width: 0%; transition: 1.5s ease-out; }
+
+        .badge-status { font-size: 0.6rem; background: rgba(0,255,0,0.1); color: #00ff00; padding: 3px 8px; border: 1px solid #00ff00; margin-left: 10px; }
+    </style>
+</head>
+<body>
+
+    <header>
+        <img src="logo.png" alt="Chef Audit" class="logo-small">
+        <div class="user-welcome">Bine ai venit, <span id="user-name">Chef Adrian</span> <span class="badge-status">ACTIV</span></div>
+        <a href="autentificare.html" style="color: #555; font-size: 0.7rem; text-decoration: none;">Deconectare</a>
+    </header>
+
+    <div class="container">
+        <h2 style="font-family: 'Cinzel', serif; margin-bottom: 30px;">Resursele Tale Exclusive</h2>
+
+        <div class="dashboard-grid">
+            <div class="action-card">
+                <h3>Certificat Oficial</h3>
+                <p>Descarcă varianta digitală securizată a certificării tale pentru portofoliu.</p>
+                <a href="path/to/certificat.pdf" class="btn-download" download>Download PDF</a>
+            </div>
+
+            <div class="action-card">
+                <h3>Manual de Protocol</h3>
+                <p>Acces la codul de conduită Chef Audit (Versiunea 2025).</p>
+                <a href="path/to/manual.pdf" class="btn-download" download>Deschide Manual</a>
+            </div>
+
+            <div class="action-card">
+                <h3>Rating Audit: <span class="gold">98%</span></h3>
+                <div class="score-bar-container">
+                    <div class="score-fill" style="width: 98%;"></div>
+                </div>
+                <p>Ești în top 5% din membrii acreditați.</p>
+                <a href="#" class="btn-download">Vezi Detalii Audit</a>
+            </div>
+
+            <div class="action-card">
+                <h3>Accesorii Brand</h3>
+                <p>Comandă o spilă nouă sau tunici personalizate cu logoul Chef Audit.</p>
+                <a href="#" class="btn-download">Intră în Shop</a>
+            </div>
+        </div>
+
+        <div style="margin-top: 50px; padding: 30px; border: 1px solid #222; background: #0a0a0a;">
+            <h3 style="font-family: 'Cinzel', serif; color: var(--gold);">Chef Audit Academy</h3>
+            <p style="font-size: 0.9rem;">Cursuri video de perfecționare disponibile pentru tine:</p>
+            <ul style="list-style: none; padding: 0; font-size: 0.8rem; color: #ccc;">
+                <li style="margin-bottom: 10px;">🔒 Masterclass: Discreția în Serviciul Privat (Disponibil din 15 Ianuarie)</li>
+                <li style="margin-bottom: 10px;">✅ Curs: Psihologia Clientului VIP (Finalizat)</li>
+            </ul>
+        </div>
+    </div>
+
+</body>
+</html>
