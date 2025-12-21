@@ -159,37 +159,7 @@
         <p id="error-msg" style="color:red; font-size:11px; margin-top:10px; display:none;">Cod invalid. Acces refuzat.</p>
     </div>
 </div>
-    const auditoriAutorizati = {
-    "CHEF001": "Adrian P.",
-    "AUDIT002": "Bucătar Mihai S.",
-    "AUDIT003": "Expert Protocol Elena V."
-};
-
-function checkAccess() {
-    let code = document.getElementById('auditor-code').value;
-    let error = document.getElementById('error-msg');
-    
-    if (auditoriAutorizati[code]) {
-        // Ascundem ecranul de login
-        document.getElementById('login-overlay').style.display = 'none';
-        // Setăm automat numele auditorului în fișă
-        document.getElementById('nume-auditor-display').innerText = auditoriAutorizati[code];
-        alert("Acces permis. Bun venit, " + auditoriAutorizati[code]);
-    } else {
-        error.style.display = 'block';
-    }
-}
-function trimitePeWhatsApp() {
-    const numeLocatie = encodeURIComponent(document.getElementById('nume-locatie').value);
-    const linkRaport = encodeURIComponent("https://chef-audit.ro/raport/" + Math.random().toString(36).substr(2, 9));
-    
-    const mesaj = `✨ *Felicitări! ${decodeURIComponent(numeLocatie)} a intrat în elita Chef Audit.* %0A%0A` +
-                  `Este o onoare să vă confirmăm atingerea standardului de excelență. Raportul tehnic și certificatul digital sunt disponibile aici: %0A` +
-                  `🔗 ${decodeURIComponent(linkRaport)} %0A%0A` +
-                  `*Excelența nu este un act, ci un obicei.* – Adrian P. | Chef Audit`;
-                  
-    window.open(`https://wa.me/?text=${mesaj}`, '_blank');
-}
+ 
 </script>
 </body>
 </html>
