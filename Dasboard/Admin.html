@@ -26,8 +26,6 @@
         .badge-elite { background: rgba(212, 175, 55, 0.2); color: var(--gold); border: 1px solid var(--gold); }
         .badge-training { background: rgba(244, 67, 54, 0.2); color: #f44336; border: 1px solid #f44336; }
         
-        .btn-view { background: transparent; border: 1px solid var(--gold); color: var(--gold); padding: 5px 12px; border-radius: 4px; cursor: pointer; }
-        
         /* Overlay Login */
         #login-overlay { position:fixed; top:0; left:0; width:100%; height:100%; background:black; z-index:9999; display:flex; align-items:center; justify-content:center; }
     </style>
@@ -44,12 +42,18 @@
     </div>
 
     <div class="dashboard-header">
-    <div class="logo-text">CHEF AUDIT <span style="font-weight: 100; font-size: 16px;">| Control Panel</span></div>
-    <div style="display: flex; align-items: center; gap: 20px;">
-        <button onclick="deschideFormularAudit()" style="background: var(--gold); color: black; border: none; padding: 10px 20px; font-weight: bold; cursor: pointer; border-radius: 4px;">+ AUDIT NOU</button>
-        <div id="current-date" style="font-size: 14px; color: #888;"></div>
+        <div class="logo-text">CHEF AUDIT <span style="font-weight: 100; font-size: 16px;">| Control Panel</span></div>
+        <div style="display: flex; align-items: center; gap: 20px;">
+            <button onclick="deschideFormularAudit()" style="background: var(--gold); color: black; border: none; padding: 10px 20px; font-weight: bold; cursor: pointer; border-radius: 4px;">+ AUDIT NOU</button>
+            <div id="current-date" style="font-size: 14px; color: #888;"></div>
+        </div>
     </div>
-</div>
+
+    <div class="stats-grid">
+        <div class="stat-card"><h3>Total Audituri</h3><p>48</p></div>
+        <div class="stat-card"><h3>Sesiune Activă</h3><p id="display-id" style="font-size: 16px;">-</p></div>
+        <div class="stat-card"><h3>Data</h3><p style="font-size: 16px;">22 Dec 2025</p></div>
+    </div>
 
     <div id="historicul-auditorului" style="margin-top: 30px;">
         <h3 style="color: var(--gold); font-family: 'Playfair Display';">ISTORIC AUDITURI: <span id="nume-auditor-header"></span></h3>
@@ -63,8 +67,7 @@
                         <th>Status</th>
                     </tr>
                 </thead>
-                <tbody id="lista-istoric">
-                    </tbody>
+                <tbody id="lista-istoric"></tbody>
             </table>
         </div>
     </div>
@@ -89,13 +92,22 @@
         <button onclick="downloadCard()" style="margin-top: 20px; background: #D4AF37; color: black; border: none; padding: 12px 25px; font-weight: bold; cursor: pointer; border-radius: 5px;">DESCARCĂ CARD PNG</button>
     </div>
 
-    <script>
-        // 1. Configurare Date
-        const auditoriAutorizati = {
-            "CHEF001": "Adrian Popescu",
-            "AUDIT002": "Maria Ionescu"
-        };
+    <div id="modal-audit" style="display:none; position:fixed; top:0; left:0; width:100%; height:100%; background:rgba(0,0,0,0.9); z-index:10000; align-items:center; justify-content:center; padding: 20px; box-sizing: border-box;">
+        <div style="background: var(--grey); border: 1px solid var(--gold); padding: 30px; width: 100%; max-width: 450px; border-radius: 8px; position: relative;">
+            <span onclick="inchideFormular()" style="position:absolute; top:10px; right:15px; color:#888; cursor:pointer; font-size:24px;">&times;</span>
+            <h2 style="color:var(--gold); font-family:'Playfair Display'; margin-top:0;">ÎNREGISTRARE AUDIT NOU</h2>
+            <form id="form-audit-nou" onsubmit="salveazaAudit(event)">
+                <label style="display:block; font-size:11px; color:#888; margin-bottom:5px;">NUME RESTAURANT / CHEF</label>
+                <input type="text" id="audit-subiect" required style="width:100%; padding:12px; background:#000; border:1px solid #333; color:white; margin-bottom:20px; border-radius:4px;">
+                <label style="display:block; font-size:11px; color:#888; margin-bottom:5px;">SCOR EVALUARE (0-100)</label>
+                <input type="number" id="audit-scor" min="0" max="100" required style="width:100%; padding:12px; background:#000; border:1px solid #333; color:white; margin-bottom:20px; border-radius:4px;">
+                <button type="submit" style="width:100%; background:var(--gold); color:black; border:none; padding:15px; font-weight:bold; cursor:pointer; text-transform:uppercase; border-radius:4px;">Finalizează și Salvează</button>
+            </form>
+        </div>
+    </div>
 
+    <script>
+        const auditoriAutorizati = { "CHEF001": "Adrian Popescu", "AUDIT002": "Maria Ionescu" };
         const dateAudituri = [
             { auditorId: "CHEF001", data: "15.12.2025", nume: "Restaurant Le Premier", scor: "95/100", status: "ELITE" },
             { auditorId: "CHEF001", data: "10.12.2025", nume: "Chef Mario R.", scor: "88/100", status: "APPROVED" },
@@ -104,7 +116,6 @@
 
         document.getElementById('current-date').innerText = "Data: " + new Date().toLocaleDateString('ro-RO');
 
-        // 2. Logica Acces
         function checkAccess() {
             const code = document.getElementById('auditor-code').value;
             if (auditoriAutorizati[code]) {
@@ -113,74 +124,38 @@
                 document.getElementById('card-name').innerText = auditoriAutorizati[code];
                 document.getElementById('display-id').innerText = code;
                 document.getElementById('card-id-display').innerText = code;
-                
-                // Generare QR dinamic
-                const qrUrl = `https://api.qrserver.com/v1/create-qr-code/?size=100x100&data=https://gsandu18.github.io/verify/index.html?id=${code}`;
-                document.getElementById('card-qr').src = qrUrl;
-
+                document.getElementById('card-qr').src = `https://api.qrserver.com/v1/create-qr-code/?size=100x100&data=https://gsandu18.github.io/verify/index.html?id=${code}`;
                 afiseazaIstoric(code);
-            } else {
-                document.getElementById('error-msg').style.display = 'block';
-            }
+            } else { document.getElementById('error-msg').style.display = 'block'; }
         }
 
-        // 3. Afisare Tabel
         function afiseazaIstoric(auditorId) {
             const lista = document.getElementById('lista-istoric');
             lista.innerHTML = "";
             const audituriMele = dateAudituri.filter(a => a.auditorId === auditorId);
-
             audituriMele.forEach(audit => {
                 const color = audit.status === 'TRAINING' ? '#ff4444' : '#D4AF37';
-                lista.innerHTML += `
-                    <tr>
-                        <td>${audit.data}</td>
-                        <td><b>${audit.nume}</b></td>
-                        <td style="color:var(--gold)">${audit.scor}</td>
-                        <td><span class="badge" style="border:1px solid ${color}; color:${color}">${audit.status}</span></td>
-                    </tr>`;
+                lista.innerHTML += `<tr><td>${audit.data}</td><td><b>${audit.nume}</b></td><td style="color:var(--gold)">${audit.scor}</td><td><span class="badge" style="border:1px solid ${color}; color:${color}">${audit.status}</span></td></tr>`;
             });
         }
-        // Funcții pentru gestionarea formularului nou
-function deschideFormularAudit() {
-    document.getElementById('modal-audit').style.display = 'flex';
-}
 
-function inchideFormular() {
-    document.getElementById('modal-audit').style.display = 'none';
-}
+        function deschideFormularAudit() { document.getElementById('modal-audit').style.display = 'flex'; }
+        function inchideFormular() { document.getElementById('modal-audit').style.display = 'none'; }
 
-function salveazaAudit(event) {
-    event.preventDefault();
-    
-    const subiect = document.getElementById('audit-subiect').value;
-    const scorNum = document.getElementById('audit-scor').value;
-    const auditorId = document.getElementById('display-id').innerText;
-    const dataAzi = new Date().toLocaleDateString('ro-RO');
+        function salveazaAudit(event) {
+            event.preventDefault();
+            const subiect = document.getElementById('audit-subiect').value;
+            const scorNum = document.getElementById('audit-scor').value;
+            const auditorId = document.getElementById('display-id').innerText;
+            const status = scorNum >= 90 ? "ELITE" : (scorNum >= 75 ? "APPROVED" : "TRAINING");
 
-    // Calculăm statusul automat
-    let status = scorNum >= 90 ? "ELITE" : (scorNum >= 75 ? "APPROVED" : "TRAINING");
+            dateAudituri.unshift({ auditorId: auditorId, data: new Date().toLocaleDateString('ro-RO'), nume: subiect, scor: scorNum + "/100", status: status });
+            afiseazaIstoric(auditorId);
+            inchideFormular();
+            document.getElementById('form-audit-nou').reset();
+            alert("Audit înregistrat cu succes!");
+        }
 
-    // Adăugăm în lista locală (va fi vizibil până la refresh)
-    dateAudituri.unshift({
-        auditorId: auditorId,
-        data: dataAzi,
-        nume: subiect,
-        scor: scorNum + "/100",
-        status: status
-    });
-
-    // Reîmprospătăm tabelul
-    afiseazaIstoric(auditorId);
-    
-    // Închidem și resetăm
-    inchideFormular();
-    document.getElementById('form-audit-nou').reset();
-    alert("Audit înregistrat cu succes!");
-}  
-        
-
-        // 4. Download Card
         function downloadCard() {
             const area = document.getElementById('capture-area');
             html2canvas(area, { backgroundColor: "#000", scale: 2, useCORS: true }).then(canvas => {
@@ -190,24 +165,6 @@ function salveazaAudit(event) {
                 link.click();
             });
         }
-        
     </script>
-    <div id="modal-audit" style="display:none; position:fixed; top:0; left:0; width:100%; height:100%; background:rgba(0,0,0,0.9); z-index:10000; align-items:center; justify-content:center; padding: 20px; box-sizing: border-box;">
-    <div style="background: var(--grey); border: 1px solid var(--gold); padding: 30px; width: 100%; max-width: 450px; border-radius: 8px; position: relative;">
-        <span onclick="inchideFormular()" style="position:absolute; top:10px; right:15px; color:#888; cursor:pointer; font-size:24px;">&times;</span>
-        <h2 style="color:var(--gold); font-family:'Playfair Display'; margin-top:0;">ÎNREGISTRARE AUDIT NOU</h2>
-        
-        <form id="form-audit-nou" onsubmit="salveazaAudit(event)">
-            <label style="display:block; font-size:11px; color:#888; margin-bottom:5px;">NUME RESTAURANT / CHEF</label>
-            <input type="text" id="audit-subiect" required style="width:100%; padding:12px; background:#000; border:1px solid #333; color:white; margin-bottom:20px; border-radius:4px;">
-            
-            <label style="display:block; font-size:11px; color:#888; margin-bottom:5px;">SCOR EVALUARE (0-100)</label>
-            <input type="number" id="audit-scor" min="0" max="100" required style="width:100%; padding:12px; background:#000; border:1px solid #333; color:white; margin-bottom:20px; border-radius:4px;">
-            
-            <button type="submit" style="width:100%; background:var(--gold); color:black; border:none; padding:15px; font-weight:bold; cursor:pointer; text-transform:uppercase; border-radius:4px;">Finalizează și Salvează</button>
-        </form>
-    </div>
-</div>
-
 </body>
 </html>
