@@ -44,15 +44,12 @@
     </div>
 
     <div class="dashboard-header">
-        <div class="logo-text">CHEF AUDIT <span style="font-weight: 100; font-size: 16px;">| Control Panel</span></div>
+    <div class="logo-text">CHEF AUDIT <span style="font-weight: 100; font-size: 16px;">| Control Panel</span></div>
+    <div style="display: flex; align-items: center; gap: 20px;">
+        <button onclick="deschideFormularAudit()" style="background: var(--gold); color: black; border: none; padding: 10px 20px; font-weight: bold; cursor: pointer; border-radius: 4px;">+ AUDIT NOU</button>
         <div id="current-date" style="font-size: 14px; color: #888;"></div>
     </div>
-
-    <div class="stats-grid">
-        <div class="stat-card"><h3>Total Audituri</h3><p>48</p></div>
-        <div class="stat-card"><h3>Venit Estimat</h3><p>14.500 €</p></div>
-        <div class="stat-card"><h3>ID Auditor</h3><p id="display-id">-</p></div>
-    </div>
+</div>
 
     <div id="historicul-auditorului" style="margin-top: 30px;">
         <h3 style="color: var(--gold); font-family: 'Playfair Display';">ISTORIC AUDITURI: <span id="nume-auditor-header"></span></h3>
@@ -155,6 +152,24 @@
                 link.click();
             });
         }
+        
     </script>
+    <div id="modal-audit" style="display:none; position:fixed; top:0; left:0; width:100%; height:100%; background:rgba(0,0,0,0.9); z-index:10000; align-items:center; justify-content:center; padding: 20px; box-sizing: border-box;">
+    <div style="background: var(--grey); border: 1px solid var(--gold); padding: 30px; width: 100%; max-width: 450px; border-radius: 8px; position: relative;">
+        <span onclick="inchideFormular()" style="position:absolute; top:10px; right:15px; color:#888; cursor:pointer; font-size:24px;">&times;</span>
+        <h2 style="color:var(--gold); font-family:'Playfair Display'; margin-top:0;">ÎNREGISTRARE AUDIT NOU</h2>
+        
+        <form id="form-audit-nou" onsubmit="salveazaAudit(event)">
+            <label style="display:block; font-size:11px; color:#888; margin-bottom:5px;">NUME RESTAURANT / CHEF</label>
+            <input type="text" id="audit-subiect" required style="width:100%; padding:12px; background:#000; border:1px solid #333; color:white; margin-bottom:20px; border-radius:4px;">
+            
+            <label style="display:block; font-size:11px; color:#888; margin-bottom:5px;">SCOR EVALUARE (0-100)</label>
+            <input type="number" id="audit-scor" min="0" max="100" required style="width:100%; padding:12px; background:#000; border:1px solid #333; color:white; margin-bottom:20px; border-radius:4px;">
+            
+            <button type="submit" style="width:100%; background:var(--gold); color:black; border:none; padding:15px; font-weight:bold; cursor:pointer; text-transform:uppercase; border-radius:4px;">Finalizează și Salvează</button>
+        </form>
+    </div>
+</div>
+
 </body>
 </html>
