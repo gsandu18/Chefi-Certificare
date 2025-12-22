@@ -311,6 +311,22 @@
             lista.innerHTML += row;
         });
     }
+    function downloadCard() {
+    const cardArea = document.getElementById('capture-area');
+    const auditorName = document.getElementById('card-name').innerText;
+
+    html2canvas(cardArea, {
+        backgroundColor: "#000",
+        scale: 2, // Calitate dublă pentru claritate
+        useCORS: true // Permite încărcarea imaginilor de pe alte servere (logo/qr)
+    }).then(canvas => {
+        const link = document.createElement('a');
+        link.download = `Auditor-ID-${auditorName}.png`;
+        link.href = canvas.toDataURL("image/png");
+        link.click();
+    });
+}
+
     <div id="login-overlay" style="position:fixed; top:0; left:0; width:100%; height:100%; background:black; z-index:9999; display:flex; flex-direction:column; align-items:center; justify-content:center;">
     <div style="border: 1px solid #D4AF37; padding: 40px; text-align: center; background: #1a1a1a; border-radius: 8px;">
         <h2 style="color:#D4AF37; font-family: 'Playfair Display';">ACCES AUDITOR</h2>
