@@ -141,17 +141,6 @@
                     </tr>`;
             });
         }
-
-        // 4. Download Card
-        function downloadCard() {
-            const area = document.getElementById('capture-area');
-            html2canvas(area, { backgroundColor: "#000", scale: 2, useCORS: true }).then(canvas => {
-                const link = document.createElement('a');
-                link.download = `Chef-Audit-Card.png`;
-                link.href = canvas.toDataURL();
-                link.click();
-            });
-        }
         // Funcții pentru gestionarea formularului nou
 function deschideFormularAudit() {
     document.getElementById('modal-audit').style.display = 'flex';
@@ -189,6 +178,19 @@ function salveazaAudit(event) {
     document.getElementById('form-audit-nou').reset();
     alert("Audit înregistrat cu succes!");
 }  
+        
+
+        // 4. Download Card
+        function downloadCard() {
+            const area = document.getElementById('capture-area');
+            html2canvas(area, { backgroundColor: "#000", scale: 2, useCORS: true }).then(canvas => {
+                const link = document.createElement('a');
+                link.download = `Chef-Audit-Card.png`;
+                link.href = canvas.toDataURL();
+                link.click();
+            });
+        }
+        
     </script>
     <div id="modal-audit" style="display:none; position:fixed; top:0; left:0; width:100%; height:100%; background:rgba(0,0,0,0.9); z-index:10000; align-items:center; justify-content:center; padding: 20px; box-sizing: border-box;">
     <div style="background: var(--grey); border: 1px solid var(--gold); padding: 30px; width: 100%; max-width: 450px; border-radius: 8px; position: relative;">
