@@ -152,7 +152,43 @@
                 link.click();
             });
         }
-        
+        // Funcții pentru gestionarea formularului nou
+function deschideFormularAudit() {
+    document.getElementById('modal-audit').style.display = 'flex';
+}
+
+function inchideFormular() {
+    document.getElementById('modal-audit').style.display = 'none';
+}
+
+function salveazaAudit(event) {
+    event.preventDefault();
+    
+    const subiect = document.getElementById('audit-subiect').value;
+    const scorNum = document.getElementById('audit-scor').value;
+    const auditorId = document.getElementById('display-id').innerText;
+    const dataAzi = new Date().toLocaleDateString('ro-RO');
+
+    // Calculăm statusul automat
+    let status = scorNum >= 90 ? "ELITE" : (scorNum >= 75 ? "APPROVED" : "TRAINING");
+
+    // Adăugăm în lista locală (va fi vizibil până la refresh)
+    dateAudituri.unshift({
+        auditorId: auditorId,
+        data: dataAzi,
+        nume: subiect,
+        scor: scorNum + "/100",
+        status: status
+    });
+
+    // Reîmprospătăm tabelul
+    afiseazaIstoric(auditorId);
+    
+    // Închidem și resetăm
+    inchideFormular();
+    document.getElementById('form-audit-nou').reset();
+    alert("Audit înregistrat cu succes!");
+}  
     </script>
     <div id="modal-audit" style="display:none; position:fixed; top:0; left:0; width:100%; height:100%; background:rgba(0,0,0,0.9); z-index:10000; align-items:center; justify-content:center; padding: 20px; box-sizing: border-box;">
     <div style="background: var(--grey); border: 1px solid var(--gold); padding: 30px; width: 100%; max-width: 450px; border-radius: 8px; position: relative;">
