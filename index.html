@@ -377,81 +377,140 @@
     color: #888;
 }
 
-.footer-content {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: space-between;
-    gap: 40px;
-    max-width: 1200px;
-    margin: 0 auto;
+/* --- Stiluri de bază (neschimbate) --- */
+* { box-sizing: border-box; margin: 0; padding: 0; }
+body { font-family: 'Helvetica', sans-serif; }
+
+.site-footer {
+  background-color: #000000;
+  color: #b0b0b0;
+  padding: 50px 20px;
+  position: relative;
 }
 
-.footer-logo {
-    flex: 2;
-    min-width: 250px;
+.footer-container {
+  max-width: 1200px;
+  margin: 0 auto;
 }
 
-.footer-img {
-    max-width: 150px;
-    margin-bottom: 20px;
-    filter: brightness(0.9);
+a { text-decoration: none; color: inherit; transition: 0.3s; }
+a:hover { color: #fff; }
+
+/* --- Footer Top Layout --- */
+.footer-top {
+  display: flex;
+  flex-direction: column; /* Mobil: Coloană */
+  align-items: center;
+  text-align: center;
+  gap: 40px;
+  margin-bottom: 40px;
 }
 
-.footer-links, .footer-contact {
-    flex: 1;
-    min-width: 200px;
+/* Titluri secțiuni (Navigare / Social) */
+.nav-title, .social-title {
+  color: #d4af37; /* Auriu */
+  font-size: 0.85rem;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  margin-bottom: 20px;
+  font-weight: bold;
 }
 
-h4 {
-    color: #C5A059;
-    font-family: 'Cinzel', serif;
-    font-size: 0.9rem;
-    letter-spacing: 2px;
-    margin-bottom: 25px;
+/* Branding Text */
+.brand-text {
+  font-size: 1.1rem;
+  line-height: 1.6;
+  color: #888;
 }
 
-.footer-links ul {
-    list-style: none;
-    padding: 0;
-}
-
-.footer-links li {
-    margin-bottom: 12px;
-}
-
-.footer-links a {
-    color: #888;
-    text-decoration: none;
-    transition: color 0.3s;
-}
-
-.footer-links a:hover {
-    color: #C5A059;
-}
-
+/* --- SOCIAL MEDIA STYLES (NOU) --- */
 .social-icons {
-    margin-top: 20px;
-    display: flex;
-    gap: 15px;
+  display: flex;
+  justify-content: center;
+  gap: 20px;
 }
 
-.social-link {
-    color: #C5A059;
-    text-decoration: none;
-    font-size: 0.8rem;
-    font-weight: bold;
-    border: 1px solid #C5A059;
-    padding: 5px 12px;
-    border-radius: 2px;
+.social-link svg {
+  width: 24px;
+  height: 24px;
+  color: #e0e0e0; /* Alb stins inițial */
+  transition: transform 0.3s, color 0.3s;
 }
 
-.footer-bottom {
-    margin-top: 50px;
-    padding-top: 20px;
-    border-top: 1px solid #111;
-    text-align: center;
-    font-size: 0.7rem;
-    letter-spacing: 1px;
+.social-link:hover svg {
+  color: #d4af37; /* Auriu la hover */
+  transform: translateY(-3px); /* Mic efect de ridicare */
+}
+
+/* Navigare Link-uri */
+.nav-links { list-style: none; }
+.nav-links li { margin-bottom: 12px; }
+.nav-links a { font-size: 1rem; color: #e0e0e0; }
+
+/* Divider */
+.footer-divider {
+  border: 0;
+  border-top: 1px solid #222;
+  margin: 20px 0;
+}
+
+/* --- Footer Legal --- */
+.footer-legal {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  gap: 15px;
+  font-size: 0.8rem;
+  color: #555;
+}
+
+.legal-links {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 20px;
+}
+
+/* --- RESPONSIVE: DESKTOP (>768px) --- */
+@media (min-width: 768px) {
+  .footer-top {
+    flex-direction: row; /* Linie orizontală */
+    justify-content: space-between;
+    align-items: flex-start; /* Aliniere sus */
+    text-align: left;
+  }
+
+  /* Distribuim lățimea în mod egal pentru un aspect echilibrat */
+  .footer-branding, .footer-social, .footer-nav {
+    flex: 1; 
+  }
+
+  /* Social pe centru */
+  .footer-social {
+    text-align: center; 
+  }
+  
+  /* Navigarea pe dreapta */
+  .footer-nav {
+    text-align: right;
+  }
+
+  .footer-legal {
+    flex-direction: row;
+    justify-content: space-between;
+  }
+}
+
+/* WhatsApp Btn */
+.whatsapp-btn {
+  position: fixed; bottom: 20px; right: 20px;
+  background-color: #25D366; width: 55px; height: 55px;
+  border-radius: 50%; display: flex; align-items: center; justify-content: center;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.5); z-index: 99;
+}
+.whatsapp-btn img { width: 30px; height: 30px; }
+
 }
         /* Ajustare Footer Desktop */
 @media (min-width: 1024px) {
