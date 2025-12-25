@@ -369,200 +369,135 @@
 .faq-item.active .faq-answer {
     max-height: 200px;
     padding-top: 15px;
-}       
-/* --- Stiluri de bază (neschimbate) --- */
-* { box-sizing: border-box; margin: 0; padding: 0; }
-body { font-family: 'Helvetica', sans-serif; }
-
+}       /* --- Setări Generale Footer --- */
 .site-footer {
-  background-color: #000000;
-  color: #b0b0b0;
-  padding: 50px 20px;
+  background-color: #000000; /* Fundal Negru */
+  color: #e0e0e0; /* Text Alb-Argintiu (Vizibil) */
+  padding: 60px 20px;
+  font-family: 'Helvetica', sans-serif;
+  text-align: center;
   position: relative;
 }
 
 .footer-container {
-  max-width: 1200px;
+  max-width: 800px; /* Ținem conținutul compact ca în poză */
   margin: 0 auto;
-}
-
-a { text-decoration: none; color: inherit; transition: 0.3s; }
-a:hover { color: #fff; }
-
-/* --- Footer Top Layout --- */
-.footer-top {
-  display: flex;
-  flex-direction: column; /* Mobil: Coloană */
-  align-items: center;
-  text-align: center;
-  gap: 40px;
-  margin-bottom: 40px;
-}
-
-/* Titluri secțiuni (Navigare / Social) */
-.nav-title, .social-title {
-  color: #d4af37; /* Auriu */
-  font-size: 0.85rem;
-  text-transform: uppercase;
-  letter-spacing: 2px;
-  margin-bottom: 20px;
-  font-weight: bold;
-}
-
-/* Branding Text */
-.brand-text {
-  font-size: 1.1rem;
-  line-height: 1.6;
-  color: #888;
-}
-
-/* --- SOCIAL MEDIA STYLES (NOU) --- */
-.social-icons {
-  display: flex;
-  justify-content: center;
-  gap: 20px;
-}
-
-.social-link svg {
-  width: 24px;
-  height: 24px;
-  color: #e0e0e0; /* Alb stins inițial */
-  transition: transform 0.3s, color 0.3s;
-}
-
-.social-link:hover svg {
-  color: #d4af37; /* Auriu la hover */
-  transform: translateY(-3px); /* Mic efect de ridicare */
-}
-
-/* Navigare Link-uri */
-.nav-links { list-style: none; }
-.nav-links li { margin-bottom: 12px; }
-.nav-links a { font-size: 1rem; color: #e0e0e0; }
-
-/* Divider */
-.footer-divider {
-  border: 0;
-  border-top: 1px solid #222;
-  margin: 20px 0;
-}
-
-/* --- Footer Legal --- */
-.footer-legal {
   display: flex;
   flex-direction: column;
+  gap: 30px; /* Spațiu între secțiuni */
   align-items: center;
-  text-align: center;
-  gap: 15px;
-  font-size: 0.8rem;
-  color: #555;
 }
 
-.legal-links {
+/* --- 1. Branding --- */
+.brand-title {
+  color: #d4af37; /* Auriu */
+  font-size: 1.5rem;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  margin: 0;
+}
+
+/* --- 2. Social Media Icons --- */
+.footer-social {
+  display: flex;
+  gap: 25px; /* Distanța dintre iconițe */
+  margin: 10px 0;
+}
+
+.social-icon {
+  color: #ffffff; /* Alb standard */
+  transition: transform 0.3s, color 0.3s;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.social-icon svg {
+  width: 28px; /* Mărimea iconițelor */
+  height: 28px;
+}
+
+.social-icon:hover {
+  color: #d4af37; /* Se fac Aurii la hover */
+  transform: translateY(-3px); /* Se ridică puțin */
+}
+
+/* --- 3. Legal Nav --- */
+.legal-nav {
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
+  align-items: center;
+  gap: 10px;
+  font-size: 0.9rem;
+  color: #b0b0b0;
+}
+
+.legal-nav a {
+  color: #e0e0e0;
+  text-decoration: none;
+  transition: color 0.3s;
+}
+
+.legal-nav a:hover {
+  color: #d4af37;
+}
+
+.separator {
+  color: #555;
+}
+
+/* --- 4. Company Details --- */
+.company-details {
+  font-size: 0.9rem;
+  color: #888;
+  line-height: 1.6;
+}
+.company-details p { margin: 5px 0; }
+
+/* --- 5. Bottom & ANPC --- */
+.footer-bottom {
+  margin-top: 10px;
+  display: flex;
+  flex-direction: column;
   gap: 20px;
 }
 
-/* --- RESPONSIVE: DESKTOP (>768px) --- */
-@media (min-width: 768px) {
-  .footer-top {
-    flex-direction: row; /* Linie orizontală */
-    justify-content: space-between;
-    align-items: flex-start; /* Aliniere sus */
-    text-align: left;
-  }
-
-  /* Distribuim lățimea în mod egal pentru un aspect echilibrat */
-  .footer-branding, .footer-social, .footer-nav {
-    flex: 1; 
-  }
-
-  /* Social pe centru */
-  .footer-social {
-    text-align: center; 
-  }
-  
-  /* Navigarea pe dreapta */
-  .footer-nav {
-    text-align: right;
-  }
-
-  .footer-legal {
-    flex-direction: row;
-    justify-content: space-between;
-  }
+.copyright {
+  font-size: 0.8rem;
+  color: #666;
 }
 
-/* WhatsApp Btn */
+.anpc-link {
+  color: #e0e0e0;
+  font-weight: bold;
+  text-decoration: underline;
+  font-size: 0.9rem;
+}
+
+/* --- Buton WhatsApp --- */
 .whatsapp-btn {
-  position: fixed; bottom: 20px; right: 20px;
-  background-color: #25D366; width: 55px; height: 55px;
-  border-radius: 50%; display: flex; align-items: center; justify-content: center;
-  box-shadow: 0 4px 12px rgba(0,0,0,0.5); z-index: 99;
-}
-.whatsapp-btn img { width: 30px; height: 30px; }
-
-}
-        /* Ajustare Footer Desktop */
-@media (min-width: 1024px) {
-   /* Aliniere profesională pentru Footer Desktop */
-@media (min-width: 1024px) {
-    .footer-content {
-        display: flex;
-        align-items: flex-start; /* Ridică logo-ul și restul coloanelor la același nivel sus */
-        justify-content: space-between;
-        gap: 50px;
-        max-width: 1200px;
-        margin: 0 auto;
-    }
-
-    .footer-logo {
-        margin-top: -10px; /* Ajustare fină pentru a ridica logo-ul dacă este nevoie */
-    }
-
-    .footer-logo img {
-        max-width: 180px;
-        display: block;
-        margin-bottom: 15px;
-    }
-    
-    .footer-logo p {
-        margin: 0;
-        line-height: 1.4;
-    }
-    }
-    .footer-contact {
-    text-align: right; /* Aliniază contactul la dreapta pe desktop */
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  background-color: #25D366;
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.5);
+  z-index: 100;
+  transition: transform 0.3s;
 }
 
-.social-icons {
-    justify-content: flex-end; /* Împinge butoanele de social media spre marginea dreaptă */
-    gap: 15px;
-    margin-top: 15px;
-}@media (min-width: 1024px) {
-    .footer-content {
-        display: grid;
-        grid-template-columns: 2fr 1fr 1.5fr; /* Logo-ul primește mai mult spațiu */
-        align-items: start;
-        max-width: 1200px;
-        margin: 0 auto;
-        padding: 40px 20px;
-    }
+.whatsapp-btn:hover { transform: scale(1.1); }
+.whatsapp-btn img { width: 35px; height: 35px; }
 
-    .footer-logo {
-        text-align: left;
-    }
+/* --- Responsive Desktop --- */
+/* Chiar dacă vrei aspectul "listă" pe mobil, pe desktop putem m
 
-    .footer-contact {
-        text-align: right; /* Aliniază contactul și butoanele la dreapta */
-    }
-
-    .social-icons {
-        justify-content: flex-end; /* Împinge butoanele Instagram/LinkedIn la marginea dreaptă */
-        margin-top: 15px;
-    }
 }
     </style>
 </head>
