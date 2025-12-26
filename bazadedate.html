@@ -1,0 +1,32 @@
+CREATE TABLE audituri (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    nume_restaurant VARCHAR(255) NOT NULL,
+    chef_email VARCHAR(255) NOT NULL,
+    auditor_nume VARCHAR(100),
+    
+    -- Aici gestionam fluxul de aprobare
+    status ENUM('draft', 'pending_review', 'approved', 'sent') DEFAULT 'draft',
+    
+    -- Aici stocam datele tehnice (JSON e cel mai flexibil pentru rapoarte complexe)
+    continut_raport JSON, 
+    
+    -- Meta-date
+    creat_la TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    revizuit_de VARCHAR(100) NULL, -- Cine a facut controlul (Manager)
+    data_trimiterii TIMESTAMP NULL
+);
+
+-- EXEMPLU 1: Auditorul salvează o ciornă (DRAFT)
+INSERT INTO audituri (nume_restaurant, chef_email, auditor_nume, status, continut_raport)
+VALUES (
+    'Restaurant La Mama', 
+    'chef@exemplu.ro', 
+    'Ion Popescu', 
+    'draft',
+    '{"scor_total": 7.5, "probleme_critice": ["Lipsa fise tehnice", "Temperaturi gresite"]}'
+);
+
+-- EXEMPLU 2: Managerul aprobă raportul (CONTROLUL)
+UPDATE audituri 
+SET status = 'approved', revizuit_de = 'Manager Ana', data_trimiterii = NULL
+WHERE id = 1;
