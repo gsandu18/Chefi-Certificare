@@ -426,37 +426,9 @@
 /* Instagram: Are nevoie de contur (STROKE) ca să nu fie pătrat plin */
 .social-icon.instagram svg {
     fill: none !important; /* Interior transparent */
-    stroke:white !important; /* Contur alb */
-    /* --- ZONA SOCIAL MEDIA (Link-uri reale) --- */
-
-/* 1. Containerul - Centrează totul */
-.social-icons {
-  display: flex;
-  justify-content: center; /* Centrare orizontală */
-  align-items: center;     /* Centrare verticală */
-  gap: 25px;               /* Distanța dintre iconițe */
-  margin: 20px 0;          /* Spațiu sus/jos */
-  width: 100%;
-}
-
-/* 2. Link-urile (a) și Iconițele (i) - Le forțăm să fie ALBE */
-.social-icons a,
-.social-icons a:visited,  /* Important: Să nu se facă mov după ce dai click */
-.social-icons a i {
-  color: #ffffff !important;   /* Alb obligatoriu */
-  font-size: 24px !important;  /* Mărime fixă */
-  text-decoration: none;       /* Fără sublinieri */
-  transition: all 0.3s ease;   /* Animație fină */
-  display: inline-block;
-}
-
-/* 3. Efect la Hover (Când treci cu mouse-ul) */
-.social-icons a:hover,
-.social-icons a:hover i {
-  color: #4CAF50 !important;   /* Verdele brandului */
-  transform: scale(1.2);       /* Se mărește puțin */
-  cursor: pointer;
-}}/* --- 3. Legal Nav --- */
+    stroke:white !important; /* Contur */
+  
+}/* --- 3. Legal Nav --- */
 .legal-nav {
   display: flex;
   flex-wrap: wrap;
