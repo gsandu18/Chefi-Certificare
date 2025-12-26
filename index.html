@@ -466,30 +466,34 @@
   font-size: 0.9rem;
 }
 /* --- Responsive Desktop --- */
-/* Chiar dacă vrei aspectul "listă" pe mobil, pe desktop putem m
-
-}
-        .btn-auditor {
-  display: inline-block;      /* Îi permite să aibă dimensiuni și margini */
-  margin-top: 20px;           /* Îl separă clar de link-urile de sus */
-  padding: 10px 20px;         /* Spațiu în interiorul butonului */
+/* Chiar dacă vrei aspectul "listă" pe mobil, pe desktop putem .btn-auditor {
+  /* Transformă textul în buton */
+  display: inline-block;      
+  margin-top: 20px;           /* Spațiu față de link-ul de sus */
+  padding: 10px 20px;         /* "Grosimea" butonului */
   
+  /* Culoare și Contur - Aici e secretul */
+  color: #ffffff !important;  /* Forțăm textul să fie ALB (nu albastru) */
   border: 1px solid #ffffff;  /* Chenar alb subțire */
-  border-radius: 5px;         /* Colțuri ușor rotunjite */
+  border-radius: 50px;        /* Colțuri rotunjite (stil modern) */
   
-  color: #ffffff;             /* Text alb */
-  text-decoration: none;      /* Fără linie sub text */
-  font-size: 14px;            /* Mărime text */
-  font-weight: 600;           /* Text puțin îngroșat */
-  transition: all 0.3s ease;  /* Animație fină la atingere */
+  text-decoration: none;      /* Scoatem linia de sub text */
+  font-size: 14px;            
+  font-weight: 500;
+  transition: all 0.3s ease;  /* Animație fină */
 }
 
-/* Efect când pui mouse-ul pe buton */
+/* Când pui degetul sau mouse-ul pe buton */
 .btn-auditor:hover {
-  background-color: #4CAF50;  /* Fundal Verde (culoarea brandului) */
-  border-color: #4CAF50;      /* Chenarul devine și el verde */
-  color: #fff;                /* Textul rămâne alb */
-  cursor: pointer;
+  background-color: #4CAF50;  /* Verdele din logo */
+  border-color: #4CAF50;
+  color: #fff !important;
+  box-shadow: 0 0 10px rgba(76, 175, 80, 0.5); /* O mică strălucire */
+}
+
+/* Asigurăm spațiu între lacăt și text */
+.btn-auditor .icon {
+  margin-right: 8px;
 }
 
 /* Mic detaliu pentru iconița lacăt */
@@ -683,6 +687,7 @@
       <a href="login-auditor.html" class="btn-auditor">
   <span class="icon">🔒</span> Zonă Privată Chef Auditor
 </a>
+
 
 
     <div class="company-details">
