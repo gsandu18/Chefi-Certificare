@@ -389,14 +389,12 @@
   align-items: center;
 }
 .social-icons {
-  display: flex;
-  justify-content: center; /* Le obligă să stea pe centru */
-  align-items: center;     /* Aliniere verticală */
-  gap: 20px;               /* Spațiu între ele */
-  width: 100%;             /* Ocupă tot rândul ca să se poată centra */
-  margin: 20px 0;          /* Puțin spațiu deasupra și dedesubt */
+  display: flex;           /* Activează Flexbox */
+  justify-content: center; /* Centrează elementele pe orizontală */
+  align-items: center;     /* Centrează elementele pe verticală */
+  width: 100%;             /* Se asigură că containerul ocupă toată lățimea */
+  margin: 20px 0;          /* Adaugă puțin spațiu deasupra și dedesubt */
 }
-
 /* Dacă ai o regulă @media pentru desktop, asigură-te că NU le suprascrie */
 /* Poți adăuga asta pentru siguranță: */
 @media (min-width: 768px) {
