@@ -1015,51 +1015,46 @@
             document.getElementById('form-audit-nou').reset();
         }
         <script>
-    function switchForm(type) {
-        const slider = document.getElementById('slider');
-        const btns = document.querySelectorAll('.toggle-btn');
-        const fieldsChef = document.getElementById('fields-chef');
-        const fieldsRest = document.getElementById('fields-restaurant');
-        const inputType = document.getElementById('client_type');
-        const restInput = document.querySelector('[name="restaurant_name"]');
+    function setFormType(type, btnElement) {
+        // --- 1. Gestionare Butoane Tab ---
+        let buttons = document.querySelectorAll('.tab-btn');
+        buttons.forEach(btn => btn.classList.remove('active'));
+        btnElement.classList.add('active');
 
+        // --- 2. Referințe la elementele din DOM ---
+        // Câmpuri formular
+        const fieldChef = document.getElementById('field-chef');
+        const fieldRest = document.getElementById('field-restaurant');
+        const hiddenInput = document.getElementById('tip_client');
+        
+        // Blocuri de text descriptive (Coloana Stângă)
+        const infoChefText = document.getElementById('info-chef');
+        const infoRestText = document.getElementById('info-restaurant');
+
+        // --- 3. Logica de comutare ---
         if (type === 'chef') {
-            // Mută slider-ul la stânga
-            slider.style.transform = 'translateX(0)';
+            // Arată elemente CHEF
+            fieldChef.classList.remove('hidden');
+            infoChefText.classList.remove('hidden-content');
             
-            // Activează butonul Chef
-            btns[0].classList.add('active');
-            btns[1].classList.remove('active');
+            // Ascunde elemente RESTAURANT
+            fieldRest.classList.add('hidden');
+            infoRestText.classList.add('hidden-content');
             
-            // Arată câmpurile de Chef, Ascunde Restaurant
-            fieldsChef.classList.remove('hidden');
-            fieldsRest.classList.add('hidden');
-            
-            // Actualizează tipul pentru backend
-            inputType.value = 'chef';
-            
-            // Scoate obligativitatea câmpului de restaurant (ca să poată trimite formularul)
-            if(restInput) restInput.removeAttribute('required');
-
+            hiddenInput.value = 'chef';
         } else {
-            // Mută slider-ul la dreapta (100% din lățimea lui)
-            slider.style.transform = 'translateX(100%)';
+            // Arată elemente RESTAURANT
+            fieldRest.classList.remove('hidden');
+            infoRestText.classList.remove('hidden-content');
             
-            // Activează butonul Restaurant
-            btns[0].classList.remove('active');
-            btns[1].classList.add('active');
+            // Ascunde elemente CHEF
+            fieldChef.classList.add('hidden');
+            infoChefText.classList.add('hidden-content');
 
-            // Arată câmpurile de Restaurant
-            fieldsChef.classList.add('hidden');
-            fieldsRest.classList.remove('hidden');
-            
-            inputType.value = 'restaurant';
-            
-            // Face numele restaurantului obligatoriu
-            if(restInput) restInput.setAttribute('required', 'true');
+            hiddenInput.value = 'restaurant';
         }
     }
-</script>    </script>
+</script>    
 </body>
 </html>
 
