@@ -718,7 +718,52 @@
 }
 .hidden-content {
     display: none !important;
-}        
+}
+/* --- COLOANA STÂNGĂ (CENTRATĂ PERFECT) --- */
+.text-side {
+    flex: 1;
+    padding: 20px;
+    
+    /* Proprietăți noi pentru centrare totală */
+    display: flex;
+    flex-direction: column;
+    justify-content: center; /* Centrează vertical față de formular */
+    align-items: center;     /* Centrează elementele (blocul de text) orizontal */
+    text-align: center;      /* Centrează textul în interiorul paragrafului */
+}
+
+/* Asigurăm că textele au margini corecte */
+.info-block {
+    max-width: 90%; /* Să nu fie prea lat textul */
+    margin: 0 auto; /* Siguranță extra pentru centrare */
+}
+
+.info-block h2 {
+    font-family: 'Cinzel', serif;
+    color: var(--gold-premium);
+    font-size: 2.5rem;
+    margin-bottom: 25px;
+    line-height: 1.2;
+}
+
+.info-block p {
+    color: #ccc;
+    font-family: 'Montserrat', sans-serif;
+    font-size: 1rem;
+    line-height: 1.8;
+    margin-bottom: 20px;
+}
+
+/* Iconițele de jos centrate */
+.info-block div {
+    display: flex;
+    justify-content: center; /* Le pune pe mijloc */
+    gap: 15px; /* Spațiu între ele */
+    flex-wrap: wrap;
+    margin-top: 30px;
+    color: var(--gold-premium);
+    font-weight: 600;
+}
 </style>
 </head>
 <body>
