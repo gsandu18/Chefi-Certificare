@@ -388,19 +388,24 @@
   gap: 30px; /* Spațiu între secțiuni */
   align-items: center;
 }
+/* --- SOCIAL MEDIA STYLES (NOU) --- */
 .social-icons {
-  display: flex;           /* Activează Flexbox */
-  justify-content: center; /* Centrează elementele pe orizontală */
-  align-items: center;     /* Centrează elementele pe verticală */
-  width: 100%;             /* Se asigură că containerul ocupă toată lățimea */
-  margin: 20px 0;          /* Adaugă puțin spațiu deasupra și dedesubt */
+  display: flex;
+  justify-content: center;
+  gap: 20px;
 }
-/* Dacă ai o regulă @media pentru desktop, asigură-te că NU le suprascrie */
-/* Poți adăuga asta pentru siguranță: */
-@media (min-width: 768px) {
-    social-icon
-     justify-content: center; /* Rămân pe centru și pe laptop */
-  }   
+
+.social-link svg {
+  width: 24px;
+  height: 24px;
+  color: #e0e0e0; /* Alb stins inițial */
+  transition: transform 0.3s, color 0.3s;
+}
+
+.social-link:hover svg {
+  color: #d4af37; /* Auriu la hover */
+  transform: translateY(-3px); /* Mic efect de ridicare */
+}
 /* --- Stiluri pentru ICONIȚELE din interior --- */
 .social-icons a {
   color: #ffffff;       /* Le face ALBE (să nu mai fie albastre) */
