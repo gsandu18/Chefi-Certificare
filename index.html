@@ -388,24 +388,28 @@
   gap: 30px; /* Spațiu între secțiuni */
   align-items: center;
 }
-/* --- SOCIAL MEDIA STYLES (NOU) --- */
-.social-icons {
-  display: flex;
-  justify-content: center;
-  gap: 20px;
-}
+/* SOCIAL MEDIA */
+        .social-icons { display: flex; justify-content: center; gap: 20px; margin: 20px 0; }
+        
+        .social-link {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            color: #ffffff !important; /* ALB OBLIGATORIU */
+            text-decoration: none;
+            transition: all 0.3s ease;
+        }
 
-.social-link svg {
-  width: 24px;
-  height: 24px;
-  color: #e0e0e0; /* Alb stins inițial */
-  transition: transform 0.3s, color 0.3s;
-}
+        .social-link svg {
+            width: 28px;
+            height: 28px;
+            fill: currentColor; /* Preia culoarea textului */
+        }
 
-.social-link:hover svg {
-  color: #d4af37; /* Auriu la hover */
-  transform: translateY(-3px); /* Mic efect de ridicare */
-}
+        .social-link:hover {
+            color: #d4af37 !important; /* AURIU LA HOVER */
+            transform: translateY(-3px);
+        }
 /* --- Stiluri pentru ICONIȚELE din interior --- */
 .social-icons a {
   color: #ffffff;       /* Le face ALBE (să nu mai fie albastre) */
