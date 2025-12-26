@@ -719,17 +719,28 @@
 .hidden-content {
     display: none !important;
 }
-/* --- COLOANA STÂNGĂ (CENTRATĂ PERFECT) --- */
+
+/* --- COLOANA STÂNGĂ (TEXTE COBORÂTE) --- */
 .text-side {
     flex: 1;
     padding: 20px;
     
-    /* Proprietăți noi pentru centrare totală */
     display: flex;
     flex-direction: column;
-    justify-content: center; /* Centrează vertical față de formular */
-    align-items: center;     /* Centrează elementele (blocul de text) orizontal */
-    text-align: center;      /* Centrează textul în interiorul paragrafului */
+    
+    /* AICI ESTE TRUCUL: */
+    justify-content: center; /* Le ține grupate */
+    padding-top: 150px;      /* Le împinge forțat în jos cu 150px */
+    
+    align-items: center;     /* Le centrează orizontal */
+    text-align: center;      /* Centrează textul în paragraf */
+}
+
+/* PE MOBIL: Resetăm spațiul ca să nu arate ciudat */
+@media (max-width: 968px) {
+    .text-side {
+        padding-top: 20px !important; /* Anulăm spațiul mare pe telefon */
+    }
 }
 
 /* Asigurăm că textele au margini corecte */
@@ -813,7 +824,8 @@
 .audit-card label {
     margin-bottom: 4px !important;
     font-size: 0.65rem !important;
-}</style>
+}
+</style>
 </head>
 <body>
 
