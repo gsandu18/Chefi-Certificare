@@ -764,7 +764,56 @@
     color: var(--gold-premium);
     font-weight: 600;
 }
-</style>
+        /* --- STILURI PENTRU FORMULAR COMPACT (MICSORAT) --- */
+
+/* 1. Îngustăm formularul */
+.form-side {
+    flex: 0 0 400px !important; /* Lățime fixă mai mică (era 500px) */
+    max-width: 100%;
+}
+
+/* 2. Reducem spațiul interior al cardului */
+.audit-card {
+    padding: 25px !important; /* Mult mai compact (era 40px) */
+}
+
+/* 3. Titlu mai discret */
+.audit-card h3.form-title {
+    font-size: 1.3rem !important;
+    margin-bottom: 15px !important;
+}
+
+/* 4. Căsuțele de scris mai fine */
+.audit-card input, 
+.audit-card select {
+    padding: 10px !important; /* Înălțime redusă */
+    font-size: 0.9rem !important; /* Text puțin mai mic */
+    height: auto;
+}
+
+/* 5. Spațiul dintre căsuțe mai mic */
+.form-group {
+    margin-bottom: 12px !important;
+}
+
+/* 6. Butoanele de sus (Tab-uri) mai mici */
+.tab-btn {
+    padding: 8px !important;
+    font-size: 0.8rem !important;
+}
+
+/* 7. Butonul de trimitere mai compact */
+.submit-btn {
+    padding: 12px !important;
+    margin-top: 5px !important;
+    font-size: 0.9rem !important;
+}
+
+/* Etichetele (Nume, Email etc) mai apropiate de căsuță */
+.audit-card label {
+    margin-bottom: 4px !important;
+    font-size: 0.65rem !important;
+}</style>
 </head>
 <body>
 
