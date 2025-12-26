@@ -879,6 +879,68 @@
         padding: 15px !important; /* Buton mare, ușor de apăsat */
     }
 }
+        /* --- REPARAȚIE FINALĂ PENTRU MOBIL (RESPONSIVE) --- */
+@media (max-width: 768px) {
+
+    /* 1. Resetăm containerul principal să fie pe o singură coloană */
+    .split-container {
+        flex-direction: column !important;
+        width: 100% !important;
+        gap: 20px !important;
+    }
+
+    /* 2. Formularul să ocupe toată lățimea ecranului */
+    .form-side {
+        width: 100% !important;
+        flex: none !important;
+        max-width: 100% !important;
+    }
+
+    /* 3. Cardul formularului - spații mai mici */
+    .audit-card {
+        width: 100% !important;
+        max-width: 100% !important;
+        padding: 20px 15px !important; /* Padding redus la margini */
+        box-sizing: border-box !important; /* Asigură că nu iese din ecran */
+    }
+
+    /* 4. REPARATIA BUTOANELOR (Problema din poză) */
+    .tab-container {
+        display: flex !important;
+        width: 100% !important;
+        white-space: nowrap !important; /* Interzice ruperea textului */
+    }
+
+    .tab-btn {
+        flex: 1 !important; /* Le forțează să fie egale */
+        padding: 10px 5px !important; /* Micșorăm spațiul intern */
+        font-size: 13px !important; /* Text puțin mai mic */
+        white-space: nowrap !important; /* Textul rămâne pe un rând */
+        height: auto !important;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+    /* 5. Titlul și Textul din stânga - centrate și resetate */
+    .text-side {
+        padding-top: 10px !important; /* Scoatem spațiul mare de sus */
+        text-align: center !important;
+        width: 100% !important;
+    }
+    
+    .info-block h2 {
+        font-size: 1.8rem !important; /* Titlu mai mic pe mobil */
+        margin-bottom: 15px !important;
+    }
+
+    /* 6. Input-uri ușor de apăsat */
+    input, select {
+        font-size: 16px !important; /* Previne zoom pe iPhone */
+        height: 45px !important; /* Înălțime confortabilă */
+    }
+}
+
 
 </style>
 </head>
