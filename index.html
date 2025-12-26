@@ -521,7 +521,122 @@
   fill: #4CAF50 !important;
   transform: scale(1.1);     /* Mărește puțin iconița */
   transition: all 0.3s ease;
-}    
+}
+/* --- STILURI FORMULAR PROFESIONAL (TABURI) --- */
+.audit-card {
+    background-color: #161616; /* Gri foarte închis, ca în poză */
+    border: 1px solid #333;
+    border-top: 4px solid var(--gold); /* Linia aurie sus */
+    border-radius: 8px;
+    padding: 40px;
+    max-width: 600px;
+    margin: 0 auto;
+    box-shadow: 0 20px 50px rgba(0,0,0,0.7);
+    text-align: left; /* Aliniere text stânga pentru etichete */
+}
+
+/* Comutatorul (Sunt Chef / Restaurant) */
+.toggle-container {
+    display: flex;
+    background: #000;
+    border-radius: 6px;
+    padding: 4px;
+    margin-bottom: 30px;
+    position: relative;
+    border: 1px solid #333;
+}
+
+.toggle-btn {
+    flex: 1;
+    background: transparent;
+    border: none;
+    color: #666;
+    padding: 12px;
+    cursor: pointer;
+    font-weight: 600;
+    font-size: 0.9rem;
+    transition: all 0.3s;
+    z-index: 2;
+    text-transform: uppercase;
+    font-family: 'Montserrat', sans-serif;
+}
+
+.toggle-btn.active {
+    color: #000; /* Text negru pe fundal auriu */
+    font-weight: 800;
+}
+
+/* Elementul auriu care glisează */
+.slider {
+    position: absolute;
+    top: 4px;
+    left: 4px;
+    width: calc(50% - 4px);
+    height: calc(100% - 8px);
+    background: var(--gold);
+    border-radius: 4px;
+    transition: transform 0.3s cubic-bezier(0.4, 0.0, 0.2, 1);
+    z-index: 1;
+}
+
+/* Câmpurile formularului */
+.form-group {
+    margin-bottom: 20px;
+}
+
+.audit-card label {
+    display: block;
+    color: var(--gold);
+    font-size: 0.75rem;
+    margin-bottom: 8px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    font-weight: 600;
+}
+
+.audit-card input, 
+.audit-card select {
+    width: 100%;
+    background: #222;
+    border: 1px solid #444;
+    padding: 15px;
+    color: #fff;
+    border-radius: 4px;
+    font-family: 'Montserrat', sans-serif;
+    transition: border-color 0.3s;
+}
+
+.audit-card input:focus, 
+.audit-card select:focus {
+    outline: none;
+    border-color: var(--gold);
+    background: #2a2a2a;
+}
+
+/* Butonul de trimitere */
+.submit-btn {
+    width: 100%;
+    background: var(--gold);
+    color: #000;
+    padding: 16px;
+    border: none;
+    border-radius: 4px;
+    font-weight: 800;
+    cursor: pointer;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    margin-top: 10px;
+    transition: transform 0.2s, background 0.3s;
+}
+
+.submit-btn:hover {
+    background: #e0b941;
+    transform: translateY(-2px);
+}
+
+.hidden {
+    display: none;
+}
 </style>
 </head>
 <body>
@@ -758,7 +873,52 @@
             inchideFormular();
             document.getElementById('form-audit-nou').reset();
         }
-    </script>
+        <script>
+    function switchForm(type) {
+        const slider = document.getElementById('slider');
+        const btns = document.querySelectorAll('.toggle-btn');
+        const fieldsChef = document.getElementById('fields-chef');
+        const fieldsRest = document.getElementById('fields-restaurant');
+        const inputType = document.getElementById('client_type');
+        const restInput = document.querySelector('[name="restaurant_name"]');
+
+        if (type === 'chef') {
+            // Mută slider-ul la stânga
+            slider.style.transform = 'translateX(0)';
+            
+            // Activează butonul Chef
+            btns[0].classList.add('active');
+            btns[1].classList.remove('active');
+            
+            // Arată câmpurile de Chef, Ascunde Restaurant
+            fieldsChef.classList.remove('hidden');
+            fieldsRest.classList.add('hidden');
+            
+            // Actualizează tipul pentru backend
+            inputType.value = 'chef';
+            
+            // Scoate obligativitatea câmpului de restaurant (ca să poată trimite formularul)
+            if(restInput) restInput.removeAttribute('required');
+
+        } else {
+            // Mută slider-ul la dreapta (100% din lățimea lui)
+            slider.style.transform = 'translateX(100%)';
+            
+            // Activează butonul Restaurant
+            btns[0].classList.remove('active');
+            btns[1].classList.add('active');
+
+            // Arată câmpurile de Restaurant
+            fieldsChef.classList.add('hidden');
+            fieldsRest.classList.remove('hidden');
+            
+            inputType.value = 'restaurant';
+            
+            // Face numele restaurantului obligatoriu
+            if(restInput) restInput.setAttribute('required', 'true');
+        }
+    }
+</script>    </script>
 </body>
 </html>
 
