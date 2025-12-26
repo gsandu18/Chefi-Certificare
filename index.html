@@ -988,62 +988,54 @@
     </div>
 
     <script>
-        function deschideFormularAudit() {
-            document.getElementById('modal-audit').style.display = 'flex';
-        }
+    function schimbaFormular(tip, btnElement) {
+        // 1. Identificăm elementele din HTML
+        // Texte (Stânga)
+        var textChef = document.getElementById('info-chef');
+        var textRest = document.getElementById('info-restaurant');
+        
+        // Câmpuri (Dreapta) - ATENȚIE: ID-urile trebuie să fie exacte ca în HTML
+        var campChef = document.getElementById('input-chef');
+        var campRest = document.getElementById('input-restaurant');
+        
+        var inputHidden = document.getElementById('tip_client');
+        var toateButoanele = document.querySelectorAll('.tab-btn');
 
-        function inchideFormular() {
-            document.getElementById('modal-audit').style.display = 'none';
-        }
-
-        function salveazaAudit(event) {
-            event.preventDefault();
-            // Aici ar trebui logica reală, momentan e doar un alert
-            alert("Audit înregistrat cu succes!");
-            inchideFormular();
-            document.getElementById('form-audit-nou').reset();
-        }
-        <script>
-    function setFormType(type, btnElement) {
-        // --- 1. Gestionare Butoane Tab ---
-        let buttons = document.querySelectorAll('.tab-btn');
-        buttons.forEach(btn => btn.classList.remove('active'));
+        // 2. Resetăm butoanele (scoatem clasa active de pe toate)
+        toateButoanele.forEach(function(btn) {
+            btn.classList.remove('active');
+        });
+        // Activăm butonul apăsat
         btnElement.classList.add('active');
 
-        // --- 2. Referințe la elementele din DOM ---
-        // Câmpuri formular
-        const fieldChef = document.getElementById('field-chef');
-        const fieldRest = document.getElementById('field-restaurant');
-        const hiddenInput = document.getElementById('tip_client');
-        
-        // Blocuri de text descriptive (Coloana Stângă)
-        const infoChefText = document.getElementById('info-chef');
-        const infoRestText = document.getElementById('info-restaurant');
-
-        // --- 3. Logica de comutare ---
-        if (type === 'chef') {
-            // Arată elemente CHEF
-            fieldChef.classList.remove('hidden');
-            infoChefText.classList.remove('hidden-content');
+        // 3. Logica de Schimbare
+        if (tip === 'chef') {
+            // -- ARATĂ CHEF --
+            // Folosim classList pentru a scoate clasa 'hidden' definită în CSS
+            if(textChef) textChef.classList.remove('hidden-content');
+            if(campChef) campChef.classList.remove('hidden');
             
-            // Ascunde elemente RESTAURANT
-            fieldRest.classList.add('hidden');
-            infoRestText.classList.add('hidden-content');
+            // -- ASCUNDE RESTAURANT --
+            if(textRest) textRest.classList.add('hidden-content');
+            if(campRest) campRest.classList.add('hidden');
             
-            hiddenInput.value = 'chef';
-        } else {
-            // Arată elemente RESTAURANT
-            fieldRest.classList.remove('hidden');
-            infoRestText.classList.remove('hidden-content');
+            // Actualizează valoarea ascunsă
+            if(inputHidden) inputHidden.value = 'chef';
             
-            // Ascunde elemente CHEF
-            fieldChef.classList.add('hidden');
-            infoChefText.classList.add('hidden-content');
-
-            hiddenInput.value = 'restaurant';
+        } else if (tip === 'restaurant') {
+            // -- ASCUNDE CHEF --
+            if(textChef) textChef.classList.add('hidden-content');
+            if(campChef) campChef.classList.add('hidden');
+            
+            // -- ARATĂ RESTAURANT --
+            if(textRest) textRest.classList.remove('hidden-content');
+            if(campRest) campRest.classList.remove('hidden');
+            
+            // Actualizează valoarea ascunsă
+            if(inputHidden) inputHidden.value = 'restaurant';
         }
     }
-</script>    
+</script>
 </body>
 </html>
 
