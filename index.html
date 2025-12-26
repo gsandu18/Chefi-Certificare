@@ -825,6 +825,61 @@
     margin-bottom: 4px !important;
     font-size: 0.65rem !important;
 }
+        /* --- OPTIMIZARE TOTALĂ PENTRU MOBIL (RESPONSIVE) --- */
+@media (max-width: 968px) {
+
+    /* 1. Containerul Principal: Elementele unul sub altul */
+    .split-container {
+        flex-direction: column !important; /* Stivuire verticală */
+        gap: 30px;
+        width: 100%;
+    }
+
+    /* 2. Secțiunea JOIN: Reducem padding-ul imens */
+    #join {
+        padding: 40px 15px !important; /* Spațiu mai mic pe margini */
+    }
+
+    /* 3. Textul din Stânga: Resetăm poziția */
+    .text-side {
+        padding-top: 0 !important; /* Scoatem spațiul de 150px de sus */
+        width: 100%;
+        text-align: center; /* Tot textul centrat */
+        margin-bottom: 20px;
+    }
+
+    .info-block h2 {
+        font-size: 1.8rem !important; /* Titlu mai mic, să nu rupă rândul urât */
+    }
+
+    /* 4. Formularul: Să ocupe toată lățimea telefonului */
+    .form-side {
+        width: 100% !important;       /* Lățime totală */
+        flex: none !important;        /* Anulează flex-ul fix de 400px */
+        max-width: 100% !important;
+    }
+
+    /* 5. Cardul Formularului: Ajustări fine */
+    .audit-card {
+        padding: 20px !important; /* Mai puțin spațiu interior */
+        margin: 0 auto;
+        width: 100%;
+        box-sizing: border-box; /* Asigură că padding-ul nu lățește cardul */
+    }
+
+    /* 6. Căsuțele de scris */
+    .audit-card input, 
+    .audit-card select {
+        font-size: 16px !important; /* Previne zoom-ul automat pe iPhone */
+        padding: 12px !important;   /* Mai ușor de apăsat cu degetul */
+    }
+
+    /* 7. Butonul de trimitere */
+    .submit-btn {
+        padding: 15px !important; /* Buton mare, ușor de apăsat */
+    }
+}
+
 </style>
 </head>
 <body>
