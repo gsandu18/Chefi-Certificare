@@ -469,6 +469,34 @@
 /* Chiar dacă vrei aspectul "listă" pe mobil, pe desktop putem m
 
 }
+        .btn-auditor {
+  display: inline-block;      /* Îi permite să aibă dimensiuni și margini */
+  margin-top: 20px;           /* Îl separă clar de link-urile de sus */
+  padding: 10px 20px;         /* Spațiu în interiorul butonului */
+  
+  border: 1px solid #ffffff;  /* Chenar alb subțire */
+  border-radius: 5px;         /* Colțuri ușor rotunjite */
+  
+  color: #ffffff;             /* Text alb */
+  text-decoration: none;      /* Fără linie sub text */
+  font-size: 14px;            /* Mărime text */
+  font-weight: 600;           /* Text puțin îngroșat */
+  transition: all 0.3s ease;  /* Animație fină la atingere */
+}
+
+/* Efect când pui mouse-ul pe buton */
+.btn-auditor:hover {
+  background-color: #4CAF50;  /* Fundal Verde (culoarea brandului) */
+  border-color: #4CAF50;      /* Chenarul devine și el verde */
+  color: #fff;                /* Textul rămâne alb */
+  cursor: pointer;
+}
+
+/* Mic detaliu pentru iconița lacăt */
+.btn-auditor .icon {
+  margin-right: 8px;
+}
+
     </style>
 </head>
 <body>
@@ -652,6 +680,10 @@
       <span class="separator">•</span>
       <a href="#">Politica Cookies</a>
     </div>
+      <a href="login-auditor.html" class="btn-auditor">
+  <span class="icon">🔒</span> Zonă Privată Chef Auditor
+</a>
+
 
     <div class="company-details">
       <p>S.C. NUME FIRMĂ S.R.L.</p>
