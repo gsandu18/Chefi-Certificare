@@ -388,29 +388,21 @@
   gap: 30px; /* Spațiu între secțiuni */
   align-items: center;
 }
-/* --- 2. Social Media Icons --- */
-.footer-social {
+.social-icons {
   display: flex;
-  gap: 25px; /* Distanța dintre iconițe */
-  margin: 10px 0;
+  justify-content: center; /* Le obligă să stea pe centru */
+  align-items: center;     /* Aliniere verticală */
+  gap: 20px;               /* Spațiu între ele */
+  width: 100%;             /* Ocupă tot rândul ca să se poată centra */
+  margin: 20px 0;          /* Puțin spațiu deasupra și dedesubt */
 }
 
-.social-icon {
-  color: #ffffff; /* Alb standard */
-  transition: transform 0.3s, color 0.3s;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
-.social-icon svg {
-  width: 28px; /* Mărimea iconițelor */
-  height: 28px;
-}
-
-.social-icon:hover {
-  color: #d4af37; /* Se fac Aurii la hover */
-  transform: translateY(-3px); /* Se ridică puțin */
+/* Dacă ai o regulă @media pentru desktop, asigură-te că NU le suprascrie */
+/* Poți adăuga asta pentru siguranță: */
+@media (min-width: 768px) {
+  .social-icons {
+    justify-content: center; /* Rămân pe centru și pe laptop */
+  }
 }
 
 /* --- 3. Legal Nav --- */
