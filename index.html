@@ -819,87 +819,71 @@
 
     </div>
 </section>
-   <section id="join">
+<section id="join">
     <div class="split-container">
         
         <div class="text-side">
-            
             <div id="info-chef" class="info-block">
                 <h2>Excelență Individuală pentru Chefi</h2>
-                <p>
-                    Ești un Chef talentat care dorește să treacă la nivelul următor? Auditul nostru individual este conceput pentru a-ți valida competențele în <span class="highlight-gold">protocolul privat</span> și organizarea de elită.
-                </p>
-                <p>
-                    Obține certificarea care îți deschide ușile celor mai exclusiviste vile și yacht-uri din Europa. Transformă-ți numele într-un brand de încredere absolută.
-                </p>
+                <p>Ești un Chef talentat care dorește să treacă la nivelul următor? Auditul nostru individual validează competențele în protocolul privat.</p>
                 <div style="margin-top: 30px; color: var(--gold-premium);">
-                    <i class="fas fa-check-circle"></i> Validare Competențe &nbsp;
-                    <i class="fas fa-check-circle"></i> Certificat Digital
+                    <i class="fas fa-check-circle"></i> Validare Competențe
                 </div>
             </div>
 
             <div id="info-restaurant" class="info-block hidden-content">
-                <h2>Standardizare de Aur pentru Restaurante</h2>
-                <p>
-                    Proprietar sau Manager? Transformă haosul operațional în procedură și pierderile în profit. Auditul nostru analizează fluxurile din bucătărie, igiena și <span class="highlight-gold">eficiența costurilor</span> (Food Cost).
-                </p>
-                <p>
-                    Implementăm standarde riguroase care asigură constanță în farfurie și o echipă care lucrează organizat, chiar și în lipsa dumneavoastră.
-                </p>
+                <h2>Standardizare pentru Restaurante</h2>
+                <p>Proprietar sau Manager? Transformă haosul operațional în procedură și pierderile în profit. Analizăm fluxurile și eficiența costurilor.</p>
                  <div style="margin-top: 30px; color: var(--gold-premium);">
-                    <i class="fas fa-check-circle"></i> Optimizare Flux &nbsp;
                     <i class="fas fa-check-circle"></i> Reducere Food Cost
                 </div>
             </div>
-
         </div>
 
         <div class="form-side">
             <div class="audit-card">
-                <h3 class="form-title">Rezervă Locul</h3>
+                <h3 class="form-title" style="color:#fff; text-align:center;">Rezervă Locul</h3>
 
                 <div class="tab-container">
-                    <button type="button" class="tab-btn active" onclick="setFormType('chef', this)">Sunt Chef</button>
-                    <button type="button" class="tab-btn" onclick="setFormType('restaurant', this)">Restaurant</button>
+                    <button type="button" class="tab-btn active" onclick="schimbaFormular('chef', this)">Sunt Chef</button>
+                    <button type="button" class="tab-btn" onclick="schimbaFormular('restaurant', this)">Restaurant</button>
                 </div>
 
                 <form action="procesare.php" method="POST">
                     <input type="hidden" id="tip_client" name="tip_client" value="chef">
 
                     <div class="form-group">
-                        <label>NUME COMPLET</label>
-                        <input type="text" name="nume" placeholder="Ex: Andrei Popescu" required>
+                        <label>Nume Complet</label>
+                        <input type="text" name="nume" placeholder="Numele tău" required>
                     </div>
-
                     <div class="form-group">
-                        <label>EMAIL OFICIAL</label>
-                        <input type="email" name="email" placeholder="adresa@email.com" required>
+                        <label>Email</label>
+                        <input type="email" name="email" placeholder="email@exemplu.com" required>
                     </div>
-
                     <div class="form-group">
-                        <label>TELEFON</label>
+                        <label>Telefon</label>
                         <input type="tel" name="telefon" placeholder="07xx xxx xxx" required>
                     </div>
 
-                    <div id="field-chef" class="form-group">
-                        <label>EXPERIENȚĂ CULINARĂ</label>
+                    <div id="input-chef" class="form-group">
+                        <label>Experiență</label>
                         <select name="experienta">
-                            <option value="1-3">1-3 Ani (Junior)</option>
-                            <option value="3-7">3-7 Ani (Middle)</option>
-                            <option value="7+">7+ Ani (Senior / Head Chef)</option>
-                            <option value="master">Peste 10 Ani (Executive)</option>
+                            <option value="1-3">1-3 Ani</option>
+                            <option value="3-7">3-7 Ani</option>
+                            <option value="7+">7+ Ani (Senior)</option>
                         </select>
                     </div>
 
-                    <div id="field-restaurant" class="form-group hidden">
-                        <label>NUME LOCAȚIE / RESTAURANT</label>
-                        <input type="text" name="nume_restaurant" placeholder="Ex: Trattoria Moderna">
+                    <div id="input-restaurant" class="form-group hidden">
+                        <label>Nume Restaurant</label>
+                        <input type="text" name="nume_restaurant" placeholder="Numele Locației">
                     </div>
 
-                    <button type="submit" class="submit-btn">APLICĂ PENTRU AUDIT 2026</button>
+                    <button type="submit" class="submit-btn">Solicită Audit 2026</button>
                 </form>
             </div>
         </div>
+    </div>
 </section>
     <div class="contact-grid">
         <div class="contact-info">
