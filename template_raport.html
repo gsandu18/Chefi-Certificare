@@ -1,0 +1,122 @@
+import smtplib
+from email.mime.multipart import MIMEMultipart
+from email.mime.text import MIMEText
+from email.mime.base import MIMEBase
+from email import encoders
+from fpdf import FPDF
+from datetime import datetime
+
+# --- CONFIGURARE EMAIL (GMAIL EXEMPLU) ---
+SMTP_SERVER = 'smtp.gmail.com'
+SMTP_PORT = 587
+EMAIL_USER = 'adresa.ta@gmail.com'
+EMAIL_PASS = 'parola_ta_de_aplicatie' # Foloseste App Password, nu parola normala!
+
+# --- 1. CLASA PENTRU GENERAREA PDF-ului ---
+class PDFReport(FPDF):
+    def header(self):
+        self.set_font('Arial', 'B', 15)
+        self.cell(0, 10, 'Raport Audit Restaurant', 0, 1, 'C')
+        self.ln(10)
+
+    def footer(self):
+        self.set_y(-15)
+        self.set_font('Arial', 'I', 8)
+        self.cell(0, 10, f'Pagina {self.page_no()}', 0, 0, 'C')
+
+def genereaza_pdf(nume_fisier, date_audit):
+    pdf = PDFReport()
+    pdf.add_page()
+    pdf.set_font("Arial", size=12)
+    
+    # Adaugare continut din datele auditului
+    pdf.cell(200, 10, txt=f"Restaurant: {date_audit['restaurant']}", ln=1)
+    pdf.cell(200, 10, txt=f"Data Audit: {datetime.now().strftime('%Y-%m-%d')}", ln=1)
+    pdf.cell(200, 10, txt=f"Scor General: {date_audit['scor']}/10", ln=1)
+    
+    pdf.ln(10)
+    pdf.set_font("Arial", 'B', 12)
+    pdf.cell(200, 10, txt="Probleme Identificate:", ln=1)
+    
+    pdf.set_font("Arial", size=12)
+    for problema in date_audit['probleme']:
+        pdf.cell(200, 10, txt=f"- {problema}", ln=1)
+        
+    pdf.output(nume_fisier)
+    print(f"[PDF] Generat: {nume_fisier}")
+
+# --- 2. FUNCTIA DE TRIMITERE EMAIL ---
+def trimite_email(catre_email, subiect, nume_fisier_pdf):
+    msg = MIMEMultipart()
+    msg['From'] = EMAIL_USER
+    msg['To'] = catre_email
+    msg['Subject'] = subiect
+
+    body = "Salut Chef,\n\nAtașat găsești raportul aprobat în urma auditului recent.\nTe rugăm să verifici problemele semnalate.\n\nSucces!"
+    msg.attach(MIMEText(body, 'plain'))
+
+    # Atasare PDF
+    with open(nume_fisier_pdf, "rb") as attachment:
+        part = MIMEBase('application', 'octet-stream')
+        part.set_payload(attachment.read())
+    
+    encoders.encode_base64(part)
+    part.add_header('Content-Disposition', f"attachment; filename= {nume_fisier_pdf}")
+    msg.attach(part)
+
+    # Trimitere propriu-zisa
+    try:
+        server = smtplib.SMTP(SMTP_SERVER, SMTP_PORT)
+        server.starttls()
+        server.login(EMAIL_USER, EMAIL_PASS)
+        text = msg.as_string()
+        server.sendmail(EMAIL_USER, catre_email, text)
+        server.quit()
+        print(f"[EMAIL] Trimis cu succes catre {catre_email}")
+        return True
+    except Exception as e:
+        print(f"[EROARE] Nu s-a putut trimite emailul: {e}")
+        return False
+
+# --- 3. LOGICA PRINCIPALA (SIMULARE BACKEND) ---
+
+# Simulăm datele extrase din Baza de Date pentru un audit ID=1
+# În realitate, aici ai face: SELECT * FROM audituri WHERE id=1
+audit_din_db = {
+    'id': 1,
+    'restaurant': 'Trattoria Exemplu',
+    'chef_email': 'client_restaurant@exemplu.com', # Pune un email real pentru test
+    'status': 'approved', # IMPORTANT: Scriptul ruleaza doar daca e approved
+    'content': {
+        'scor': 8.5,
+        'probleme': ['Etichetare gresita la sosuri', 'Garnituri reci', 'Fara fisa tehnica la desert']
+    }
+}
+
+def proceseaza_audit(audit):
+    print(f"--- Procesare Audit ID: {audit['id']} ---")
+    
+    # 1. Verificarea CONTROLULUI (Este aprobat?)
+    if audit['status'] != 'approved':
+        print("STOP: Acest raport nu a fost încă aprobat de manager!")
+        return
+
+    # 2. Generare PDF
+    nume_pdf = f"Raport_Audit_{audit['id']}.pdf"
+    genereaza_pdf(nume_pdf, {
+        'restaurant': audit['restaurant'], 
+        'scor': audit['content']['scor'],
+        'probleme': audit['content']['probleme']
+    })
+
+    # 3. Trimitere Email
+    succes = trimite_email(audit['chef_email'], f"Raport Audit - {audit['restaurant']}", nume_pdf)
+
+    # 4. Actualizare Status in DB (Simulare)
+    if succes:
+        # Aici ai face: UPDATE audituri SET status='sent', data_trimiterii=NOW() WHERE id=1
+        print("DB UPDATE: Status schimbat in 'SENT'.")
+
+# Rulăm procesul
+if __name__ == "__main__":
+    proceseaza_audit(audit_din_db)
