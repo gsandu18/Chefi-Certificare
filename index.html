@@ -464,43 +464,29 @@
   font-weight: bold;
   text-decoration: underline;
   font-size: 0.9rem;
-}
-/* --- Responsive Desktop --- */
-/* Chiar dacă vrei aspectul "listă" pe mobil, pe desktop putem .btn-auditor {
-  /* Transformă textul în buton */
-  display: inline-block;      
-  margin-top: 20px;           /* Spațiu față de link-ul de sus */
-  padding: 10px 20px;         /* "Grosimea" butonului */
+    
+}.btn-auditor {
+  display: inline-block;
+  margin-top: 15px;       /* Spațiu față de link-urile de sus */
+  padding: 8px 16px;      /* Mărimea butonului */
   
-  /* Culoare și Contur - Aici e secretul */
-  color: #ffffff !important;  /* Forțăm textul să fie ALB (nu albastru) */
-  border: 1px solid #ffffff;  /* Chenar alb subțire */
-  border-radius: 50px;        /* Colțuri rotunjite (stil modern) */
+  /* AICI E REPARATIA CULORII */
+  color: #ffffff !important;  /* Text ALB obligatoriu */
+  border: 1px solid #ffffff;  /* Chenar alb finuț */
+  border-radius: 20px;        /* Colțuri rotunjite */
   
-  text-decoration: none;      /* Scoatem linia de sub text */
-  font-size: 14px;            
-  font-weight: 500;
-  transition: all 0.3s ease;  /* Animație fină */
+  text-decoration: none;      /* Fără linie sub text */
+  font-size: 14px;
+  transition: all 0.3s ease;
 }
 
-/* Când pui degetul sau mouse-ul pe buton */
+/* Efect când pui mouse-ul pe el */
 .btn-auditor:hover {
-  background-color: #4CAF50;  /* Verdele din logo */
+  background-color: #4CAF50; /* Se face verde */
   border-color: #4CAF50;
-  color: #fff !important;
-  box-shadow: 0 0 10px rgba(76, 175, 80, 0.5); /* O mică strălucire */
+  color: #ffffff !important; /* Rămâne alb */
+  cursor: pointer;
 }
-
-/* Asigurăm spațiu între lacăt și text */
-.btn-auditor .icon {
-  margin-right: 8px;
-}
-
-/* Mic detaliu pentru iconița lacăt */
-.btn-auditor .icon {
-  margin-right: 8px;
-}
-
     </style>
 </head>
 <body>
