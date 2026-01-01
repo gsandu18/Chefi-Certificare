@@ -1,0 +1,306 @@
+<!DOCTYPE html>
+<html lang="ro">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GastroCert | Elite Culinary Portal</title>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700;900&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --gold: #bd9354;
+            --black: #0a0a0a;
+            --dark-gray: #1a1a1a;
+            --soft-gray: #f9f9f9;
+            --white: #ffffff;
+            --transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: 'Inter', sans-serif; background: var(--white); color: var(--black); scroll-behavior: smooth; }
+        h1, h2, h3 { font-family: 'Playfair Display', serif; font-weight: 700; }
+
+        /* --- NAVIGATION --- */
+        nav { 
+            position: absolute; width: 100%; top: 0; z-index: 1000; 
+            padding: 30px 5%; display: flex; justify-content: space-between; align-items: center;
+            background: transparent;
+        }
+        .logo { color: var(--white); font-size: 1.8rem; font-weight: 900; cursor: pointer; letter-spacing: 2px; }
+        .logo span { color: var(--gold); }
+
+        /* --- HERO SECTION (MĂRIT) --- */
+        .hero {
+            height: 100vh;
+            background: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), 
+                        url('https://images.unsplash.com/photo-1550966841-3ee29648944c?auto=format&fit=crop&w=1920&q=80') center/cover no-repeat;
+            display: flex; flex-direction: column; justify-content: center; align-items: center;
+            text-align: center; color: white; padding: 0 20px;
+        }
+        .hero h1 { font-size: 5rem; line-height: 1; margin-bottom: 20px; }
+        .hero p { font-size: 1.2rem; letter-spacing: 4px; text-transform: uppercase; margin-bottom: 40px; opacity: 0.9; }
+
+        /* --- SEARCH BAR OVERLAY --- */
+        .search-wrapper { width: 100%; display: flex; justify-content: center; position: relative; z-index: 10; margin-top: -60px; }
+        .search-container {
+            background: var(--dark-gray); padding: 30px; width: 90%; max-width: 1200px;
+            display: grid; grid-template-columns: 1.5fr 1fr 1fr 1fr 1fr auto; gap: 15px;
+            box-shadow: 0 40px 100px rgba(0,0,0,0.3);
+        }
+        .search-container select, .search-container input {
+            padding: 15px; background: #2a2a2a; border: 1px solid #333; color: white; outline: none; font-size: 0.9rem;
+        }
+        .btn-search { background: var(--gold); color: black; border: none; padding: 15px 30px; font-weight: bold; cursor: pointer; text-transform: uppercase; }
+
+        /* --- MAIN DIRECTORY --- */
+        .section-padding { padding: 120px 8%; }
+        .grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(350px, 1fr)); gap: 50px; }
+        .card { cursor: pointer; transition: var(--transition); border-bottom: 1px solid #eee; padding-bottom: 30px; }
+        .card:hover { transform: translateY(-10px); }
+        .card-img { width: 100%; height: 450px; object-fit: cover; margin-bottom: 25px; }
+        .card-category { font-size: 0.8rem; color: var(--gold); font-weight: 600; text-transform: uppercase; letter-spacing: 2px; margin-bottom: 10px; display: block; }
+        .card h3 { font-size: 1.8rem; margin-bottom: 10px; }
+
+        /* --- LANDING PAGE VIEW (AERISIT) --- */
+        #details-view { display: none; }
+        .detail-hero { height: 70vh; background-size: cover; background-position: center; position: relative; display: flex; align-items: center; justify-content: center; color: white; text-align: center; }
+        .detail-hero::after { content: ''; position: absolute; top:0; left:0; width:100%; height:100%; background: rgba(0,0,0,0.4); }
+        .detail-hero-content { position: relative; z-index: 2; max-width: 800px; }
+
+        .content-container { max-width: 1200px; margin: auto; padding: 100px 20px; }
+        .info-grid { display: grid; grid-template-columns: 1.5fr 1fr; gap: 100px; }
+        
+        .section-title { font-size: 2.5rem; margin-bottom: 40px; position: relative; padding-bottom: 15px; }
+        .section-title::after { content: ''; position: absolute; bottom: 0; left: 0; width: 60px; height: 3px; background: var(--gold); }
+
+        /* Menu Design */
+        .menu-list { margin-bottom: 60px; }
+        .menu-item { display: flex; justify-content: space-between; align-items: baseline; margin-bottom: 25px; padding-bottom: 10px; border-bottom: 1px dashed #ddd; }
+        .menu-item h4 { font-size: 1.2rem; font-family: 'Inter', sans-serif; font-weight: 500; }
+        .menu-price { font-family: 'Playfair Display'; font-weight: bold; color: var(--gold); font-size: 1.3rem; margin-left: 20px; }
+
+        /* Gallery */
+        .gallery-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 15px; margin-bottom: 60px; }
+        .gallery-img { width: 100%; height: 250px; object-fit: cover; }
+
+        /* Reviews */
+        .review-card { padding: 30px; background: var(--soft-gray); margin-bottom: 20px; }
+        .stars { color: var(--gold); margin-bottom: 10px; }
+
+        /* Order Form */
+        .sticky-form { position: sticky; top: 100px; background: var(--black); color: white; padding: 40px; }
+        .sticky-form input, .sticky-form select, .sticky-form textarea { width: 100%; padding: 15px; margin-bottom: 15px; background: #222; border: 1px solid #333; color: white; }
+
+        @media (max-width: 1024px) {
+            .hero h1 { font-size: 3rem; }
+            .search-container { grid-template-columns: 1fr 1fr; }
+            .info-grid { grid-template-columns: 1fr; }
+            .gallery-grid { grid-template-columns: 1fr 1fr; }
+        }
+    </style>
+</head>
+<body>
+
+<nav><div class="logo" onclick="showHome()">GASTRO<span>CERT</span></div></nav>
+
+<div id="home-view">
+    <section class="hero">
+        <p>Experiențe Culinare de Elită</p>
+        <h1>Excelență Certificată</h1>
+    </section>
+
+    <div class="search-wrapper">
+        <div class="search-container">
+            <input type="text" id="searchInput" placeholder="Nume Chef sau Restaurant..." oninput="applyFilters()">
+            <select id="cityFilter" onchange="applyFilters()"><option value="">Toate Orașele</option></select>
+            <select id="cuisineFilter" onchange="applyFilters()"><option value="">Bucătărie</option></select>
+            <select id="priceFilter" onchange="applyFilters()">
+                <option value="">Buget</option>
+                <option value="2">€€ (Mediu)</option>
+                <option value="3">€€€ (Premium)</option>
+                <option value="4">€€€€ (Exclusiv)</option>
+            </select>
+            <select id="typeFilter" onchange="applyFilters()">
+                <option value="">Tip Membru</option>
+                <option value="chef">Chef</option>
+                <option value="restaurant">Restaurant</option>
+            </select>
+            <button class="btn-search" onclick="applyFilters()">Filtrează</button>
+        </div>
+    </div>
+
+    <section class="section-padding">
+        <div class="grid" id="mainGrid"></div>
+    </section>
+</div>
+
+<div id="details-view">
+    <div id="p-hero" class="detail-hero">
+        <div class="detail-hero-content">
+            <p id="p-tag" style="text-transform: uppercase; letter-spacing: 3px; margin-bottom: 10px;"></p>
+            <h1 id="p-name" style="font-size: 4rem;"></h1>
+            <div id="p-rating" class="stars"></div>
+        </div>
+    </div>
+
+    <div class="content-container">
+        <button onclick="showHome()" style="background:none; border:none; cursor:pointer; color:var(--gold); margin-bottom:50px; font-weight:bold; letter-spacing:1px;">← ÎNAPOI LA CATALOG</button>
+        
+        <div class="info-grid">
+            <div class="main-content">
+                <h2 class="section-title">Despre Experiență</h2>
+                <p id="p-bio" style="font-size: 1.2rem; color: #555; line-height: 1.8; margin-bottom: 60px;"></p>
+
+                <h2 class="section-title">Meniul Propus</h2>
+                <div id="p-menu" class="menu-list"></div>
+
+                <h2 class="section-title">Galerie</h2>
+                <div id="p-gallery" class="gallery-grid"></div>
+
+                <h2 class="section-title">Recenzii</h2>
+                <div id="p-reviews"></div>
+            </div>
+
+            <div class="sidebar">
+                <div class="sticky-form">
+                    <h3 style="margin-bottom: 25px; font-size: 1.5rem; color: var(--gold);">Rezervare Directă</h3>
+                    <form onsubmit="event.preventDefault(); alert('Solicitare trimisă!');">
+                        <input type="text" placeholder="Nume Complet" required>
+                        <input type="email" placeholder="Email" required>
+                        <input type="tel" placeholder="Telefon" required>
+                        <input type="date" required>
+                        <select required>
+                            <option value="">Nr. Persoane</option>
+                            <option>1-2 persoane</option>
+                            <option>3-5 persoane</option>
+                            <option>Grup 6+</option>
+                        </select>
+                        <textarea rows="4" placeholder="Mesaj sau preferințe alimentare..."></textarea>
+                        <button type="submit" class="btn-search" style="width:100%; padding: 20px;">Trimite Solicitarea</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    const database = [
+        {
+            id: 1, type: 'chef', city: 'București', cuisine: 'Franceză', price: 4, 
+            name: "Chef Radu Dumitrescu", 
+            img: "https://images.unsplash.com/photo-1583394293214-28ded15ee548?w=800",
+            bio: "Certificat Michelin cu o carieră de peste 20 de ani în marile capitale ale Europei. Radu transformă orice cină privată într-un spectacol senzorial.",
+            rating: 5,
+            gallery: [
+                "https://images.unsplash.com/photo-1559339352-11d035aa65de?w=400",
+                "https://images.unsplash.com/photo-1546069901-ba9599a7e63c?w=400",
+                "https://images.unsplash.com/photo-1551218808-94e220e084d2?w=400"
+            ],
+            menu: [
+                { item: "Foie Gras cu reducție de smochine", price: "120 RON" },
+                { item: "Mușchi de vită cu spumă de trufe", price: "210 RON" },
+                { item: "Sufleu de ciocolată 70% cacao", price: "65 RON" }
+            ],
+            reviews: [
+                { user: "Andrei M.", stars: 5, text: "O experiență de neuitat. Chef Radu este un adevărat artist." }
+            ]
+        },
+        {
+            id: 2, type: 'restaurant', city: 'Cluj', cuisine: 'Modernă', price: 3, 
+            name: "Restaurant L'Epoque", 
+            img: "https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?w=800",
+            bio: "L'Epoque este inima gastronomiei moderne din Cluj, un spațiu unde eleganța decorului întâlnește curajul aromelor contemporane.",
+            rating: 5,
+            gallery: [
+                "https://images.unsplash.com/photo-1550966841-3ee29648944c?w=400",
+                "https://images.unsplash.com/photo-1514362545857-3bc16c4c7d1b?w=400",
+                "https://images.unsplash.com/photo-1559339352-11d035aa65de?w=400"
+            ],
+            menu: [
+                { item: "Risotto cu hribi și parmezan 24 luni", price: "85 RON" },
+                { item: "Piept de rață cu piure de țelină", price: "115 RON" }
+            ],
+            reviews: [
+                { user: "Ioana R.", stars: 4, text: "Atmosferă superbă și mâncare de top." }
+            ]
+        }
+    ];
+
+    function initFilters() {
+        const cities = [...new Set(database.map(i => i.city))];
+        const cuisines = [...new Set(database.map(i => i.cuisine))];
+        cities.forEach(c => document.getElementById('cityFilter').innerHTML += `<option value="${c}">${c}</option>`);
+        cuisines.forEach(c => document.getElementById('cuisineFilter').innerHTML += `<option value="${c}">${c}</option>`);
+    }
+
+    function renderCards(data) {
+        document.getElementById('mainGrid').innerHTML = data.map(item => `
+            <div class="card" onclick="showDetails(${item.id})">
+                <img src="${item.img}" class="card-img">
+                <span class="card-category">${item.type} • ${item.city}</span>
+                <h3>${item.name}</h3>
+                <div class="stars">${'★'.repeat(item.rating)}</div>
+            </div>
+        `).join('');
+    }
+
+    function applyFilters() {
+        const search = document.getElementById('searchInput').value.toLowerCase();
+        const city = document.getElementById('cityFilter').value;
+        const cuisine = document.getElementById('cuisineFilter').value;
+        const price = document.getElementById('priceFilter').value;
+        const type = document.getElementById('typeFilter').value;
+
+        const filtered = database.filter(i => 
+            (!search || i.name.toLowerCase().includes(search)) &&
+            (!city || i.city === city) &&
+            (!cuisine || i.cuisine === cuisine) &&
+            (!price || i.price == price) &&
+            (!type || i.type === type)
+        );
+        renderCards(filtered);
+    }
+
+    function showDetails(id) {
+        const p = database.find(i => i.id === id);
+        window.scrollTo(0,0);
+        document.getElementById('home-view').style.display = 'none';
+        document.getElementById('details-view').style.display = 'block';
+
+        document.getElementById('p-hero').style.backgroundImage = `linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url(${p.img})`;
+        document.getElementById('p-name').innerText = p.name;
+        document.getElementById('p-tag').innerText = `${p.type} Certificat • ${p.cuisine} • ${p.city}`;
+        document.getElementById('p-rating').innerHTML = '★'.repeat(p.rating);
+        document.getElementById('p-bio').innerText = p.bio;
+
+        document.getElementById('p-menu').innerHTML = p.menu.map(m => `
+            <div class="menu-item">
+                <h4>${m.item}</h4>
+                <div class="menu-price">${m.price}</div>
+            </div>
+        `).join('');
+
+        document.getElementById('p-gallery').innerHTML = p.gallery.map(img => `
+            <img src="${img}" class="gallery-img">
+        `).join('');
+
+        document.getElementById('p-reviews').innerHTML = p.reviews.map(r => `
+            <div class="review-card">
+                <div class="stars">${'★'.repeat(r.stars)}</div>
+                <p><strong>${r.user}</strong></p>
+                <p style="color:#666; font-style:italic;">"${r.text}"</p>
+            </div>
+        `).join('');
+    }
+
+    function showHome() {
+        document.getElementById('home-view').style.display = 'block';
+        document.getElementById('details-view').style.display = 'none';
+    }
+
+    initFilters();
+    renderCards(database);
+</script>
+
+</body>
+</html>
