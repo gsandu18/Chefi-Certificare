@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html lang="ro">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard Chef | Chef Audit Systems</title>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;600&family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        :root {
+            --gold: #c5a059;
+            --dark-bg: #0a0a0a;
+            --card-bg: #141414;
+            --text-gray: #888;
+        }
+
+        body {
+            margin: 0;
+            font-family: 'Inter', sans-serif;
+            background-color: var(--dark-bg);
+            color: #f2f2f2;
+            display: flex;
+        }
+
+        /* Sidebar Nav */
+        .sidebar {
+            width: 260px;
+            height: 100vh;
+            background: #000;
+            border-right: 1px solid rgba(197, 160, 89, 0.1);
+            padding: 40px 20px;
+            position: fixed;
+        }
+
+        .sidebar h2 {
+            font-family: 'Cormorant Garamond', serif;
+            color: var(--gold);
+            letter-spacing: 3px;
+            font-size: 1.2rem;
+            margin-bottom: 50px;
+            text-align: center;
+        }
+
+        .nav-item {
+            padding: 15px;
+            margin-bottom: 10px;
+            color: var(--text-gray);
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            font-size: 0.85rem;
+            letter-spacing: 1px;
+            transition: 0.3s;
+        }
+
+        .nav-item i { margin-right: 15px; width: 20px; }
+        .nav-item.active, .nav-item:hover { color: var(--gold); background: rgba(197, 160, 89, 0.05); }
+
+        /* Main Content */
+        .main-content {
+            margin-left: 260px;
+            padding: 50px;
+            width: calc(100% - 260px);
+        }
+
+        header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 50px;
+        }
+
+        .welcome h1 { font-family: 'Cormorant Garamond', serif; font-size: 2.5rem; font-weight: 400; }
+        .status-badge {
+            padding: 8px 20px;
+            border: 1px solid var(--gold);
+            color: var(--gold);
+            font-size: 0.7rem;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+
+        /* Dashboard Grid */
+        .grid {
+            display: grid;
+            grid-template-columns: 2fr 1fr;
+            gap: 30px;
+        }
+
+        .card {
+            background: var(--card-bg);
+            padding: 30px;
+            border: 1px solid rgba(255,255,255,0.05);
+        }
+
+        .card h3 {
+            font-family: 'Cormorant Garamond', serif;
+            color: var(--gold);
+            margin-bottom: 20px;
+            font-size: 1.4rem;
+        }
+
+        /* Timeline Styles */
+        .timeline {
+            position: relative;
+            padding-left: 30px;
+            border-left: 1px solid #333;
+        }
+
+        .timeline-step {
+            margin-bottom: 30px;
+            position: relative;
+        }
+
+        .timeline-step::before {
+            content: '';
+            position: absolute;
+            left: -36px;
+            top: 5px;
+            width: 10px;
+            height: 10px;
+            background: #333;
+            border-radius: 50%;
+        }
+
+        .timeline-step.active::before { background: var(--gold); box-shadow: 0 0 10px var(--gold); }
+        .timeline-step h4 { font-size: 0.9rem; margin-bottom: 5px; }
+        .timeline-step p { font-size: 0.75rem; color: var(--text-gray); }
+
+        /* Stats Section */
+        .stat-circle {
+            width: 120px;
+            height: 120px;
+            border: 2px solid var(--gold);
+            border-radius: 50%;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 20px;
+        }
+
+        .stat-circle span { font-size: 1.8rem; font-weight: 600; }
+        .stat-label { font-size: 0.7rem; color: var(--text-gray); text-transform: uppercase; }
+
+        @media (max-width: 1024px) {
+            .grid { grid-template-columns: 1fr; }
+            .sidebar { display: none; }
+            .main-content { margin-left: 0; width: 100%; padding: 30px; }
+        }
+    </style>
+</head>
+<body>
+
+    <aside class="sidebar">
+        <h2>CHEF AUDIT</h2>
+        <nav>
+            <a href="#" class="nav-item active"><i class="fas fa-th-large"></i> Dashboard</a>
+            <a href="#" class="nav-item"><i class="fas fa-clipboard-check"></i> Progres Audit</a>
+            <a href="#" class="nav-item"><i class="fas fa-file-signature"></i> Protocol & Ghid</a>
+            <a href="#" class="nav-item"><i class="fas fa-certificate"></i> Certificări</a>
+            <a href="#" class="nav-item"><i class="fas fa-cog"></i> Setări Profil</a>
+            <a href="index.html" class="nav-item" style="margin-top: 50px;"><i class="fas fa-sign-out-alt"></i> Ieșire</a>
+        </nav>
+    </aside>
+
+    <main class="main-content">
+        <header>
+            <div class="welcome">
+                <h1>Bine ați venit, Chef.</h1>
+                <p style="color: var(--text-gray); font-size: 0.9rem;">Sunteți în ziua 8 a procesului de auditare.</p>
+            </div>
+            <div class="status-badge">Audit în curs</div>
+        </header>
+
+        <div class="grid">
+            <div class="card">
+                <h3>Monitorizare Proces 15 Zile</h3>
+                <div class="timeline">
+                    <div class="timeline-step">
+                        <h4>Faza 1: Analiza Profilului (Zilele 1-5)</h4>
+                        <p>Verificarea istoricului și a referințelor completată cu succes.</p>
+                    </div>
+                    <div class="timeline-item active timeline-step">
+                        <h4 style="color: var(--gold);">Faza 2: Audit Peer-to-Peer (În curs)</h4>
+                        <p>Zilele 6-12: Evaluare tehnică directă de către auditorii certificați.</p>
+                    </div>
+                    <div class="timeline-step" style="opacity: 0.3;">
+                        <h4>Faza 3: Validarea Protocolului (Ziua 15)</h4>
+                        <p>Testarea conduitei și a discreției în spațiul clientului.</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="card" style="text-align: center;">
+                <h3>Integritate Actuală</h3>
+                <div class="stat-circle">
+                    <span>94</span>
+                    <p class="stat-label">Scor Audit</p>
+                </div>
+                <div style="text-align: left; margin-top: 30px; font-size: 0.85rem;">
+                    <p style="margin-bottom: 10px;">Protocol: <span style="float: right; color: var(--gold);">Impecabil</span></p>
+                    <p style="margin-bottom: 10px;">Discreție: <span style="float: right; color: var(--gold);">Verificată</span></p>
+                    <p>Igienă & Rigoare: <span style="float: right; color: var(--gold);">98%</span></p>
+                </div>
+            </div>
+        </div>
+
+        <div class="card" style="margin-top: 30px;">
+            <h3>Acțiuni Necesare</h3>
+            <p style="font-size: 0.85rem; color: var(--text-gray);">
+                <i class="fas fa-info-circle" style="color: var(--gold);"></i> Următoarea sesiune de audit tehnic este programată pentru mâine la ora 09:00. Vă rugăm să pregătiți kitul de cuțite și echipamentul de protocol.
+            </p>
+        </div>
+    </main>
+
+</body>
+</html>
