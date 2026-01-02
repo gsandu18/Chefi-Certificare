@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="ro">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Portal Auditor | Chef Audit Systems</title>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;600&family=Inter:wght@200;400&display=swap" rel="stylesheet">
+    <style>
+        body {
+            background-color: #0A0A0A;
+            color: #F2F2F2;
+            font-family: 'Inter', sans-serif;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            margin: 0;
+        }
+        .login-card {
+            width: 100%;
+            max-width: 400px;
+            padding: 50px;
+            background: rgba(255, 255, 255, 0.02);
+            border: 1px solid rgba(197, 160, 89, 0.2);
+            text-align: center;
+            backdrop-filter: blur(10px);
+        }
+        .logo-small {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 1.5rem;
+            letter-spacing: 5px;
+            color: #C5A059;
+            text-decoration: none;
+            display: block;
+            margin-bottom: 40px;
+        }
+        h2 {
+            font-family: 'Cormorant Garamond', serif;
+            font-weight: 300;
+            margin-bottom: 30px;
+            letter-spacing: 1px;
+        }
+        input {
+            width: 100%;
+            background: transparent;
+            border: none;
+            border-bottom: 1px solid #333;
+            padding: 15px 0;
+            color: white;
+            margin-bottom: 25px;
+            outline: none;
+            transition: 0.3s;
+        }
+        input:focus { border-bottom: 1px solid #C5A059; }
+        .btn-login {
+            width: 100%;
+            padding: 15px;
+            background: transparent;
+            border: 1px solid #C5A059;
+            color: #C5A059;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            cursor: pointer;
+            transition: 0.4s;
+            margin-top: 20px;
+        }
+        .btn-login:hover { background: #C5A059; color: #0A0A0A; }
+        .back-link {
+            display: block;
+            margin-top: 30px;
+            font-size: 0.7rem;
+            color: #555;
+            text-decoration: none;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+        .back-link:hover { color: #C5A059; }
+    </style>
+</head>
+<body>
+
+    <div class="login-card">
+        <a href="index.html" class="logo-small">CHEF AUDIT</a>
+        <h2>Acces Auditor</h2>
+        <form action="secure_auth.php" method="POST">
+            <input type="text" name="user_id" placeholder="ID AUDITOR" required>
+            <input type="password" name="access_key" placeholder="CHEIE ACCES" required>
+            <button type="submit" class="btn-login">Verifică Identitatea</button>
+        </form>
+        <a href="index.html" class="back-link">← Revenire la Site principal</a>
+    </div>
+
+</body>
+</html>
