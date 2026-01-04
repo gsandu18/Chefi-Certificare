@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="ro">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Portal Chef Audit - Acces Securizat</title>
+    <link rel="stylesheet" href="style.css">
+
+ < style>
+     body{ 
+/* Resetare și Fonturi */
+* { margin: 0; padding: 0; box-sizing: border-box; }
+    background-color: #000000;
+    font-family: 'Inter', 'Segoe UI', Arial, sans-serif;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    color: #ffffff;
+}
+
+.portal-login-container {
+    width: 100%;
+    max-width: 450px;
+    text-align: center;
+    padding: 20px;
+}
+
+/* Header Logo */
+.logo-gold {
+    color: #c9a24d;
+    font-size: 32px;
+    letter-spacing: 5px;
+    margin-bottom: 5px;
+}
+
+.tagline {
+    font-size: 10px;
+    color: #666;
+    letter-spacing: 2px;
+    margin-bottom: 40px;
+}
+
+/* Cardul de Login */
+.login-card {
+    background-color: #0a0a0a;
+    padding: 40px;
+    border: 1px solid #1a1a1a;
+    border-radius: 4px;
+    text-align: left;
+}
+
+.login-card h2 {
+    font-size: 20px;
+    margin-bottom: 10px;
+    font-weight: 400;
+}
+
+.login-instruction {
+    font-size: 13px;
+    color: #888;
+    margin-bottom: 30px;
+}
+
+/* Input-uri */
+.input-group {
+    margin-bottom: 20px;
+}
+
+.input-group label {
+    display: block;
+    font-size: 12px;
+    color: #c9a24d;
+    margin-bottom: 8px;
+    text-transform: uppercase;
+}
+
+.input-group input {
+    width: 100%;
+    background-color: transparent;
+    border: 1px solid #333;
+    padding: 12px;
+    color: #fff;
+    border-radius: 2px;
+    outline: none;
+    transition: border-color 0.3s;
+}
+
+.input-group input:focus {
+    border-color: #c9a24d;
+}
+
+/* Butonul Auriu (identic cu cel din pozele tale) */
+.btn-portal {
+    width: 100%;
+    background-color: #c9a24d;
+    color: #000;
+    border: none;
+    padding: 15px;
+    font-weight: bold;
+    cursor: pointer;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    margin-top: 10px;
+    transition: 0.3s;
+}
+
+.btn-portal:hover {
+    background-color: #e0b963;
+}
+
+.login-options {
+    margin-bottom: 20px;
+    text-align: right;
+}
+
+.forgot-pass {
+    font-size: 11px;
+    color: #555;
+    text-decoration: none;
+}
+
+.login-footer {
+    margin-top: 30px;
+    font-size: 11px;
+    color: #444;
+</style>
+}</head>
+<body>
+
+    <div class="portal-login-container">
+        <header class="login-header">
+            <h1 class="logo-gold">CHEF AUDIT</h1>
+            <p class="tagline">STANDARDUL DE RIGOARE</p>
+        </header>
+
+        <div class="login-card">
+            <h2>Acces Portal</h2>
+            <p class="login-instruction">Introduceți datele pentru a verifica statusul auditului dumneavoastră.</p>
+
+            <form action="/dashboard" method="POST">
+                <div class="input-group">
+                    <label for="email">Email Oficial</label>
+                    <input type="email" id="email" name="email" placeholder="nume@exemplu.ro" required>
+                </div>
+
+                <div class="input-group">
+                    <label for="password">Cod Acces / Parolă</label>
+                    <input type="password" id="password" name="password" placeholder="••••••••" required>
+                </div>
+
+                <div class="login-options">
+                    <a href="#" class="forgot-pass">Am uitat codul de acces</a>
+                </div>
+
+                <button type="submit" class="btn-portal">AUTENTIFICARE</button>
+            </form>
+        </div>
+
+        <footer class="login-footer">
+            <p>* Accesul este monitorizat conform protocolului de confidențialitate Chef Audit.</p>
+        </div>
+    </div>
+
+</body>
+</html>
