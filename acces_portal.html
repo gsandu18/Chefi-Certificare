@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Portal Integrat | Chef Audit</title>
+    <title>Portal Unic | Chef Audit</title>
     <style>
         :root {
             --gold: #c9a24d;
@@ -11,18 +11,18 @@
             --card: #0a0a0a;
             --border: #1a1a1a;
             --gray: #666;
-            --msg-in: #141414;
         }
 
         body {
             margin: 0;
-            font-family: 'Inter', sans-serif;
+            padding: 0;
             background-color: var(--dark);
             color: #fff;
+            font-family: 'Inter', 'Segoe UI', sans-serif;
             overflow-x: hidden;
         }
 
-        /* Navigație */
+        /* --- NAVIGARE --- */
         nav {
             display: flex;
             justify-content: space-between;
@@ -30,191 +30,217 @@
             padding: 20px 50px;
             border-bottom: 1px solid var(--border);
             background: var(--dark);
+            position: sticky;
+            top: 0;
+            z-index: 100;
         }
-
-        .logo { color: var(--gold); font-weight: bold; letter-spacing: 3px; text-transform: uppercase; }
+        .logo { color: var(--gold); font-weight: bold; letter-spacing: 3px; text-transform: uppercase; cursor: pointer; }
         .nav-links a { color: #fff; text-decoration: none; margin-left: 25px; font-size: 11px; text-transform: uppercase; letter-spacing: 1px; }
         .nav-links a.active { color: var(--gold); }
 
-        /* Containere Secțiuni */
-        .section { display: none; padding: 40px 50px; max-width: 1200px; margin: 0 auto; }
-        .section.active { display: block; }
+        /* --- STRUCTURA PAGINI --- */
+        .page-section { display: none; padding: 40px 50px; max-width: 1200px; margin: 0 auto; min-height: 80vh; }
+        .page-section.active { display: block; }
 
-        /* --- LOGIN --- */
-        .login-box { max-width: 400px; margin: 100px auto; background: var(--card); padding: 40px; border: 1px solid var(--border); text-align: center; }
-        input, textarea { width: 100%; padding: 12px; margin: 10px 0; background: transparent; border: 1px solid #333; color: #fff; font-family: inherit; box-sizing: border-box; }
-        .btn-gold { width: 100%; padding: 15px; background: var(--gold); border: none; font-weight: bold; cursor: pointer; margin-top: 10px; text-transform: uppercase; letter-spacing: 1px; transition: 0.3s; }
+        /* --- 1. ECRAN LOGIN --- */
+        .login-container { max-width: 400px; margin: 80px auto; background: var(--card); padding: 40px; border: 1px solid var(--border); text-align: center; }
+        .login-container h2 { color: var(--gold); font-weight: 300; margin-bottom: 30px; letter-spacing: 2px; }
+        input { width: 100%; padding: 15px; margin: 10px 0; background: transparent; border: 1px solid #333; color: #fff; box-sizing: border-box; }
+        .btn-gold { width: 100%; padding: 18px; background: var(--gold); border: none; font-weight: bold; cursor: pointer; text-transform: uppercase; letter-spacing: 1px; transition: 0.3s; margin-top: 10px; }
         .btn-gold:hover { background: #e0b963; }
 
-        /* --- DASHBOARD --- */
-        .grid-portal { display: grid; grid-template-columns: 280px 1fr; gap: 40px; }
-        .step { margin-bottom: 30px; opacity: 0.4; }
-        .step.done { opacity: 1; color: var(--gold); }
-        .progress-bar { height: 2px; background: #111; margin: 20px 0; position: relative; }
-        .progress-fill { height: 100%; background: var(--gold); width: 65%; box-shadow: 0 0 8px var(--gold); }
+        /* --- 2. MODAL BUN VENIT --- */
+        .modal-overlay { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.98); z-index: 1000; display: none; justify-content: center; align-items: center; }
+        .modal-overlay.active { display: flex; }
+        .modal-box { background: #050505; border: 1px solid var(--border); max-width: 700px; padding: 50px; position: relative; }
+        .modal-box h2 { color: var(--gold); font-weight: 300; letter-spacing: 2px; }
+        .guide-item { display: flex; gap: 20px; margin: 25px 0; align-items: flex-start; }
+        .guide-num { color: var(--gold); font-weight: bold; font-size: 18px; border-bottom: 1px solid var(--gold); }
+        .guide-text strong { display: block; margin-bottom: 5px; font-size: 14px; text-transform: uppercase; }
+        .guide-text p { color: var(--gray); font-size: 13px; margin: 0; }
 
-        /* --- MESSAGES --- */
-        .messages-container {
-            margin-top: 30px;
-            background: #050505;
-            border: 1px solid var(--border);
-            border-radius: 4px;
-            display: flex;
-            flex-direction: column;
-            height: 350px;
-        }
+        /* --- 3. DASHBOARD --- */
+        .dashboard-grid { display: grid; grid-template-columns: 300px 1fr; gap: 50px; }
+        .sidebar-step { margin-bottom: 35px; opacity: 0.3; transition: 0.3s; }
+        .sidebar-step.active { opacity: 1; border-left: 2px solid var(--gold); padding-left: 20px; }
+        .sidebar-step.completed { opacity: 1; color: var(--gold); }
+        .step-label { display: block; font-size: 11px; margin-bottom: 5px; letter-spacing: 1px; }
+        .step-name { font-weight: bold; text-transform: uppercase; font-size: 14px; }
 
-        .messages-header {
-            padding: 15px 20px;
-            border-bottom: 1px solid var(--border);
-            font-size: 12px;
-            color: var(--gold);
-            text-transform: uppercase;
-            letter-spacing: 1px;
-        }
+        .progress-section { background: var(--card); padding: 40px; border: 1px solid var(--border); }
+        .p-bar-bg { height: 2px; background: #222; margin: 25px 0; width: 100%; }
+        .p-bar-fill { height: 100%; background: var(--gold); width: 75%; box-shadow: 0 0 10px var(--gold); }
 
-        .messages-list {
-            flex-grow: 1;
-            padding: 20px;
-            overflow-y: auto;
-            display: flex;
-            flex-direction: column;
-            gap: 15px;
-        }
+        /* Chat Auditor */
+        .chat-box { background: #050505; border: 1px solid var(--border); margin-top: 40px; }
+        .chat-header { padding: 15px; border-bottom: 1px solid var(--border); color: var(--gold); font-size: 11px; text-transform: uppercase; letter-spacing: 1px; }
+        .chat-messages { height: 250px; padding: 20px; overflow-y: auto; display: flex; flex-direction: column; gap: 15px; }
+        .msg { max-width: 80%; padding: 12px; font-size: 13px; border-radius: 4px; line-height: 1.5; }
+        .msg.auditor { background: #111; border-left: 2px solid var(--gold); align-self: flex-start; }
+        .msg.user { background: #1a1a1a; align-self: flex-end; color: #999; }
+        .msg-time { font-size: 9px; color: #444; display: block; margin-top: 5px; }
 
-        .msg {
-            max-width: 80%;
-            padding: 12px 15px;
-            border-radius: 4px;
-            font-size: 13px;
-            line-height: 1.5;
-        }
+        /* --- 4. REZULTAT FINAL (CERTIFICAT) --- */
+        .certificate-container { text-align: center; border: 1px solid var(--gold); padding: 80px 40px; background: var(--card); position: relative; }
+        .cert-seal { width: 100px; height: 100px; border: 1px solid var(--gold); border-radius: 50%; display: flex; align-items: center; justify-content: center; margin: 0 auto 40px; transform: rotate(-15deg); color: var(--gold); font-weight: bold; letter-spacing: 2px; font-size: 12px; }
+        .certificate-container h1 { font-size: 45px; letter-spacing: 8px; font-weight: 300; color: #fff; margin: 20px 0; }
+        .cert-line { width: 80px; height: 1px; background: var(--gold); margin: 30px auto; }
+        .chef-name { font-size: 32px; color: #fff; margin: 40px 0; font-weight: 400; }
+        .cert-footer-text { font-size: 10px; color: #444; margin-top: 60px; letter-spacing: 1px; }
 
-        .msg.auditor {
-            background: var(--msg-in);
-            align-self: flex-start;
-            border-left: 2px solid var(--gold);
-        }
-
-        .msg.user {
-            background: #1a1a1a;
-            align-self: flex-end;
-            color: #ccc;
-        }
-
-        .msg-time {
-            display: block;
-            font-size: 9px;
-            color: #444;
-            margin-top: 5px;
-            text-transform: uppercase;
-        }
-
-        .messages-input {
-            padding: 15px;
-            border-top: 1px solid var(--border);
-            display: flex;
-            gap: 10px;
-        }
-
-        /* --- CERTIFICATE --- */
-        .cert-frame { border: 1px solid var(--gold); padding: 80px 40px; text-align: center; background: var(--card); }
-        .seal { width: 80px; height: 80px; border: 1px solid var(--gold); border-radius: 50%; display: flex; align-items: center; justify-content: center; margin: 0 auto 30px; transform: rotate(-15deg); font-weight: bold; color: var(--gold); font-size: 12px; letter-spacing: 2px; }
-
-        /* Debug buttons */
-        .debug { position: fixed; bottom: 10px; right: 10px; display: flex; gap: 5px; }
-        .debug button { font-size: 9px; padding: 5px; background: #111; color: #555; border: 1px solid #222; cursor: pointer; }
+        /* Butoane Debug (doar pentru previzualizare) */
+        .debug-menu { position: fixed; bottom: 20px; left: 20px; background: #111; padding: 10px; border: 1px solid #333; display: flex; gap: 10px; z-index: 2000; }
+        .debug-menu button { font-size: 9px; padding: 5px; cursor: pointer; }
     </style>
 </head>
 <body>
 
 <nav>
-    <div class="logo">Chef Audit</div>
+    <div class="logo" onclick="switchSection('login-page')">CHEF AUDIT</div>
     <div class="nav-links">
         <a href="#">Viziune</a>
         <a href="#">Proces 15 Zile</a>
+        <a href="#">Certificare</a>
         <a href="#" class="active">Portal</a>
     </div>
 </nav>
 
-<div id="login-sec" class="section active">
-    <div class="login-box">
-        <h2 style="color: var(--gold); font-weight: 300;">Protocol de Acces</h2>
-        <p style="font-size: 11px; color: var(--gray); margin-bottom: 30px; letter-spacing: 1px;">AUTENTIFICARE SECURIZATĂ</p>
+<div id="login-page" class="page-section active">
+    <div class="login-container">
+        <h2>Acces Portal</h2>
+        <p style="font-size: 12px; color: var(--gray); margin-bottom: 25px;">Introduceți datele primite pe email pentru a accesa auditul.</p>
         <input type="email" placeholder="Email Oficial">
-        <input type="password" placeholder="Cod de acces">
-        <button class="btn-gold" onclick="showSection('dashboard-sec')">Accesează Portal</button>
+        <input type="password" placeholder="Cod de Acces">
+        <button class="btn-gold" onclick="openModal()">Autentificare</button>
     </div>
 </div>
 
-<div id="dashboard-sec" class="section">
-    <div class="grid-portal">
-        <aside>
-            <div class="step done"><span class="step-num">01</span> ANALIZA PROFILULUI</div>
-            <div class="step done"><span class="step-num">02</span> AUDIT PEER-TO-PEER</div>
-            <div class="step" style="opacity: 1; border-left: 2px solid var(--gold); padding-left: 15px;">
-                <span class="step-num" style="color: var(--gold)">03</span> VALIDARE PROTOCOL
+<div id="welcome-modal" class="modal-overlay">
+    <div class="modal-box">
+        <h2>Bun venit în Protocolul Chef Audit</h2>
+        <p style="color: var(--gray); font-size: 13px; margin-bottom: 40px;">PROCESUL DE VALIDARE A EXCELENȚEI A ÎNCEPUT</p>
+        
+        <div class="guide-item">
+            <span class="guide-num">01</span>
+            <div class="guide-text">
+                <strong>Analiza Profilului (Zilele 1-5)</strong>
+                <p>Verificăm istoricul profesional, referințele și amprenta digitală.</p>
             </div>
-            <p style="font-size: 11px; color: #333; margin-top: 50px;">Status: Ziua 12 / 15</p>
+        </div>
+        <div class="guide-item">
+            <span class="guide-num">02</span>
+            <div class="guide-text">
+                <strong>Audit Peer-to-Peer (Zilele 6-12)</strong>
+                <p>Specialiști din domeniu evaluează competențele tehnice semnalate.</p>
+            </div>
+        </div>
+        <div class="guide-item">
+            <span class="guide-num">03</span>
+            <div class="guide-text">
+                <strong>Validarea Conduitei (Zilele 13-15)</strong>
+                <p>Testul final de discreție și integritate profesională.</p>
+            </div>
+        </div>
+
+        <button class="btn-gold" style="margin-top: 30px;" onclick="closeModalAndGoToDashboard()">Am Înțeles Protocolul</button>
+    </div>
+</div>
+
+<div id="dashboard-page" class="page-section">
+    <div class="dashboard-grid">
+        <aside>
+            <div class="sidebar-step completed">
+                <span class="step-label">PASUL 01</span>
+                <span class="step-name">Analiza Profilului</span>
+            </div>
+            <div class="sidebar-step active">
+                <span class="step-label">PASUL 02</span>
+                <span class="step-name">Audit Peer-to-Peer</span>
+            </div>
+            <div class="sidebar-step">
+                <span class="step-label">PASUL 03</span>
+                <span class="step-name">Validare Protocol</span>
+            </div>
         </aside>
 
         <main>
-            <div style="background: var(--card); padding: 30px; border: 1px solid var(--border);">
-                <h3 style="font-weight: 300; margin: 0;">Monitorizare Progres</h3>
-                <div class="progress-bar"><div class="progress-fill"></div></div>
-                
-                <div class="messages-container">
-                    <div class="messages-header">Mesaje Directe Auditor</div>
-                    <div class="messages-list">
+            <div class="progress-section">
+                <div style="display:flex; justify-content: space-between; align-items: center;">
+                    <h3 style="font-weight: 300; margin: 0;">Status Evaluare</h3>
+                    <span style="color: var(--gold); font-size: 12px; letter-spacing: 1px;">ZIUA 9 DIN 15</span>
+                </div>
+                <div class="p-bar-bg"><div class="p-bar-fill"></div></div>
+                <p style="color: var(--gray); font-size: 13px;">Echipa de audit realizează în prezent verificările tehnice directe.</p>
+
+                <div class="chat-box">
+                    <div class="chat-header">Mesagerie Directă Auditor</div>
+                    <div class="chat-messages">
                         <div class="msg auditor">
-                            Bună ziua. Am finalizat analiza portofoliului vizual. Vă rugăm să ne confirmați dacă link-ul de LinkedIn este actualizat.
-                            <span class="msg-time">Auditor #04 - Ieri 14:20</span>
+                            Bună ziua. Am recepționat portofoliul PDF. Vă rugăm să ne confirmați dacă link-ul de Instagram furnizat este cel principal.
+                            <span class="msg-time">Auditor #07 - Ieri, 11:20</span>
                         </div>
                         <div class="msg user">
-                            Bună ziua. Da, link-ul conține ultimele proiecte din 2025.
-                            <span class="msg-time">Voi - Ieri 16:45</span>
-                        </div>
-                        <div class="msg auditor">
-                            Am recepționat. Trecem la etapa finală de validare a protocolului de conduită.
-                            <span class="msg-time">Auditor #04 - Astăzi 09:12</span>
+                            Bună ziua. Da, acela este profilul oficial.
+                            <span class="msg-time">Voi - Ieri, 14:45</span>
                         </div>
                     </div>
-                    <div class="messages-input">
-                        <input type="text" placeholder="Scrie un mesaj către auditor..." style="margin: 0; font-size: 13px;">
+                    <div style="display: flex; gap: 10px; padding: 15px; border-top: 1px solid var(--border);">
+                        <input type="text" placeholder="Scrie un mesaj..." style="margin: 0; font-size: 13px; padding: 10px;">
                         <button class="btn-gold" style="width: auto; padding: 0 20px; margin: 0;">Trimite</button>
                     </div>
                 </div>
-                
-                <button class="btn-gold" style="margin-top: 25px;" onclick="showSection('result-sec')">Vizualizează Rezultat Final (Simulare)</button>
+
+                <button class="btn-gold" style="margin-top: 30px; opacity: 0.8;" onclick="switchSection('result-page')">Simulează Finalizare Audit</button>
             </div>
         </main>
     </div>
 </div>
 
-<div id="result-sec" class="section">
-    <div class="cert-frame">
-        <div class="seal">AUDIT PASSED</div>
-        <p style="letter-spacing: 5px; color: var(--gray); font-size: 12px; margin-bottom: 40px;">CERTIFICAT DE RIGOARE</p>
-        <h1 style="font-weight: 300; letter-spacing: 10px;">CHEF AUDIT</h1>
-        <div style="width: 60px; height: 1px; background: var(--gold); margin: 30px auto;"></div>
-        <h2 style="font-weight: 400; margin: 40px 0;">[NUME COMPLET PROFESIONIST]</h2>
-        <p style="max-width: 500px; margin: 0 auto; color: var(--gray); font-size: 14px; line-height: 1.8;">
-            Identitatea și competențele profesionale au fost auditate și validate conform standardelor de rigoare Chef Audit.
-        </p>
-        <p style="font-size: 10px; color: #444; margin-top: 60px;">ID VERIFICARE: #CA-9921-X | DATA EMITERII: 04.01.2026</p>
+<div id="result-page" class="page-section">
+    <div class="certificate-container">
+        <div class="cert-seal">AUDIT PASSED</div>
+        <p style="letter-spacing: 4px; color: var(--gray); font-size: 12px; margin-bottom: 20px;">CERTIFICAT DE EXCELENȚĂ</p>
+        <h1 style="text-transform: uppercase;">Chef Audit</h1>
+        <div class="cert-line"></div>
+        <p style="color: var(--gray); font-size: 14px;">Se atestă prin prezentul document că</p>
+        <h2 class="chef-name">[Nume Complet Profesionist]</h2>
+        <p style="max-width: 600px; margin: 0 auto; line-height: 1.8; color: #bbb;">A parcurs și a validat protocolul de auditare profesională, îndeplinind standardele de rigoare, discreție și competență tehnică.</p>
+        
+        <div style="margin-top: 50px; display: flex; justify-content: center; gap: 20px;">
+            <button class="btn-gold" style="width: auto; padding: 12px 30px; font-size: 12px;">Descarcă Certificat PDF</button>
+            <button class="btn-gold" style="width: auto; padding: 12px 30px; font-size: 12px; background: transparent; border: 1px solid var(--gold); color: var(--gold);">Badge Social Media</button>
+        </div>
+
+        <p class="cert-footer-text">EMIS LA: 19.05.2026 | ID UNIC: #CA-9921-X | VERIFICABIL PE CHEFAUDIT.RO</p>
     </div>
 </div>
 
-<div class="debug">
-    <button onclick="showSection('login-sec')">Login</button>
-    <button onclick="showSection('dashboard-sec')">Dashboard</button>
-    <button onclick="showSection('result-sec')">Rezultat</button>
+<div class="debug-menu">
+    <button onclick="switchSection('login-page')">1. Ecran Login</button>
+    <button onclick="switchSection('dashboard-page')">2. Dashboard</button>
+    <button onclick="switchSection('result-page')">3. Certificat</button>
 </div>
 
 <script>
-    function showSection(id) {
-        document.querySelectorAll('.section').forEach(s => s.classList.remove('active'));
-        document.getElementById(id).classList.add('active');
+    // Navigare intre sectiuni
+    function switchSection(sectionId) {
+        // Ascunde toate paginile
+        document.querySelectorAll('.page-section').forEach(section => {
+            section.classList.remove('active');
+        });
+        // Arata pagina ceruta
+        document.getElementById(sectionId).classList.add('active');
+        window.scrollTo(0,0);
+    }
+
+    // Modal Bun Venit
+    function openModal() {
+        document.getElementById('welcome-modal').classList.add('active');
+    }
+
+    function closeModalAndGoToDashboard() {
+        document.getElementById('welcome-modal').classList.remove('active');
+        switchSection('dashboard-page');
     }
 </script>
 
