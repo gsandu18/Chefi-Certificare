@@ -3,164 +3,220 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Portal Chef Audit - Acces Securizat</title>
-    <link rel="stylesheet" href="style.css">
+    <title>Portal Integrat | Chef Audit</title>
+    <style>
+        :root {
+            --gold: #c9a24d;
+            --dark: #000000;
+            --card: #0a0a0a;
+            --border: #1a1a1a;
+            --gray: #666;
+            --msg-in: #141414;
+        }
 
- < style>
-     body{ 
-/* Resetare și Fonturi */
-* { margin: 0; padding: 0; box-sizing: border-box; }
-    background-color: #000000;
-    font-family: 'Inter', 'Segoe UI', Arial, sans-serif;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 100vh;
-    color: #ffffff;
-}
+        body {
+            margin: 0;
+            font-family: 'Inter', sans-serif;
+            background-color: var(--dark);
+            color: #fff;
+            overflow-x: hidden;
+        }
 
-.portal-login-container {
-    width: 100%;
-    max-width: 450px;
-    text-align: center;
-    padding: 20px;
-}
+        /* Navigație */
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px 50px;
+            border-bottom: 1px solid var(--border);
+            background: var(--dark);
+        }
 
-/* Header Logo */
-.logo-gold {
-    color: #c9a24d;
-    font-size: 32px;
-    letter-spacing: 5px;
-    margin-bottom: 5px;
-}
+        .logo { color: var(--gold); font-weight: bold; letter-spacing: 3px; text-transform: uppercase; }
+        .nav-links a { color: #fff; text-decoration: none; margin-left: 25px; font-size: 11px; text-transform: uppercase; letter-spacing: 1px; }
+        .nav-links a.active { color: var(--gold); }
 
-.tagline {
-    font-size: 10px;
-    color: #666;
-    letter-spacing: 2px;
-    margin-bottom: 40px;
-}
+        /* Containere Secțiuni */
+        .section { display: none; padding: 40px 50px; max-width: 1200px; margin: 0 auto; }
+        .section.active { display: block; }
 
-/* Cardul de Login */
-.login-card {
-    background-color: #0a0a0a;
-    padding: 40px;
-    border: 1px solid #1a1a1a;
-    border-radius: 4px;
-    text-align: left;
-}
+        /* --- LOGIN --- */
+        .login-box { max-width: 400px; margin: 100px auto; background: var(--card); padding: 40px; border: 1px solid var(--border); text-align: center; }
+        input, textarea { width: 100%; padding: 12px; margin: 10px 0; background: transparent; border: 1px solid #333; color: #fff; font-family: inherit; box-sizing: border-box; }
+        .btn-gold { width: 100%; padding: 15px; background: var(--gold); border: none; font-weight: bold; cursor: pointer; margin-top: 10px; text-transform: uppercase; letter-spacing: 1px; transition: 0.3s; }
+        .btn-gold:hover { background: #e0b963; }
 
-.login-card h2 {
-    font-size: 20px;
-    margin-bottom: 10px;
-    font-weight: 400;
-}
+        /* --- DASHBOARD --- */
+        .grid-portal { display: grid; grid-template-columns: 280px 1fr; gap: 40px; }
+        .step { margin-bottom: 30px; opacity: 0.4; }
+        .step.done { opacity: 1; color: var(--gold); }
+        .progress-bar { height: 2px; background: #111; margin: 20px 0; position: relative; }
+        .progress-fill { height: 100%; background: var(--gold); width: 65%; box-shadow: 0 0 8px var(--gold); }
 
-.login-instruction {
-    font-size: 13px;
-    color: #888;
-    margin-bottom: 30px;
-}
+        /* --- MESSAGES --- */
+        .messages-container {
+            margin-top: 30px;
+            background: #050505;
+            border: 1px solid var(--border);
+            border-radius: 4px;
+            display: flex;
+            flex-direction: column;
+            height: 350px;
+        }
 
-/* Input-uri */
-.input-group {
-    margin-bottom: 20px;
-}
+        .messages-header {
+            padding: 15px 20px;
+            border-bottom: 1px solid var(--border);
+            font-size: 12px;
+            color: var(--gold);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
 
-.input-group label {
-    display: block;
-    font-size: 12px;
-    color: #c9a24d;
-    margin-bottom: 8px;
-    text-transform: uppercase;
-}
+        .messages-list {
+            flex-grow: 1;
+            padding: 20px;
+            overflow-y: auto;
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
 
-.input-group input {
-    width: 100%;
-    background-color: transparent;
-    border: 1px solid #333;
-    padding: 12px;
-    color: #fff;
-    border-radius: 2px;
-    outline: none;
-    transition: border-color 0.3s;
-}
+        .msg {
+            max-width: 80%;
+            padding: 12px 15px;
+            border-radius: 4px;
+            font-size: 13px;
+            line-height: 1.5;
+        }
 
-.input-group input:focus {
-    border-color: #c9a24d;
-}
+        .msg.auditor {
+            background: var(--msg-in);
+            align-self: flex-start;
+            border-left: 2px solid var(--gold);
+        }
 
-/* Butonul Auriu (identic cu cel din pozele tale) */
-.btn-portal {
-    width: 100%;
-    background-color: #c9a24d;
-    color: #000;
-    border: none;
-    padding: 15px;
-    font-weight: bold;
-    cursor: pointer;
-    text-transform: uppercase;
-    letter-spacing: 1px;
-    margin-top: 10px;
-    transition: 0.3s;
-}
+        .msg.user {
+            background: #1a1a1a;
+            align-self: flex-end;
+            color: #ccc;
+        }
 
-.btn-portal:hover {
-    background-color: #e0b963;
-}
+        .msg-time {
+            display: block;
+            font-size: 9px;
+            color: #444;
+            margin-top: 5px;
+            text-transform: uppercase;
+        }
 
-.login-options {
-    margin-bottom: 20px;
-    text-align: right;
-}
+        .messages-input {
+            padding: 15px;
+            border-top: 1px solid var(--border);
+            display: flex;
+            gap: 10px;
+        }
 
-.forgot-pass {
-    font-size: 11px;
-    color: #555;
-    text-decoration: none;
-}
+        /* --- CERTIFICATE --- */
+        .cert-frame { border: 1px solid var(--gold); padding: 80px 40px; text-align: center; background: var(--card); }
+        .seal { width: 80px; height: 80px; border: 1px solid var(--gold); border-radius: 50%; display: flex; align-items: center; justify-content: center; margin: 0 auto 30px; transform: rotate(-15deg); font-weight: bold; color: var(--gold); font-size: 12px; letter-spacing: 2px; }
 
-.login-footer {
-    margin-top: 30px;
-    font-size: 11px;
-    color: #444;
-</style>
-}</head>
+        /* Debug buttons */
+        .debug { position: fixed; bottom: 10px; right: 10px; display: flex; gap: 5px; }
+        .debug button { font-size: 9px; padding: 5px; background: #111; color: #555; border: 1px solid #222; cursor: pointer; }
+    </style>
+</head>
 <body>
 
-    <div class="portal-login-container">
-        <header class="login-header">
-            <h1 class="logo-gold">CHEF AUDIT</h1>
-            <p class="tagline">STANDARDUL DE RIGOARE</p>
-        </header>
-
-        <div class="login-card">
-            <h2>Acces Portal</h2>
-            <p class="login-instruction">Introduceți datele pentru a verifica statusul auditului dumneavoastră.</p>
-
-            <form action="/dashboard" method="POST">
-                <div class="input-group">
-                    <label for="email">Email Oficial</label>
-                    <input type="email" id="email" name="email" placeholder="nume@exemplu.ro" required>
-                </div>
-
-                <div class="input-group">
-                    <label for="password">Cod Acces / Parolă</label>
-                    <input type="password" id="password" name="password" placeholder="••••••••" required>
-                </div>
-
-                <div class="login-options">
-                    <a href="#" class="forgot-pass">Am uitat codul de acces</a>
-                </div>
-
-                <button type="submit" class="btn-portal">AUTENTIFICARE</button>
-            </form>
-        </div>
-
-        <footer class="login-footer">
-            <p>* Accesul este monitorizat conform protocolului de confidențialitate Chef Audit.</p>
-        </div>
+<nav>
+    <div class="logo">Chef Audit</div>
+    <div class="nav-links">
+        <a href="#">Viziune</a>
+        <a href="#">Proces 15 Zile</a>
+        <a href="#" class="active">Portal</a>
     </div>
+</nav>
+
+<div id="login-sec" class="section active">
+    <div class="login-box">
+        <h2 style="color: var(--gold); font-weight: 300;">Protocol de Acces</h2>
+        <p style="font-size: 11px; color: var(--gray); margin-bottom: 30px; letter-spacing: 1px;">AUTENTIFICARE SECURIZATĂ</p>
+        <input type="email" placeholder="Email Oficial">
+        <input type="password" placeholder="Cod de acces">
+        <button class="btn-gold" onclick="showSection('dashboard-sec')">Accesează Portal</button>
+    </div>
+</div>
+
+<div id="dashboard-sec" class="section">
+    <div class="grid-portal">
+        <aside>
+            <div class="step done"><span class="step-num">01</span> ANALIZA PROFILULUI</div>
+            <div class="step done"><span class="step-num">02</span> AUDIT PEER-TO-PEER</div>
+            <div class="step" style="opacity: 1; border-left: 2px solid var(--gold); padding-left: 15px;">
+                <span class="step-num" style="color: var(--gold)">03</span> VALIDARE PROTOCOL
+            </div>
+            <p style="font-size: 11px; color: #333; margin-top: 50px;">Status: Ziua 12 / 15</p>
+        </aside>
+
+        <main>
+            <div style="background: var(--card); padding: 30px; border: 1px solid var(--border);">
+                <h3 style="font-weight: 300; margin: 0;">Monitorizare Progres</h3>
+                <div class="progress-bar"><div class="progress-fill"></div></div>
+                
+                <div class="messages-container">
+                    <div class="messages-header">Mesaje Directe Auditor</div>
+                    <div class="messages-list">
+                        <div class="msg auditor">
+                            Bună ziua. Am finalizat analiza portofoliului vizual. Vă rugăm să ne confirmați dacă link-ul de LinkedIn este actualizat.
+                            <span class="msg-time">Auditor #04 - Ieri 14:20</span>
+                        </div>
+                        <div class="msg user">
+                            Bună ziua. Da, link-ul conține ultimele proiecte din 2025.
+                            <span class="msg-time">Voi - Ieri 16:45</span>
+                        </div>
+                        <div class="msg auditor">
+                            Am recepționat. Trecem la etapa finală de validare a protocolului de conduită.
+                            <span class="msg-time">Auditor #04 - Astăzi 09:12</span>
+                        </div>
+                    </div>
+                    <div class="messages-input">
+                        <input type="text" placeholder="Scrie un mesaj către auditor..." style="margin: 0; font-size: 13px;">
+                        <button class="btn-gold" style="width: auto; padding: 0 20px; margin: 0;">Trimite</button>
+                    </div>
+                </div>
+                
+                <button class="btn-gold" style="margin-top: 25px;" onclick="showSection('result-sec')">Vizualizează Rezultat Final (Simulare)</button>
+            </div>
+        </main>
+    </div>
+</div>
+
+<div id="result-sec" class="section">
+    <div class="cert-frame">
+        <div class="seal">AUDIT PASSED</div>
+        <p style="letter-spacing: 5px; color: var(--gray); font-size: 12px; margin-bottom: 40px;">CERTIFICAT DE RIGOARE</p>
+        <h1 style="font-weight: 300; letter-spacing: 10px;">CHEF AUDIT</h1>
+        <div style="width: 60px; height: 1px; background: var(--gold); margin: 30px auto;"></div>
+        <h2 style="font-weight: 400; margin: 40px 0;">[NUME COMPLET PROFESIONIST]</h2>
+        <p style="max-width: 500px; margin: 0 auto; color: var(--gray); font-size: 14px; line-height: 1.8;">
+            Identitatea și competențele profesionale au fost auditate și validate conform standardelor de rigoare Chef Audit.
+        </p>
+        <p style="font-size: 10px; color: #444; margin-top: 60px;">ID VERIFICARE: #CA-9921-X | DATA EMITERII: 04.01.2026</p>
+    </div>
+</div>
+
+<div class="debug">
+    <button onclick="showSection('login-sec')">Login</button>
+    <button onclick="showSection('dashboard-sec')">Dashboard</button>
+    <button onclick="showSection('result-sec')">Rezultat</button>
+</div>
+
+<script>
+    function showSection(id) {
+        document.querySelectorAll('.section').forEach(s => s.classList.remove('active'));
+        document.getElementById(id).classList.add('active');
+    }
+</script>
 
 </body>
 </html>
